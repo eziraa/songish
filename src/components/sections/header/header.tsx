@@ -1,9 +1,11 @@
 import { HeaderComponent } from "./header.styles";
 import { ThemeToggleButton } from "../../buttons/theme-toggle/themeToggle";
+import { ReactNode } from "react";
 
-const Header = () => {
+const Header = ({ children }: { children: ReactNode }) => {
   return (
     <HeaderComponent>
+      {children}
       <ThemeToggleButton />
     </HeaderComponent>
   );
