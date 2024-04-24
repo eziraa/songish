@@ -6,5 +6,6 @@ export const GlobalStyles = css`
     margin: 0;
     box-sizing: border-box;
     font-family: monospace;
+    transition: all 0.5s linear;
   }
 `;
