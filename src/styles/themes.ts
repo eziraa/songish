@@ -8,8 +8,8 @@ export type Theme = {
 };
 
 export const lightTheme: Theme = {
-  backgroundPrimary: '#FEFEFE',
-  backgroundSecondary: '#E7E6E7',
+  backgroundPrimary: '#EAE6ED',
+  backgroundSecondary: '#C2C0C2',
   body: '#FFF',
   text: '#363537',
   toggleBorder: '#FFF',
