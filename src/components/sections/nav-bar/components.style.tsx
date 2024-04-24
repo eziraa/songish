@@ -20,7 +20,6 @@ export const UpperNavBarItem = styled.div<ThemeProps>`
   cursor: pointer;
   border-radius: 3px;
   text-align: center;
-  transition: all 0.5s;
   &:hover {
     background-color: ${({ theme }) => theme.backgroundSecondaryHover};
   }
