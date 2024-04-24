@@ -13,7 +13,6 @@ export const useTheme = (): [Theme, () => void] => {
     }
   };
 
-  // ... rest of your hook
 
   return [theme, toggleTheme];
 };
