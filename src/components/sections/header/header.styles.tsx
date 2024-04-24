@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ThemeProps } from "../../styles/theme-inteface";
+import { ThemeProps } from "../../../styles/theme-inteface";
 
-export const Header = styled.div<ThemeProps>`
+export const HeaderComponent = styled.div<ThemeProps>`
   padding: 10px 20px;
   display: flex;
   justify-content: end;
