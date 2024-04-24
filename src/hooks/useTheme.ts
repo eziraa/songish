@@ -1,27 +1,19 @@
-import { useState, useEffect } from 'react';
-import { lightTheme, darkTheme } from '../styles/themes';
+// src/hooks/useTheme.js
+import { useState } from 'react';
+import { Theme, lightTheme, darkTheme } from '../styles/themes';
 
-export const useTheme = () => {
-  const [theme, setTheme] = useState(lightTheme);
+export const useTheme = (): [Theme, () => void] => {
+  const [theme, setTheme] = useState<Theme>(lightTheme);
 
   const toggleTheme = () => {
     if (theme === lightTheme) {
       setTheme(darkTheme);
-    }  else {
+    }else {
       setTheme(lightTheme);
     }
   };
 
-  useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme');
-    if (localTheme) {
-      setTheme(JSON.parse(localTheme));
-    }
-  }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem('theme', JSON.stringify(theme));
-  }, [theme]);
+  // ... rest of your hook
 
   return [theme, toggleTheme];
 };
