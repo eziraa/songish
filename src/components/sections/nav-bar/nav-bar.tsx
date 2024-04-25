@@ -1,4 +1,3 @@
-import React from "react";
 import { UpperNavBar, UpperNavBarItem } from "./components.style";
 
 const NavBar = () => {

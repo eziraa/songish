@@ -34,7 +34,6 @@ export const MenuBarItem = styled.div<ThemeProps>`
   cursor: pointer;
   border-radius: 3px;
   font-family: monospace;
-  transition: all 0.5s;
   &:hover {
     background-color: ${({ theme }) => theme.backgroundSecondaryHover};
   }
