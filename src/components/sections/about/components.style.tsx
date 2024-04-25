@@ -36,7 +36,7 @@ export const DescriptionContainer = styled.div`
 `;
 export const Description = styled.div<ThemeProps>`
   font-size: 18px;
-  color: ${({ theme }) => theme.aboutBackground};
+  color: ${({ theme }) => theme.textPrimary};
   line-height: 1.6;
   margin: 2rem;
   padding: 1rem;
@@ -46,7 +46,7 @@ export const Description = styled.div<ThemeProps>`
 
 export const Paragraph = styled.p<ThemeProps>`
   font-size: 18px;
-  color: ${({ theme }) => theme.aboutBackground};
+  color: ${({ theme }) => theme.textPrimary};
   line-height: 1.6;
   width: 30vw;
 `;
@@ -63,7 +63,7 @@ export const FeatureList = styled.ul`
 export const FeatureItem = styled.li<ThemeProps>`
   margin-bottom: 10px;
   font-size: 16px;
-  color: ${({ theme }) => theme.aboutBackground};
+  color: ${({ theme }) => theme.textPrimary};
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -83,7 +83,7 @@ export const FeatureItemBody = styled.div`
 `;
 export const TitleSmall = styled.h2<ThemeProps>`
   font-size: 2rem;
-  color: ${({ theme }) => theme.aboutBackground};
+  color: ${({ theme }) => theme.textPrimary};
   font-weight: 700;
 `;
 
