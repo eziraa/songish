@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ThemeProps } from "../../styles/theme-inteface";
+import { ThemeProps } from "../../styles/theme-interface";
 
 export const H0 = styled.h1<ThemeProps>`
   font-size: 1.6rem;
