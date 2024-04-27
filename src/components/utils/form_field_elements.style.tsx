@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { ThemeProps } from "../../styles/theme-inteface";
+import { ThemeProps } from "../../styles/theme-interface";
 
 const skew40Deg = keyframes`
   from {

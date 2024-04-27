@@ -1,3 +1,4 @@
+import { Label } from "../../utils/form_field_elements.style";
 import { SearchIcon } from "../../utils/icons/button-like-icon";
 import {
   SearchContainer,
@@ -8,20 +9,20 @@ import {
 
 const SearchComponent = () => {
   return (
-    <SearchForm>
+    <>
       <SearchContainer>
         <SearchField type="text" placeholder={"Search want you want"} />
         <SearchIcon />
       </SearchContainer>
-      <label>
+      <Label>
         Search by:
         <Select>
           <option value="title">Title</option>
           <option value="album">Album</option>
           <option value="artist">Artist</option>
         </Select>
-      </label>
-    </SearchForm>
+      </Label>
+    </>
   );
 };
 
