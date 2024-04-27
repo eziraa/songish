@@ -43,5 +43,6 @@ const UserSlice = createSlice({
   },
 });
 
-export const { signUpRequest, setMinorTask } = UserSlice.actions;
+export const { loginRequest, loginDone, signUpRequest, setMinorTask } =
+  UserSlice.actions;
 export default UserSlice.reducer;
