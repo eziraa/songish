@@ -1,10 +1,10 @@
 import { Slide, SliderBody, SlidesContainer } from "../slider/components.style";
-import { RecentContainer, AboutMusic } from "./components.style";
+import { RecentContainer, AboutMusic, Title } from "./components.style";
 
 export const RecentSection = () => {
   return (
     <RecentContainer>
-      <h1>Resent musics</h1>
+      <Title>Resent musics</Title>
       <SliderBody>
         <SlidesContainer>
           {["Song 1", "Song 2", "Song 3"].map((music, index) => {

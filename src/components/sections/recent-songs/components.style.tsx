@@ -18,3 +18,9 @@ export const AboutMusic = styled.div<ThemeProps>`
   gap: 1rem;
   color: ${({ theme }) => theme.textPrimary};
 `;
+
+export const Title = styled.h2<ThemeProps>`
+  font-size: 2rem;
+  font-weight: bold;
+  color: ${({ theme }) => theme.textSecondary};
+`;
