@@ -12,7 +12,7 @@ export const AboutContainer = styled.div`
 
 export const Title = styled.h1<ThemeProps>`
   font-size: 3rem;
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.titleColorPrimary};
   margin-bottom: 20px;
   text-align: center;
   font-weight: 700;
