@@ -1,4 +1,4 @@
-import { SagaReturnType, call, put } from "redux-saga/effects";
+import { SagaReturnType, call, put, takeEvery } from "redux-saga/effects";
 import SongsAPI from "../../services/songAPI";
 import { setNotification } from "../notification/notificationSlice";
 import { loadSongsDone } from "./songSlice";
@@ -30,4 +30,8 @@ function* LoadSongs() {
       })
     );
   }
+}
+
+export function* watchLoadSongs() {
+  yield takeEvery("song/loadSongsRequested", LoadSongs);
 }
