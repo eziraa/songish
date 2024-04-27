@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ThemeProps } from "../../../styles/theme-inteface";
+import { ThemeProps } from "../../../styles/theme-interface";
 
 export const FooterContainer = styled.div<ThemeProps>`
   background-color: transparent;

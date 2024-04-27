@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ThemeProps } from "../../../styles/theme-inteface";
+import { ThemeProps } from "../../../styles/theme-interface";
 
 export const AboutContainer = styled.div`
   padding-top: 8rem;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ThemeProps } from "../../../styles/theme-inteface";
+import { ThemeProps } from "../../../styles/theme-interface";
 export const UpperNavBar = styled.div<ThemeProps>`
   display: flex;
   flex-direction: row;

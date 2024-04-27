@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { ThemeProps } from "../../../styles/theme-inteface";
+import { ThemeProps } from "../../../styles/theme-interface";
 import { Form } from "formik";
 
 export const SearchContainer = styled.div<ThemeProps>`
@@ -40,7 +40,7 @@ export const SearchField = styled.input<ThemeProps>`
   }
 `;
 
-const Select = styled.select<ThemeProps>`
+export const Select = styled.select<ThemeProps>`
   padding: 10px;
   border: none;
   outline: none;
