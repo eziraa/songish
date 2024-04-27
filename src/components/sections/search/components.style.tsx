@@ -6,7 +6,7 @@ export const SearchContainer = styled.div<ThemeProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.headerColor};
+  background-color: ${({ theme }) => theme.searchBackgroundColor};
   padding: 15px;
   border-radius: 5px;
   &:focus {
@@ -22,14 +22,15 @@ export const SearchForm = styled(Form)`
   align-items: center;
   gap: 10px;
 `;
+
 export const SearchField = styled.input<ThemeProps>`
   width: 300px;
   font-size: 16px;
   outline: none;
-  background-color: ${({ theme }) => theme.headerColor};
+  background-color: ${({ theme }) => theme.searchBackgroundColor};
   padding-left: 35px; /* Added padding to accommodate icon */
   border: none;
-  color: white;
+  color: ${({ theme }) => theme.textPrimary};
   &::placeholder {
     color: #aaa;
   }
@@ -44,8 +45,8 @@ export const Select = styled.select<ThemeProps>`
   padding: 10px;
   border: none;
   outline: none;
-  background-color: #0d2841;
-  color: white;
+  background-color: ${({ theme }) => theme.searchBackgroundColor};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 20px;
   margin-left: 10px;
   padding-right: 20px;
