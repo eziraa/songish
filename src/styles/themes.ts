@@ -11,6 +11,7 @@ export type Theme = {
   backgroundSecondaryHover: string;
   formButtonColor: string;
   inputFieldColor: string;
+  formBtnTextColor: string;
 };
 
 export const lightTheme: Theme = {
@@ -25,6 +26,7 @@ export const lightTheme: Theme = {
   aboutBackground: '#068d7b',
   backgroundSecondaryHover: '#C2C0C2',
   formButtonColor: '#04376E',
+  formBtnTextColor: '#FEFEFE',
   inputFieldColor: '#ccc'
 
 };
@@ -42,7 +44,8 @@ export const darkTheme:Theme = {
   aboutBackground: '#068d7b',
   backgroundSecondaryHover: '#183855',
   formButtonColor: '#72787F',
-  inputFieldColor: '#6B8096'
+  inputFieldColor: '#ccc',
+  formBtnTextColor: '#18263E',
 
 
 };
