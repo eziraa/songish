@@ -35,6 +35,7 @@ export const DescriptionText = styled.p<ThemeProps>`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  width: 20vw;
 `;
 
 export const FormGroup = styled.div`
