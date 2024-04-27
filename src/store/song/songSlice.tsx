@@ -21,8 +21,12 @@ const SongSlice = createSlice({
       state.loading = true;
       state.songs = [];
     },
+    loadSongsDone: (state, actions: PayloadAction<SongResponse[]>) => {
+      state.songs = actions.payload;
+      state.loading = false;
+    },
   },
 });
 
-export const { loadSongsRequested } = SongSlice.actions;
+export const { loadSongsRequested, loadSongsDone } = SongSlice.actions;
 export default SongSlice.reducer;
