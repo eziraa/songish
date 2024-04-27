@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { SongStateType } from "../../typo/songs/state";
 import { SongResponse } from "../../typo/songs/response";
+import { AddSongParams } from "../../typo/songs/parameters";
 
 const InitialSongState: SongStateType = {
   deleting: false,
@@ -17,6 +18,9 @@ const SongSlice = createSlice({
   name: "song",
   initialState: InitialSongState,
   reducers: {
+    addSongRequested: (state, action: PayloadAction<AddSongParams>) => {
+      state.loading = true;
+    },
     loadSongsRequested: (state) => {
       state.loading = true;
       state.songs = [];
