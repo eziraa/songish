@@ -1,3 +1,5 @@
+import { SongResponse } from "./response";
+
 export interface LoadSongsParameters {
   token: string;
   playlistID: string;
@@ -18,4 +20,9 @@ export interface EditSongParams extends Omit<AddSongParams, "playlist_id"> {
 export interface DeleteSongParams extends AddSongParams {
   id: string;
   callback?: () => void;
+}
+
+export interface PlayingParams {
+  song: SongResponse | undefined;
+  song_list: SongResponse[];
 }
