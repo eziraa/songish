@@ -13,6 +13,8 @@ export type Theme = {
   formButtonColor: string;
   inputFieldColor: string;
   formBtnTextColor: string;
+  outLinedBtnColor: string;
+  searchBackgroundColor: string;
 };
 
 export const lightTheme: Theme = {
@@ -29,9 +31,10 @@ export const lightTheme: Theme = {
   backgroundSecondaryHover: '#C2C0C2',
   formButtonColor: '#04376E',
   formBtnTextColor: '#FEFEFE',
-  inputFieldColor: '#ccc'
-
-};
+  inputFieldColor: '#ccc',
+  outLinedBtnColor: '#FF01B7',
+  searchBackgroundColor: '#FFFFFF'
+}
 
 
 export const darkTheme:Theme = {
@@ -49,7 +52,7 @@ export const darkTheme:Theme = {
   formButtonColor: '#72787F',
   inputFieldColor: '#ccc',
   formBtnTextColor: '#18263E',
-
-
+  outLinedBtnColor: '#FF01B7',
+  searchBackgroundColor: '#183855',
 };
 
