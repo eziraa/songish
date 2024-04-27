@@ -5,6 +5,7 @@ export type Theme = {
   text: string;
   textPrimary: string;
   textSecondary: string;
+  titleColorPrimary: string;
   toggleBorder: string;
   headerColor: string
   aboutBackground: string;
@@ -21,6 +22,7 @@ export const lightTheme: Theme = {
   text: '#010003',
   textPrimary: '#010003',
   textSecondary: '#010003',
+  titleColorPrimary: '#483077',
   toggleBorder: '#FFF',
   headerColor: '#FFFFFF',
   aboutBackground: '#068d7b',
@@ -39,6 +41,7 @@ export const darkTheme:Theme = {
   text: '#F4F4F5',
   textPrimary: '#F4F4F5',
   textSecondary: '#F4F4F5',
+  titleColorPrimary: '#483077',
   toggleBorder: '#6B8096',
   headerColor: '#363537',
   aboutBackground: '#068d7b',
