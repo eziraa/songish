@@ -39,3 +39,15 @@ export const SearchField = styled.input<ThemeProps>`
     border: none;
   }
 `;
+
+const Select = styled.select<ThemeProps>`
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: #0d2841;
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+  padding-right: 20px;
+  border-radius: 5px;
+`;
