@@ -15,12 +15,14 @@ export const SearchContainer = styled.div<ThemeProps>`
   }
 `;
 
-export const SearchForm = styled(Form)`
+export const SearchForm = styled.form`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 10px;
+  justify-self: flex-start;
+  margin-right: 5rem;
 `;
 
 export const SearchField = styled.input<ThemeProps>`
