@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserStateType } from "../../typo/user/states";
-import { SignUpParameters } from "../../typo/user/parameters";
+import { LoginParameters, SignUpParameters } from "../../typo/user/parameters";
 import { UserResponse } from "../../typo/user/response";
 
 const defaultUserResponse = {
@@ -25,6 +25,9 @@ const UserSlice = createSlice({
   name: "user",
   initialState: InitialUserState,
   reducers: {
+    loginRequest: (state, action: PayloadAction<LoginParameters>) => {
+      state.loading = true;
+    },
     loginDone: (state, action: PayloadAction<UserResponse>) => {
       state.user = action.payload;
       state.loading = false;
