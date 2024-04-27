@@ -7,7 +7,10 @@ export type Theme = {
   textSecondary: string;
   toggleBorder: string;
   headerColor: string
-  backgroundSecondaryHover: string
+  aboutBackground: string;
+  backgroundSecondaryHover: string;
+  formButtonColor: string;
+  inputFieldColor: string;
 };
 
 export const lightTheme: Theme = {
@@ -19,12 +22,16 @@ export const lightTheme: Theme = {
   textSecondary: '#010003',
   toggleBorder: '#FFF',
   headerColor: '#FFFFFF',
-  backgroundSecondaryHover: '#C2C0C2'
+  aboutBackground: '#068d7b',
+  backgroundSecondaryHover: '#C2C0C2',
+  formButtonColor: '#04376E',
+  inputFieldColor: '#ccc'
+
 };
 
 
 export const darkTheme:Theme = {
-  backgroundPrimary: '#020d20',
+  backgroundPrimary: '#18263E',
   backgroundSecondary: '#091D3A',
   body: '#020d20',
   text: '#F4F4F5',
@@ -32,6 +39,11 @@ export const darkTheme:Theme = {
   textSecondary: '#F4F4F5',
   toggleBorder: '#6B8096',
   headerColor: '#363537',
-  backgroundSecondaryHover: '#183855'
+  aboutBackground: '#068d7b',
+  backgroundSecondaryHover: '#183855',
+  formButtonColor: '#72787F',
+  inputFieldColor: '#6B8096'
+
+
 };
 
