@@ -8,9 +8,6 @@ export interface AddPlaylistParams {
   image?: any;
   customer_id: any;
 }
-export interface EditPlaylistParams extends AddPlaylistParams {
-  id?: string;
-}
 
 export interface DeletePlaylistParams extends AddPlaylistParams {
   id: string;
