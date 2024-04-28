@@ -42,6 +42,12 @@ const SongSlice = createSlice({
         song.id === action.payload.id ? action.payload : song
       );
     },
+    setCurrentSongForAction: (
+      state,
+      actions: PayloadAction<SongResponse | undefined>
+    ) => {
+      state.current_song_for_action = actions.payload;
+    },
   },
 });
 
@@ -52,5 +58,6 @@ export const {
   addSongDone,
   editSongRequest,
   editSongDone,
+  setCurrentSongForAction,
 } = SongSlice.actions;
 export default SongSlice.reducer;
