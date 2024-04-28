@@ -45,6 +45,12 @@ const SongSlice = createSlice({
     deleteSongRequest: (state, action: PayloadAction<number>) => {
       state.deleting = true;
     },
+    deleteSongDone: (state, action: PayloadAction<SongResponse>) => {
+      state.deleting = false;
+      state.songs = state.songs.filter(
+        (song) => song.id != state.current_song_for_action?.id
+      );
+    },
     setCurrentSongForAction: (
       state,
       actions: PayloadAction<SongResponse | undefined>
