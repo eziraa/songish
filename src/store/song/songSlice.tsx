@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { SongStateType } from "../../typo/songs/state";
 import { SongResponse } from "../../typo/songs/response";
+import { AddSongParams } from "../../typo/songs/parameters";
 
 const InitialSongState: SongStateType = {
   deleting: false,
@@ -24,6 +25,9 @@ const SongSlice = createSlice({
       state.songs.push(action.payload);
       state.loading = false;
     },
+    editSongRequest: (state, action: PayloadAction<EditSongParams>) => {
+      state.loading = true;
+    },
     loadSongsRequested: (state) => {
       state.loading = true;
       state.songs = [];
@@ -35,5 +39,11 @@ const SongSlice = createSlice({
   },
 });
 
-export const { loadSongsRequested, loadSongsDone } = SongSlice.actions;
+export const {
+  loadSongsRequested,
+  loadSongsDone,
+  addSongRequested,
+  addSongDone,
+  editSongRequest,
+} = SongSlice.actions;
 export default SongSlice.reducer;
