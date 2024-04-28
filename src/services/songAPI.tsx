@@ -1,6 +1,7 @@
 import axios from "axios";
 import { SongResponse } from "../typo/songs/response";
-import { AddSongParams } from "../typo/songs/parameters";
+import { AddSongParams, EditSongParams } from "../typo/songs/parameters";
+import { api } from "./api";
 
 const loadSongs = async () => {
   const songs = await axios
@@ -23,9 +24,20 @@ const addSong = async (params: AddSongParams) => {
     .then((res) => res.data);
   return newSong;
 };
-
+const editSong = async (params: EditSongParams) => {
+  // const { token, songID, song } = params;
+  const editedSong = await axios
+    .put<SongResponse>(api + "/song/single-song/", params, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then((res) => res.data);
+  return editedSong;
+};
 const SongsAPI = {
   loadSongs,
   addSong,
+  editSong,
 };
 export default SongsAPI;
