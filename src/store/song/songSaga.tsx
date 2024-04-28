@@ -1,7 +1,7 @@
 import { SagaReturnType, call, put, takeEvery } from "redux-saga/effects";
 import SongsAPI from "../../services/songAPI";
 import { setNotification } from "../notification/notificationSlice";
-import { addSongDone, loadSongsDone } from "./songSlice";
+import { addSongDone, addSongRequested, loadSongsDone } from "./songSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AddSongParams } from "../../typo/songs/parameters";
 import { setMinorTask } from "../user/userSlice";
@@ -65,4 +65,7 @@ function* AddSong(action: PayloadAction<AddSongParams>) {
       duration: 3,
     });
   }
+}
+export function* watchAddSong() {
+  yield takeEvery("song/addSongRequested", AddSong);
 }
