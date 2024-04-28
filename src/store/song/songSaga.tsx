@@ -139,3 +139,8 @@ function* DeleteSong(action: PayloadAction<number>) {
     );
   }
 }
+
+export function* watchDeleteSong() {
+  yield takeEvery("song/deleteSongRequest", DeleteSong);
+}
+
