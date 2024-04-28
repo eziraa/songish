@@ -42,6 +42,9 @@ const SongSlice = createSlice({
         song.id === action.payload.id ? action.payload : song
       );
     },
+    deleteSongRequest: (state, action: PayloadAction<number>) => {
+      state.deleting = true;
+    },
     setCurrentSongForAction: (
       state,
       actions: PayloadAction<SongResponse | undefined>
