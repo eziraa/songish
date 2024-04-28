@@ -3,7 +3,6 @@ import SongsAPI from "../../services/songAPI";
 import { setNotification } from "../notification/notificationSlice";
 import {
   addSongDone,
-  addSongRequested,
   editSongDone,
   loadSongsDone,
   setCurrentSongForAction,
@@ -103,4 +102,8 @@ function* EditSong(action: PayloadAction<EditSongParams>) {
       duration: 3,
     });
   }
+}
+
+export function* watchEditSong() {
+  yield takeEvery("song/editSongRequest", EditSong);
 }
