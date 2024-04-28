@@ -40,6 +40,9 @@ const UserSlice = createSlice({
     setMinorTask: (state, actions: PayloadAction<string | undefined>) => {
       state.minorTask = actions.payload;
     },
+    setMajorTask: (state, actions: PayloadAction<string | undefined>) => {
+      state.majorTask = actions.payload;
+    },
   },
 });
 
