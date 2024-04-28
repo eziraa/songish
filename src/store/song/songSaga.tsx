@@ -1,7 +1,13 @@
 import { SagaReturnType, call, put, takeEvery } from "redux-saga/effects";
 import SongsAPI from "../../services/songAPI";
 import { setNotification } from "../notification/notificationSlice";
-import { addSongDone, addSongRequested, loadSongsDone } from "./songSlice";
+import {
+  addSongDone,
+  addSongRequested,
+  editSongDone,
+  loadSongsDone,
+  setCurrentSongForAction,
+} from "./songSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AddSongParams } from "../../typo/songs/parameters";
 import { setMinorTask } from "../user/userSlice";
@@ -68,4 +74,33 @@ function* AddSong(action: PayloadAction<AddSongParams>) {
 }
 export function* watchAddSong() {
   yield takeEvery("song/addSongRequested", AddSong);
+}
+function* EditSong(action: PayloadAction<EditSongParams>) {
+  try {
+    const editedSong: SagaReturnType<typeof SongsAPI.editSong> = yield call(
+      SongsAPI.editSong,
+      action.payload
+    );
+    yield put(setMinorTask(undefined));
+    yield put(setCurrentSongForAction(undefined));
+    yield put(editSongDone(editedSong));
+
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Updating Song",
+        desc: "The song successfully updated",
+        duration: 3,
+      })
+    );
+  } catch (error) {
+    setNotification({
+      color: "red",
+      status: true,
+      title: "Updating Song",
+      desc: "The song was not  successfully updated ",
+      duration: 3,
+    });
+  }
 }
