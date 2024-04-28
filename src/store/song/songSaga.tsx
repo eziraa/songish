@@ -3,6 +3,7 @@ import SongsAPI from "../../services/songAPI";
 import { setNotification } from "../notification/notificationSlice";
 import {
   addSongDone,
+  deleteSongDone,
   editSongDone,
   loadSongsDone,
   setCurrentSongForAction,
@@ -106,4 +107,35 @@ function* EditSong(action: PayloadAction<EditSongParams>) {
 
 export function* watchEditSong() {
   yield takeEvery("song/editSongRequest", EditSong);
+}
+
+function* DeleteSong(action: PayloadAction<number>) {
+  try {
+    const deletedSong: SagaReturnType<typeof SongsAPI.deleteSong> = yield call(
+      SongsAPI.deleteSong,
+      action.payload
+    );
+
+    yield put(deleteSongDone(deletedSong));
+    yield put(setMinorTask(undefined));
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Deleting Song",
+        desc: "The song successfully deleted",
+        duration: 3,
+      })
+    );
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Deleting Song",
+        desc: "The song not  deleted",
+        duration: 3,
+      })
+    );
+  }
 }
