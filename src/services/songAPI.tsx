@@ -35,9 +35,17 @@ const editSong = async (params: EditSongParams) => {
     .then((res) => res.data);
   return editedSong;
 };
+
+const deleteSong = async (song_id: number) => {
+  const deletedSong = await axios
+    .delete<SongResponse>(`${api}/song/songs/${song_id}`)
+    .then((res) => res.data);
+  return deletedSong;
+};
 const SongsAPI = {
   loadSongs,
   addSong,
   editSong,
+  deleteSong,
 };
 export default SongsAPI;
