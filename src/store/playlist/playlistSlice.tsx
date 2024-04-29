@@ -25,6 +25,10 @@ const PlaylistSlice = createSlice({
     loadPlaylistsRequested: (state, actions: PayloadAction<string>) => {
       state.loading = true;
     },
+    loadPlaylistSongsDone: (state, action: PayloadAction<SongResponse[]>) => {
+      state.loading = false;
+      state.songs = action.payload;
+    },
     loadingFinished: (state) => {
       state.loading = false;
     },
