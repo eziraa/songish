@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { SagaReturnType, call, put } from "redux-saga/effects";
+import { SagaReturnType, call, put, takeEvery } from "redux-saga/effects";
 import PlaylistsAPI from "../../services/playlistAPI";
 import { AddPlaylistParams } from "../../typo/playlist/parameters";
 import { setNotification } from "../notification/notificationSlice";
@@ -30,4 +30,8 @@ function* AddPlaylist(action: PayloadAction<AddPlaylistParams>) {
       duration: 3,
     });
   }
+}
+
+export function* watchAddPlaylist() {
+  yield takeEvery("playlist/addPlaylistRequested", AddPlaylist);
 }
