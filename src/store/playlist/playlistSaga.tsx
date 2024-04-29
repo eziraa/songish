@@ -3,8 +3,8 @@ import { SagaReturnType, call, put, takeEvery } from "redux-saga/effects";
 import PlaylistsAPI from "../../services/playlistAPI";
 import { AddPlaylistParams } from "../../typo/playlist/parameters";
 import { setNotification } from "../notification/notificationSlice";
-import { setMinorTask } from "../user/userSlice";
-import { addPlaylistDone } from "./playlistSlice";
+import { loadPlaylistsDone, setMinorTask } from "../user/userSlice";
+import { addPlaylistDone, loadingFinished } from "./playlistSlice";
 
 function* AddPlaylist(action: PayloadAction<AddPlaylistParams>) {
   try {
@@ -34,4 +34,33 @@ function* AddPlaylist(action: PayloadAction<AddPlaylistParams>) {
 
 export function* watchAddPlaylist() {
   yield takeEvery("playlist/addPlaylistRequested", AddPlaylist);
+}
+
+function* LoadPlaylists(action: PayloadAction<string>) {
+  try {
+    const playlists: SagaReturnType<typeof PlaylistsAPI.loadPlaylists> =
+      yield call(PlaylistsAPI.loadPlaylists, action.payload);
+
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Loading Playlist",
+        desc: "The playlists successfully loaded",
+        duration: 3,
+      })
+    );
+    yield put(loadingFinished());
+    yield put(loadPlaylistsDone(playlists));
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Loading Playlist",
+        desc: "Can not load the playlists from the database",
+        duration: 3,
+      })
+    );
+  }
 }
