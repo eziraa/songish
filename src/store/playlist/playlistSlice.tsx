@@ -22,8 +22,19 @@ const PlaylistSlice = createSlice({
       state.playlists.push(action.payload);
       state.loading = false;
     },
+    loadPlaylistsRequested: (state, actions: PayloadAction<string>) => {
+      state.loading = true;
+    },
+    loadingFinished: (state) => {
+      state.loading = false;
+    },
   },
 });
 
-export const { addPlaylistRequested, addPlaylistDone } = PlaylistSlice.actions;
+export const {
+  addPlaylistRequested,
+  addPlaylistDone,
+  loadPlaylistsRequested,
+  loadingFinished,
+} = PlaylistSlice.actions;
 export default PlaylistSlice.reducer;
