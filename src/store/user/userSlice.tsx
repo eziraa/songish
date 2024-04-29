@@ -43,6 +43,9 @@ const UserSlice = createSlice({
     setMajorTask: (state, actions: PayloadAction<string | undefined>) => {
       state.majorTask = actions.payload;
     },
+    loadPlaylistsDone: (state, action: PayloadAction<PlaylistResponse[]>) => {
+      state.user.my_playlists = action.payload;
+    },
   },
 });
 
