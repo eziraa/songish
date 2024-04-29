@@ -67,3 +67,7 @@ function* Login(action: PayloadAction<LoginParameters>) {
   }
 }
 
+export function* watchLogin() {
+  yield takeEvery("user/loginRequest", Login);
+}
+
