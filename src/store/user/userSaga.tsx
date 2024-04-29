@@ -37,3 +37,33 @@ export function* watchSignup() {
 }
 
 
+
+function* Login(action: PayloadAction<LoginParameters>) {
+  try {
+    let user: SagaReturnType<typeof UserAPI.login> = yield call(
+      UserAPI.login,
+      action.payload
+    );
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "User login up in",
+        desc: "You are successfully logged up in",
+        duration: 3,
+      })
+    );
+    yield put(loginDone(user));
+  } catch (e) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "User login",
+        desc: "Incorrect password or email address",
+        duration: 3,
+      })
+    );
+  }
+}
+
