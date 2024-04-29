@@ -64,3 +64,6 @@ function* LoadPlaylists(action: PayloadAction<string>) {
     );
   }
 }
+export function* watchLoadPlaylists() {
+  yield takeEvery("playlist/loadPlaylistsRequested", LoadPlaylists);
+}
