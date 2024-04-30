@@ -42,10 +42,20 @@ const deleteSong = async (song_id: number) => {
     .then((res) => res.data);
   return deletedSong;
 };
+
+async function getAudioDuration(file: any) {
+  return new Promise((resolve, reject) => {
+    const audio = new Audio();
+    audio.src = URL.createObjectURL(file);
+    audio.onloadedmetadata = () => resolve(audio.duration);
+    audio.onerror = () => reject("Error loading audio file");
+  });
+}
 const SongsAPI = {
   loadSongs,
   addSong,
   editSong,
   deleteSong,
+  getAudioDuration,
 };
 export default SongsAPI;
