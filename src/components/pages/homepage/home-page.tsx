@@ -9,7 +9,8 @@ import { ScrollBar } from "../../utils/scrollbar.style";
 import SignUpPage from "../../sections/sign_up/sign_up";
 import SearchComponent from "../../sections/search/search";
 import ContactPage from "../../sections/contact/contact";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import LoginPage from "../../sections/login/login";
 
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ const HomePage = () => {
       <Home ref={homeRef}>
         <Header>
           <SearchComponent />
-          <NavBar />
+          <NavBar smoothScroll={handleSmoothScroll} />
         </Header>
         <LeftMenu />
         <Main>
@@ -31,7 +32,8 @@ const HomePage = () => {
           <AboutPage />
           <ContactPage />
           <Footer />
-          {/* <SignUpPage /> */}
+          <LoginPage />
+          <SignUpPage />
         </Main>
       </Home>
     </ScrollBar>
