@@ -1,21 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-import createSagaMiddleware, { UnknownAction } from "redux-saga";
+import createSagaMiddleware from "redux-saga";
 import { routerConfig } from "../config/router/router";
 import songSlice from "../store/song/songSlice";
 import notificationSlice from "../store/notification/notificationSlice";
 import playlistSlice from "../store/playlist/playlistSlice";
 import { rootSaga } from "./saga";
+import UserSlice from "../store/user/userSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 sagaMiddleware.setContext({
   router: routerConfig,
 });
-
 const store = configureStore({
   reducer: {
     songs: songSlice,
-    user: userSLice,
+    user: UserSlice,
     notifications: notificationSlice,
     playlists: playlistSlice,
   },
@@ -41,6 +41,4 @@ export { store };
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-function userSLice(state: unknown, action: UnknownAction): unknown {
-  throw new Error("Function not implemented.");
-}
+
