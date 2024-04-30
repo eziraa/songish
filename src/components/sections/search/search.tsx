@@ -9,7 +9,7 @@ import {
 
 const SearchComponent = () => {
   return (
-    <>
+    <SearchForm>
       <SearchContainer>
         <SearchField type="text" placeholder={"Search want you want"} />
         <SearchIcon />
@@ -22,7 +22,7 @@ const SearchComponent = () => {
           <option value="artist">Artist</option>
         </Select>
       </Label>
-    </>
+    </SearchForm>
   );
 };
 
