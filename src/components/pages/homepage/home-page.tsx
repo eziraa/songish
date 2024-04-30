@@ -9,8 +9,9 @@ import { ScrollBar } from "../../utils/scrollbar.style";
 import SignUpPage from "../../sections/sign_up/sign_up";
 import SearchComponent from "../../sections/search/search";
 import ContactPage from "../../sections/contact/contact";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import LoginPage from "../../sections/login/login";
+import Notification from "../../sections/mini-notification/mini-notification";
 
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -34,6 +35,7 @@ const HomePage = () => {
           <Footer />
           <LoginPage />
           <SignUpPage />
+          {<Notification />}
         </Main>
       </Home>
     </ScrollBar>
