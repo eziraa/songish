@@ -5,7 +5,7 @@ import { api } from "../config/api/api";
 
 const signUp = async (values: SignUpParameters) => {
   const user = await axios
-    .post<UserResponse>("api" + "/song/user/register", values)
+    .post<UserResponse>(api + "/song/user/register", values)
     .then((res) => res.data);
   return user;
 };
