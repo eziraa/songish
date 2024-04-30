@@ -4,8 +4,13 @@ import { CgPlayListAdd } from "react-icons/cg";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineReplay10, MdFavorite } from "react-icons/md";
 import { RiPlayListFill } from "react-icons/ri";
+import { useAppDispatch } from "../../../utils/customHook";
+import { setMinorTask } from "../../../store/user/userSlice";
+import { UPLOAD_SONG } from "../../../config/constants/user-current-task";
 
 const LeftMenu = () => {
+  const dispatcher = useAppDispatch();
+
   return (
     <Menu>
       <MenuBar>
@@ -18,7 +23,13 @@ const LeftMenu = () => {
           { icon: <RiPlayListFill />, text: "Your Playlist" },
         ].map((item, index) => {
           return (
-            <MenuBarItem key={index}>
+            <MenuBarItem
+              onClick={(e) => {
+                e.preventDefault();
+                index == 1 && dispatcher(setMinorTask(UPLOAD_SONG));
+              }}
+              key={index}
+            >
               {item.icon}
               {}
               {item.text}
