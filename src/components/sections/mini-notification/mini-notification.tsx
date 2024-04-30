@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { useAppSelector } from "../../utils/customHook";
+import { useAppSelector } from "../../../utils/customHook";
 import { notificationStyle } from "./components.style";
 
 const Notification = () => {
-  const notification = useAppSelector((state) => state.notifications); // assuming the slice is named 'notification'
+  const notification = useAppSelector((state) => state.notifications);
   return (
     notification.status && (
       <div css={notificationStyle(notification.color)}>
@@ -12,5 +12,6 @@ const Notification = () => {
       </div>
     )
   );
+  return;
 };
 export default Notification;
