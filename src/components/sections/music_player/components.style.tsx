@@ -6,7 +6,7 @@ import {
 } from "react-icons/bs";
 import { FaShuffle, FaRepeat } from "react-icons/fa6";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { ThemeProps } from "../../../styles/theme-interface";
 
 export const Player = styled.section<ThemeProps>`
@@ -217,4 +217,87 @@ export const RandomActive = styled(FaShuffle)`
 export const RepeatIcon = styled(FaRepeat)`
   color: ${({ theme }) => theme.textPrimary};
   font-size: 20px;
+`;
+
+export const Rotation = keyframes`
+    from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+`;
+export const Rotate = styled(TrackArt)`
+  animation: ${Rotation} 8s infinite linear;
+`;
+
+export const Animate = keyframes`
+   50% {
+    height: 20%;
+    background-color: #4286f4;
+  }
+  100% {
+    height: 100%;
+    background: #4286f4;
+  }
+`;
+export const LoaderStrokeStyles = css`
+  background: #4286f4;
+  height: 100%;
+  width: 10px;
+  border-radius: 50px;
+  margin: 0 5px;
+  animation: ${Animate} 1.4s linear infinite;
+`;
+export const Loader = styled.div`
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Stroke = styled.div`
+  ${LoaderStrokeStyles};
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+  &:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  &:nth-child(4) {
+    animation-delay: 0.9s;
+  }
+  &:nth-child(5) {
+    animation-delay: 0.6s;
+  }
+  &:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+  &:nth-child(7) {
+    animation-delay: 0s;
+  }
+  &:nth-child(8) {
+    animation-delay: 0.3s;
+  }
+  &:nth-child(9) {
+    animation-delay: 0.6s;
+  }
+  &:nth-child(10) {
+    animation-delay: 0.9s;
+  }
+  &:nth-child(11) {
+    animation-delay: 0.6s;
+  }
+  &:nth-child(12) {
+    animation-delay: 0.3s;
+  }
+  &:nth-child(13) {
+    animation-delay: 0s;
+  }
+  &:nth-child(14) {
+    animation-delay: 0.3s;
+  }
 `;
