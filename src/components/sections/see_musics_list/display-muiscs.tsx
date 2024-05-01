@@ -16,10 +16,15 @@ import {
   SongsNotFound,
 } from "./components.style";
 import { SongResponse } from "../../../typo/songs/response";
+import LoadingSpinner from "../spinner/spinner";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
   const [song_list, setSongList] = useState<SongResponse[]>(songs.songs);
+
+  if (songs.loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <>
