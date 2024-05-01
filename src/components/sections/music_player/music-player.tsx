@@ -73,142 +73,159 @@ export default function PlayerComponent() {
         loadTrack(api + songs.playing_music_list[trackIndex].song_file);
     }, [trackIndex]);
 
-    const prevTrack = () => {
-      let newIndex;
-      if (isRandom) {
-        newIndex = Math.floor(Math.random() * songs.playing_music_list.length);
-      } else {
-        newIndex =
-          (trackIndex - 1 + songs.playing_music_list.length) %
-          songs.playing_music_list.length;
-      }
-      setTrackIndex(newIndex);
-      dispatch(
-        setCurrentSongToPlay({
-          song: songs.playing_music_list[newIndex],
-          song_list: songs.playing_music_list,
-        })
-      );
-    };
-    const loadTrack = (address: string) => {
-      const track = new Audio(address);
-      track.addEventListener("loadedmetadata", () => {
-        setTotalDuration(formatTime(track.duration));
-      });
-      setCurrTrack(track);
-      setVolume(50);
-    };
-    const handleTimeChange = (event: any) => {
-      const time = event.target.value;
-      currTrack.currentTime = time;
-      setCurrentTime(formatTime(time));
-    };
-    if (songs.playing_music_list.length == 0) return;
+  
+  const nextTrack = () => {
+    currTrack.paused ?? currTrack.pause();
+    let newIndex;
+    if (isRandom) {
+      newIndex = Math.floor(Math.random() * songs.playing_music_list.length);
+    } else {
+      newIndex = (trackIndex + 1) % songs.playing_music_list.length;
+    }
+    setTrackIndex(newIndex);
+    dispatch(
+      setCurrentSongToPlay({
+        song: songs.playing_music_list[newIndex],
+        song_list: songs.playing_music_list,
+      })
+    );
+  };
+  const prevTrack = () => {
+    let newIndex;
+    if (isRandom) {
+      newIndex = Math.floor(Math.random() * songs.playing_music_list.length);
+    } else {
+      newIndex =
+        (trackIndex - 1 + songs.playing_music_list.length) %
+        songs.playing_music_list.length;
+    }
+    setTrackIndex(newIndex);
+    dispatch(
+      setCurrentSongToPlay({
+        song: songs.playing_music_list[newIndex],
+        song_list: songs.playing_music_list,
+      })
+    );
+  };
+  const loadTrack = (address: string) => {
+    const track = new Audio(address);
+    track.addEventListener("loadedmetadata", () => {
+      setTotalDuration(formatTime(track.duration));
+    });
+    setCurrTrack(track);
+    setVolume(50);
+  };
+  const handleTimeChange = (event: any) => {
+    const time = event.target.value;
+    currTrack.currentTime = time;
+    setCurrentTime(formatTime(time));
+  };
+  if (songs.playing_music_list.length == 0) return;
 
-    return (
-      <Player>
-        <Wrapper style={{ position: "relative" }}>
-          <CloseButton
-            style={{
-              top: "0px",
-              right: "20px",
-            }}
-            onClick={() => {
-              currTrack.pause();
-              dispatch(
-                setCurrentSongToPlay({
-                  song: undefined,
-                  song_list: [],
-                })
-              );
-            }}
+  return (
+    <Player>
+      <Wrapper style={{ position: "relative" }}>
+        <CloseButton
+          style={{
+            top: "0px",
+            right: "20px",
+          }}
+          onClick={() => {
+            currTrack.pause();
+            dispatch(
+              setCurrentSongToPlay({
+                song: undefined,
+                song_list: [],
+              })
+            );
+          }}
+        />
+        <Details>
+          <PlayingNow>
+            {" "}
+            {trackIndex} / {songs.playing_music_list.length}{" "}
+          </PlayingNow>
+          <TrackContainer>
+            {isPlaying && (
+              <Loader>
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+              </Loader>
+            )}
+          </TrackContainer>
+          <TrackName> {songs.current_song_to_play?.title} </TrackName>
+          <TrackArtist>{songs.current_song_to_play?.artist}</TrackArtist>
+        </Details>
+        <SliderContainer>
+          <CurrentTime>Song Current Time</CurrentTime>
+          <SeekSlider
+            type="range"
+            min="0"
+            max={currTrack.duration.toString()}
+            value={currTrack.currentTime}
+            onChange={handleTimeChange}
           />
-          <Details>
-            <PlayingNow>
-              {" "}
-              {trackIndex} / {songs.playing_music_list.length}{" "}
-            </PlayingNow>
-            <TrackContainer>
-              {isPlaying && (
-                <Loader>
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                </Loader>
-              )}
-            </TrackContainer>
-            <TrackName> {songs.current_song_to_play?.title} </TrackName>
-            <TrackArtist>{songs.current_song_to_play?.artist}</TrackArtist>
-          </Details>
-          <SliderContainer>
-            <CurrentTime>Song Current Time</CurrentTime>
-            <SeekSlider
+          <TotalDuration>
+            {" "}
+            {formatTime(songs.current_song_to_play?.duration || 0)}{" "}
+          </TotalDuration>
+        </SliderContainer>
+        <SliderContainer>
+          <VolumeContainer>
+            <VolumeDownIcon
+              onClick={() => {
+                setVolume(volume - 5 > 0 ? volume - 5 : volume);
+                currTrack.volume = volume / 100;
+              }}
+            />
+            <VolumeSlider
               type="range"
               min="0"
-              max={currTrack.duration.toString()}
-              value={currTrack.currentTime}
-              onChange={handleTimeChange}
+              max="100"
+              value={volume}
+              onChange={(e) => {
+                setVolume(Number(e.target.value));
+                currTrack.volume = volume / 100;
+              }}
             />
-            <TotalDuration>
-              {" "}
-              {formatTime(songs.current_song_to_play?.duration || 0)}{" "}
-            </TotalDuration>
-          </SliderContainer>
-          <SliderContainer>
-            <VolumeContainer>
-              <VolumeDownIcon
-                onClick={() => {
-                  setVolume(volume - 5 > 0 ? volume - 5 : volume);
-                  currTrack.volume = volume / 100;
-                }}
-              />
-              <VolumeSlider
-                type="range"
-                min="0"
-                max="100"
-                value={volume}
-                onChange={(e) => {
-                  setVolume(Number(e.target.value));
-                  currTrack.volume = volume / 100;
-                }}
-              />
-              <VolumeUpIcon
-                onClick={() => {
-                  setVolume(volume + 5 < 100 ? volume + 5 : volume);
-                  currTrack.volume = volume / 100;
-                }}
-              />
-            </VolumeContainer>
-            <ButtonContainer>
-              <RandomTrack>
-                <RandomActive />
-              </RandomTrack>
-              <PrevTrack onClick={() => prevTrack()}>
-                <BackIcon />
-              </PrevTrack>
-              <PlayPauseTrack>
-                {isPlaying ? <IconPause /> : <IconPlay />}
-              </PlayPauseTrack>
-              <NextTrack>
-                <ForwardIcon />
-              </NextTrack>
-              <RepeatTrack>
-                <RepeatIcon />
-              </RepeatTrack>
-            </ButtonContainer>
-          </SliderContainer>
-        </Wrapper>
-      </Player>
-    );
+            <VolumeUpIcon
+              onClick={() => {
+                setVolume(volume + 5 < 100 ? volume + 5 : volume);
+                currTrack.volume = volume / 100;
+              }}
+            />
+          </VolumeContainer>
+          <ButtonContainer>
+            <RandomTrack>
+              <RandomActive />
+            </RandomTrack>
+            <PrevTrack onClick={() => prevTrack()}>
+              <BackIcon />
+            </PrevTrack>
+            <PlayPauseTrack>
+              {isPlaying ? <IconPause /> : <IconPlay />}
+            </PlayPauseTrack>
+            <NextTrack onClick={() => nextTrack()}>
+              <ForwardIcon />
+            </NextTrack>
+            <RepeatTrack>
+              <RepeatIcon />
+            </RepeatTrack>
+          </ButtonContainer>
+        </SliderContainer>
+      </Wrapper>
+    </Player>
+  );
 }
