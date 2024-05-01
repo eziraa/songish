@@ -51,11 +51,23 @@ export default function PlayerComponent() {
       ? songs.playing_music_list.indexOf(songs.current_song_to_play)
       : 0
   );
+  const [totalDuration, setTotalDuration] = useState("00:00");
+  const [volume, setVolume] = useState(50); // Initial volume level
+  const [currentTime, setCurrentTime] = useState("00:00");
+
   const [currTrack, setCurrTrack] = useState(
     new Audio(api + songs.current_song_to_play?.song_file)
   );
   const [isPlaying, setIsPlaying] = useState(!currTrack.paused);
 
+  const loadTrack = (address: string) => {
+    const track = new Audio(address);
+    track.addEventListener("loadedmetadata", () => {
+      setTotalDuration(formatTime(track.duration));
+    });
+    setCurrTrack(track);
+    setVolume(50);
+  };
   return (
     <Player>
       <Wrapper style={{ position: "relative" }}>
