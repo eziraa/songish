@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../utils/customHook";
 import { Title } from "../../utils/form_field_elements.style";
 import {
@@ -22,6 +22,10 @@ function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
   const [song_list, setSongList] = useState<SongResponse[]>(songs.songs);
 
+  useEffect(() => {
+    setSongList(songs.songs);
+    console.table(song_list);
+  }, []);
   if (songs.loading) {
     return <LoadingSpinner />;
   }
