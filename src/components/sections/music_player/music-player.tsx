@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { BackIcon, ForwardIcon } from "../../utils/icons/navigation_icon";
 import {
   Player,
@@ -27,6 +29,7 @@ import {
   Loader,
   Stroke,
 } from "./components.style";
+import { api } from "../../../services/api";
 
 export const formatTime = (seconds: number) => {
   // Format seconds into MM:SS format
@@ -42,28 +45,44 @@ export const formatTime = (seconds: number) => {
 };
 
 export default function PlayerComponent() {
+  const songs = useAppSelector((state) => state.songs);
+  const [trackIndex, setTrackIndex] = useState(
+    songs.current_song_to_play
+      ? songs.playing_music_list.indexOf(songs.current_song_to_play)
+      : 0
+  );
+  const [currTrack, setCurrTrack] = useState(
+    new Audio(api + songs.current_song_to_play?.song_file)
+  );
+  const [isPlaying, setIsPlaying] = useState(!currTrack.paused);
+
   return (
     <Player>
       <Wrapper style={{ position: "relative" }}>
         <Details>
-          <PlayingNow>PLAYING current_index / Total_song</PlayingNow>
+          <PlayingNow>
+            {" "}
+            {trackIndex} / {songs.playing_music_list.length}{" "}
+          </PlayingNow>
           <TrackContainer>
-            <Loader>
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-              <Stroke />
-            </Loader>
+            {isPlaying && (
+              <Loader>
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+                <Stroke />
+              </Loader>
+            )}
           </TrackContainer>
           <TrackName> Track Name </TrackName>
           <TrackArtist> Artist </TrackArtist>
