@@ -1,23 +1,24 @@
-import styled from "@emotion/styled";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { GoPlay } from "react-icons/go";
 import { IoMdMusicalNote } from "react-icons/io";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Button } from "../../utils/form_field_elements.style";
+import { ThemeProps } from "../../../styles/theme-interface";
+import { styled } from "styled-components";
 
-export const SongContainer = styled.div`
+export const SongContainer = styled.div<ThemeProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 70vw;
   padding: 10px 1rem;
-  background-color: #031a2e;
+  background-color: ${({ theme }) => theme.songTableBackgroundColor};
   justify-content: space-between;
   :nth-of-type(even) {
-    background-color: #122b47de;
+    background-color: ${({ theme }) => theme.songsListItemBGColor};
   }
   :hover {
-    background-color: #284b74de;
+    background-color: ${({ theme }) => theme.songsListItemBGHoverColor};
     cursor: pointer;
   }
 `;
@@ -42,10 +43,10 @@ export const SongInfoContainer = styled.div`
   gap: 5px;
 `;
 
-export const SongInfo = styled.div`
+export const SongInfo = styled.div<ThemeProps>`
   display: flex;
   gap: 2rem;
-  color: #c1cbd4ec;
+  color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const SongTitle = styled.h3`
@@ -77,11 +78,11 @@ export const SongDuration = styled.p`
 
 export const MusicIcon = styled(IoMdMusicalNote)`
   font-size: 20px;
-  color: white;
+  color: ${({ theme }) => theme.textSecondary};
 `;
 export const FavoriteIcon = styled(MdFavoriteBorder)`
   font-size: 20px;
-  color: white;
+  color: ${({ theme }) => theme.textSecondary};
   cursor: pointer;
 `;
 export const FavoritedIcon = styled(MdFavorite)`
@@ -92,23 +93,23 @@ export const FavoritedIcon = styled(MdFavorite)`
 export const PlayPause = styled(GoPlay)`
   font-size: 20px;
   position: relative;
-  color: white;
+  color: ${({ theme }) => theme.textSecondary};
   cursor: pointer;
 `;
 
 export const VerticalDots = styled(FaEllipsisVertical)`
   font-size: 20px;
-  color: white;
+  color: ${({ theme }) => theme.textSecondary};
   cursor: pointer;
 `;
 
-export const PopUpContainer = styled.div`
+export const PopUpContainer = styled.div<ThemeProps>`
   position: absolute;
   top: 0%;
   left: -8rem;
   width: 150px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: ${({ theme }) => theme.backgroundPrimary};
+  border: 1px solid ${({ theme }) => theme.backgroundSecondary};
   padding: 10px;
   z-index: 89999;
   display: flex;
