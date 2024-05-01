@@ -12,6 +12,8 @@ import ContactPage from "../../sections/contact/contact";
 import { useRef } from "react";
 import LoginPage from "../../sections/login/login";
 import Notification from "../../sections/mini-notification/mini-notification";
+import SongForm from "../../sections/song_add_update/song-form";
+import MusicTable from "../../sections/see_musics_list/display-muiscs";
 
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -29,6 +31,7 @@ const HomePage = () => {
         </Header>
         <LeftMenu />
         <Main>
+          <MusicTable />
           <RecentSection />
           <AboutPage />
           <ContactPage />
@@ -36,6 +39,7 @@ const HomePage = () => {
           <LoginPage />
           <SignUpPage />
           {<Notification />}
+          <SongForm />
         </Main>
       </Home>
     </ScrollBar>
