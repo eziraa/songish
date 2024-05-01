@@ -4,7 +4,8 @@ import { IoMdMusicalNote } from "react-icons/io";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Button } from "../../utils/form_field_elements.style";
 import { ThemeProps } from "../../../styles/theme-interface";
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
+import { Title } from "../recent-songs/components.style";
 
 export const SongContainer = styled.div<ThemeProps>`
   display: flex;
@@ -52,6 +53,11 @@ export const SongInfo = styled.div<ThemeProps>`
 export const SongTitle = styled.h3`
   font-size: 14px;
   font-weight: 400;
+`;
+export const SongsListTitle = styled(Title)`
+  text-align: left;
+  width: 90%;
+  transform: skew(-10deg);
 `;
 
 export const SongArtist = styled.p`
@@ -146,4 +152,5 @@ export const SongsNotFound = styled.div`
   text-align: center;
   font-size: 30px;
   font-weight: bold;
+  color: ${({ theme }) => theme.textSecondary};
 `;
