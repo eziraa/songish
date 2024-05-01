@@ -28,6 +28,7 @@ import {
   RandomActive,
   Loader,
   Stroke,
+  IconPlay,
 } from "./components.style";
 import { api } from "../../../services/api";
 
@@ -96,18 +97,26 @@ export default function PlayerComponent() {
               </Loader>
             )}
           </TrackContainer>
-          <TrackName> Track Name </TrackName>
-          <TrackArtist> Artist </TrackArtist>
+          <TrackName> {songs.current_song_to_play?.title} </TrackName>
+          <TrackArtist>{songs.current_song_to_play?.artist}</TrackArtist>
         </Details>
         <SliderContainer>
           <CurrentTime>Song Current Time</CurrentTime>
-          <SeekSlider type="range" min="0" />
-          <TotalDuration>Song Duration</TotalDuration>
+          <SeekSlider
+            type="range"
+            min="0"
+            max={currTrack.duration.toString()}
+            value={currTrack.currentTime}
+          />
+          <TotalDuration>
+            {" "}
+            {formatTime(songs.current_song_to_play?.duration || 0)}{" "}
+          </TotalDuration>
         </SliderContainer>
         <SliderContainer>
           <VolumeContainer>
             <VolumeDownIcon />
-            <VolumeSlider type="range" min="0" max="100" />
+            <VolumeSlider type="range" min="0" max="100" value={volume} />
             <VolumeUpIcon />
           </VolumeContainer>
           <ButtonContainer>
@@ -118,7 +127,7 @@ export default function PlayerComponent() {
               <BackIcon />
             </PrevTrack>
             <PlayPauseTrack>
-              <IconPause />
+              {isPlaying ? <IconPause /> : <IconPlay />}
             </PlayPauseTrack>
             <NextTrack>
               <ForwardIcon />
