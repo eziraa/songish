@@ -15,6 +15,9 @@ export type Theme = {
   formBtnTextColor: string;
   outLinedBtnColor: string;
   searchBackgroundColor: string;
+  songTableBackgroundColor: string;
+  songsListItemBGColor: string;
+  songsListItemBGHoverColor: string;
 };
 
 export const lightTheme: Theme = {
@@ -33,7 +36,11 @@ export const lightTheme: Theme = {
   formBtnTextColor: '#FEFEFE',
   inputFieldColor: '#ccc',
   outLinedBtnColor: '#FF01B7',
-  searchBackgroundColor: '#FFFFFF'
+  searchBackgroundColor: '#FFFFFF',
+  songTableBackgroundColor: '#D5DADE',
+  songsListItemBGColor: '#BABCBEDE',
+  songsListItemBGHoverColor: '#8EA1B5DE ',
+
 }
 
 
@@ -42,8 +49,8 @@ export const darkTheme:Theme = {
   backgroundSecondary: '#091D3A',
   body: '#020d20',
   text: '#F4F4F5',
-  textPrimary: '#F4F4F5',
-  textSecondary: '#F4F4F5',
+  textPrimary: '#ffffff',
+  textSecondary: '#DDDDE4',
   titleColorPrimary: '#483077',
   toggleBorder: '#6B8096',
   headerColor: '#363537',
@@ -54,5 +61,10 @@ export const darkTheme:Theme = {
   formBtnTextColor: '#18263E',
   outLinedBtnColor: '#FF01B7',
   searchBackgroundColor: '#183855',
+  songTableBackgroundColor: '#031a2e',
+  songsListItemBGColor: '#122b47de',
+  songsListItemBGHoverColor: '#284b74de ',
+
+
 };
 
