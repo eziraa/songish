@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../../utils/customHook";
+import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
   MusicIcon,
   PlayPause,
@@ -17,10 +17,12 @@ import {
 import { SongResponse } from "../../../typo/songs/response";
 import LoadingSpinner from "../spinner/spinner";
 import { ScrollBar } from "../../utils/scrollbar.style";
+import { setCurrentSongToPlay } from "../../../store/song/songSlice";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
   const [song_list, setSongList] = useState<SongResponse[]>(songs.songs);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setSongList(songs.songs);
@@ -47,7 +49,11 @@ function MusicTable() {
           song_list.map((song, index, song_list) => (
             <SongContainer key={index}>
               <SongMetaData>
-                <PlayPause />
+                <PlayPause
+                  onClick={() =>
+                    dispatch(setCurrentSongToPlay({ song, song_list }))
+                  }
+                />
                 <MusicIcon />
                 <SongInfoContainer>
                   <SongTitle> {song.title} </SongTitle>
