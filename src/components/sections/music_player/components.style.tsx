@@ -7,22 +7,24 @@ import {
 import { FaShuffle, FaRepeat } from "react-icons/fa6";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import styled, { css } from "styled-components";
+import { ThemeProps } from "../../../styles/theme-interface";
 
-export const Player = styled.section`
+export const Player = styled.section<ThemeProps>`
   position: absolute;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   z-index: 50000;
-  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  background-color: ${({ theme }) => theme.playerBackgroundColorPrimary};
 `;
 
-export const Wrapper = styled.div`
-  border: 2px solid #fff;
+export const Wrapper = styled.div<ThemeProps>`
+  border: 2px solid ${({ theme }) => theme.textPrimary};
   padding: 30px;
   border-radius: 20px;
-  background: rgba(23, 22, 22, 0.868);
+  background-color: ${({ theme }) => theme.playerBackgroundColorSecondary};
   z-index: 1000;
 `;
 
@@ -43,7 +45,7 @@ export const Details = styled.div`
 export const TrackArt = styled.div`
   height: 100px;
   width: 100px;
-  border: 2px solid #fff;
+  border: 2px solid ${({ theme }) => theme.textPrimary};
   background-size: cover;
   background-position: center;
   border-radius: 50%;
@@ -51,18 +53,18 @@ export const TrackArt = styled.div`
 
 export const PlayingNow = styled.div`
   font-size: 1rem;
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 export const TrackName = styled.h2`
   font-size: 2rem;
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 export const TrackArtist = styled.h3`
   margin-top: 5px;
   font-size: 1.3rem;
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 export const ButtonContainer = styled.div`
@@ -72,7 +74,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const TrackStyles = css`
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
   margin: 20px;
   padding: 5px 7px;
   border-radius: 5px;
@@ -117,7 +119,7 @@ export const SlidersStyle = css`
   -moz-appearance: none;
   appearance: none;
   height: 5px;
-  background: #83a9ff;
+  background: #023fcd;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
   &::-webkit-slider-thumb {
@@ -126,8 +128,8 @@ export const SlidersStyle = css`
     appearance: none;
     width: 15px;
     height: 15px;
-    background: #fff;
-    border: 2px solid #3774ff;
+    background: ${({ theme }) => theme.textPrimary};
+    border: 2px solid #0240d1;
     cursor: grab;
     border-radius: 100%;
   }
@@ -151,7 +153,7 @@ export const VolumeSlider = styled.input`
 
 export const TimeStyles = css`
   padding: 10px;
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 export const CurrentTime = styled.div`
@@ -163,7 +165,7 @@ export const TotalDuration = styled.div`
 `;
 
 export const VolumeIconStyles = css`
-  color: aliceblue;
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 35px;
   font-weight: bold;
   &:hover {
@@ -181,7 +183,7 @@ export const VolumeDownIcon = styled(BsVolumeDown)`
 
 export const IconsStyles = css`
   cursor: pointer;
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
   font-weight: 900;
   font-size: 20px;
 `;
@@ -208,11 +210,11 @@ export const P = styled.p`
 `;
 
 export const RandomActive = styled(FaShuffle)`
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 20px;
 `;
 
 export const RepeatIcon = styled(FaRepeat)`
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 20px;
 `;
