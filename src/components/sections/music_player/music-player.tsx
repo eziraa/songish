@@ -58,8 +58,6 @@ export default function PlayerComponent() {
       : 0
   );
   const [isRandom, setIsRandom] = useState(false);
-  const [currentTime, setCurrentTime] = useState("00:00");
-  const [totalDuration, setTotalDuration] = useState("00:00");
   const [volume, setVolume] = useState(50); // Initial volume level
   const [currTrack, setCurrTrack] = useState(
     new Audio(api + songs.current_song_to_play?.song_file)
@@ -73,28 +71,10 @@ export default function PlayerComponent() {
       loadTrack(api + songs.playing_music_list[trackIndex].song_file);
   }, [trackIndex]);
 
-  useEffect(() => {
-    const updateTimer = setInterval(setUpdate, 1000);
-    return () => clearInterval(updateTimer);
-  }, [currTrack]);
-
   const loadTrack = (address: string) => {
-    reset();
     const track = new Audio(address);
-    track.addEventListener("loadedmetadata", () => {
-      setTotalDuration(formatTime(track.duration));
-    });
     setCurrTrack(track);
     setVolume(50);
-  };
-
-  const reset = () => {
-    setCurrentTime("00:00");
-    setTotalDuration("00:00");
-  };
-
-  const setUpdate = () => {
-    setCurrentTime(formatTime(currTrack.currentTime));
   };
 
   const playPauseTrack = () => {
@@ -148,13 +128,12 @@ export default function PlayerComponent() {
   const handleTimeChange = (event: any) => {
     const time = event.target.value;
     currTrack.currentTime = time;
-    setCurrentTime(formatTime(time));
   };
   const handleDragStart = (event: any) => {
     event.dataTransfer.setData("text/plain", event.target.id);
   };
 
-  if (songs.playing_music_list.length == 0) return;
+  if (songs.playing_music_list.length < 0) return;
   return (
     <Player id="draggable" draggable="true" onDragStart={handleDragStart}>
       <Wrapper style={{ position: "relative" }}>
