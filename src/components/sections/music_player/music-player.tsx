@@ -73,53 +73,66 @@ export default function PlayerComponent() {
         loadTrack(api + songs.playing_music_list[trackIndex].song_file);
     }, [trackIndex]);
 
-  
-  const nextTrack = () => {
-    currTrack.paused ?? currTrack.pause();
-    let newIndex;
-    if (isRandom) {
-      newIndex = Math.floor(Math.random() * songs.playing_music_list.length);
-    } else {
-      newIndex = (trackIndex + 1) % songs.playing_music_list.length;
-    }
-    setTrackIndex(newIndex);
-    dispatch(
-      setCurrentSongToPlay({
-        song: songs.playing_music_list[newIndex],
-        song_list: songs.playing_music_list,
-      })
-    );
-  };
-  const prevTrack = () => {
-    let newIndex;
-    if (isRandom) {
-      newIndex = Math.floor(Math.random() * songs.playing_music_list.length);
-    } else {
-      newIndex =
-        (trackIndex - 1 + songs.playing_music_list.length) %
-        songs.playing_music_list.length;
-    }
-    setTrackIndex(newIndex);
-    dispatch(
-      setCurrentSongToPlay({
-        song: songs.playing_music_list[newIndex],
-        song_list: songs.playing_music_list,
-      })
-    );
-  };
-  const loadTrack = (address: string) => {
-    const track = new Audio(address);
-    track.addEventListener("loadedmetadata", () => {
-      setTotalDuration(formatTime(track.duration));
-    });
-    setCurrTrack(track);
-    setVolume(50);
-  };
-  const handleTimeChange = (event: any) => {
-    const time = event.target.value;
-    currTrack.currentTime = time;
-    setCurrentTime(formatTime(time));
-  };
+    useEffect(() => {
+      const updateTimer = setInterval(setUpdate, 1000);
+      return () => clearInterval(updateTimer);
+    }, [currTrack]);
+
+    const nextTrack = () => {
+      currTrack.paused ?? currTrack.pause();
+      let newIndex;
+      if (isRandom) {
+        newIndex = Math.floor(Math.random() * songs.playing_music_list.length);
+      } else {
+        newIndex = (trackIndex + 1) % songs.playing_music_list.length;
+      }
+      setTrackIndex(newIndex);
+      dispatch(
+        setCurrentSongToPlay({
+          song: songs.playing_music_list[newIndex],
+          song_list: songs.playing_music_list,
+        })
+      );
+    };
+    const prevTrack = () => {
+      let newIndex;
+      if (isRandom) {
+        newIndex = Math.floor(Math.random() * songs.playing_music_list.length);
+      } else {
+        newIndex =
+          (trackIndex - 1 + songs.playing_music_list.length) %
+          songs.playing_music_list.length;
+      }
+      setTrackIndex(newIndex);
+      dispatch(
+        setCurrentSongToPlay({
+          song: songs.playing_music_list[newIndex],
+          song_list: songs.playing_music_list,
+        })
+      );
+    };
+    const loadTrack = (address: string) => {
+      reset();
+      const track = new Audio(address);
+      track.addEventListener("loadedmetadata", () => {
+        setTotalDuration(formatTime(track.duration));
+      });
+      setCurrTrack(track);
+      setVolume(50);
+    };
+    const handleTimeChange = (event: any) => {
+      const time = event.target.value;
+      currTrack.currentTime = time;
+      setCurrentTime(formatTime(time));
+    };
+    const reset = () => {
+      setCurrentTime("00:00");
+      setTotalDuration("00:00");
+    };
+
+    const setUpdate = () => {
+      setCurrentTime(formatTime(currTrack.currentTime));
+    };
   if (songs.playing_music_list.length == 0) return;
 
   return (
