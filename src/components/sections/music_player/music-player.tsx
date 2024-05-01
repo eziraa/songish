@@ -154,7 +154,7 @@ export default function PlayerComponent() {
     event.dataTransfer.setData("text/plain", event.target.id);
   };
 
-  if (songs.playing_music_list.length < 0) return;
+  if (songs.playing_music_list.length == 0) return;
   return (
     <Player id="draggable" draggable="true" onDragStart={handleDragStart}>
       <Wrapper style={{ position: "relative" }}>

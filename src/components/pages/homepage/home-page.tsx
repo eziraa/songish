@@ -14,35 +14,59 @@ import LoginPage from "../../sections/login/login";
 import Notification from "../../sections/mini-notification/mini-notification";
 import SongForm from "../../sections/song_add_update/song-form";
 import MusicTable from "../../sections/see_musics_list/display-muiscs";
+import PlayerComponent from "../../sections/music_player/music-player";
+import { useAppSelector } from "../../../utils/customHook";
 
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
+  const songs = useAppSelector((state) => state.songs);
   const handleSmoothScroll = (nav: string) => {
     homeRef.current?.querySelector(`#${nav}`)?.scrollIntoView({
       behavior: "smooth",
     });
   };
+  const handleDrop = (event: any) => {
+    event.preventDefault();
+    const id = event.dataTransfer.getData("text");
+    const draggableElement = document.getElementById(id);
+    const dropzone = event.target;
+    const dropzoneRect = dropzone.getBoundingClientRect();
+    if (draggableElement) {
+      draggableElement.style.left = `${
+        event.clientX + 20 - dropzoneRect.left
+      }px`;
+      draggableElement.style.top = `${event.clientY + 20 - dropzoneRect.top}px`;
+    }
+  };
+
+  const handleDragOver = (event: any) => {
+    event.preventDefault();
+  };
   return (
-    <ScrollBar>
-      <Home ref={homeRef}>
-        <Header>
-          <SearchComponent />
-          <NavBar smoothScroll={handleSmoothScroll} />
-        </Header>
-        <LeftMenu />
-        <Main>
-          <MusicTable />
-          <RecentSection />
-          <AboutPage />
-          <ContactPage />
-          <Footer />
-          <LoginPage />
-          <SignUpPage />
-          {<Notification />}
-          <SongForm />
-        </Main>
-      </Home>
-    </ScrollBar>
+    <div id="dropzone" onDrop={handleDrop} onDragOver={handleDragOver}>
+      {songs.current_song_to_play && <PlayerComponent />}
+
+      <ScrollBar>
+        <Home ref={homeRef}>
+          <Header>
+            <SearchComponent />
+            <NavBar smoothScroll={handleSmoothScroll} />
+          </Header>
+          <LeftMenu />
+          <Main>
+            <MusicTable />
+            <RecentSection />
+            <AboutPage />
+            <ContactPage />
+            <Footer />
+            <LoginPage />
+            <SignUpPage />
+            {<Notification />}
+            <SongForm />
+          </Main>
+        </Home>
+      </ScrollBar>
+    </div>
   );
 };
 
