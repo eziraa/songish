@@ -128,9 +128,19 @@ export default function PlayerComponent() {
           </SliderContainer>
           <SliderContainer>
             <VolumeContainer>
-              <VolumeDownIcon />
+              <VolumeDownIcon
+                onClick={() => {
+                  setVolume(volume - 5 > 0 ? volume - 5 : volume);
+                  currTrack.volume = volume / 100;
+                }}
+              />
               <VolumeSlider type="range" min="0" max="100" value={volume} />
-              <VolumeUpIcon />
+              <VolumeUpIcon
+                onClick={() => {
+                  setVolume(volume + 5 < 100 ? volume + 5 : volume);
+                  currTrack.volume = volume / 100;
+                }}
+              />
             </VolumeContainer>
             <ButtonContainer>
               <RandomTrack>
