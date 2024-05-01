@@ -1,4 +1,11 @@
-import { BsVolumeUp, BsVolumeDown } from "react-icons/bs";
+import {
+  BsVolumeUp,
+  BsVolumeDown,
+  BsPlayCircleFill,
+  BsPauseCircleFill,
+} from "react-icons/bs";
+import { FaShuffle, FaRepeat } from "react-icons/fa6";
+import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import styled, { css } from "styled-components";
 
 export const Player = styled.section`
@@ -170,4 +177,42 @@ export const VolumeUpIcon = styled(BsVolumeUp)`
 
 export const VolumeDownIcon = styled(BsVolumeDown)`
   ${VolumeIconStyles}
+`;
+
+export const IconsStyles = css`
+  cursor: pointer;
+  color: #fff;
+  font-weight: 900;
+  font-size: 20px;
+`;
+
+export const ForwardIcon = styled(MdArrowForwardIos)`
+  ${IconsStyles}
+`;
+
+export const BackIcon = styled(MdArrowBackIos)`
+  ${IconsStyles}
+`;
+
+export const IconPlay = styled(BsPlayCircleFill)`
+  ${IconsStyles}
+  font-size: 45px;
+`;
+export const IconPause = styled(BsPauseCircleFill)`
+  ${IconsStyles}
+  font-size: 45px;
+`;
+
+export const P = styled.p`
+  ${IconsStyles}
+`;
+
+export const RandomActive = styled(FaShuffle)`
+  color: #fff;
+  font-size: 20px;
+`;
+
+export const RepeatIcon = styled(FaRepeat)`
+  color: #fff;
+  font-size: 20px;
 `;
