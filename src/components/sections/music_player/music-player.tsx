@@ -61,6 +61,13 @@ export default function PlayerComponent() {
   );
   const [isPlaying, setIsPlaying] = useState(!currTrack.paused);
 
+  useEffect(() => {
+    currTrack.pause();
+    setIsPlaying(false);
+    if (trackIndex >= 0 && trackIndex < songs.playing_music_list.length)
+      loadTrack(api + songs.playing_music_list[trackIndex].song_file);
+  }, [trackIndex]);
+
   const loadTrack = (address: string) => {
     const track = new Audio(address);
     track.addEventListener("loadedmetadata", () => {
