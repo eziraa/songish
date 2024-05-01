@@ -208,7 +208,12 @@ export default function PlayerComponent() {
             />
           </VolumeContainer>
           <ButtonContainer>
-            <RandomTrack>
+            <RandomTrack
+              style={{
+                backgroundColor: `${isRandom ? "#a00677" : "transparent"}`,
+              }}
+              onClick={() => setIsRandom(true)}
+            >
               <RandomActive />
             </RandomTrack>
             <PrevTrack onClick={() => prevTrack()}>
@@ -220,7 +225,12 @@ export default function PlayerComponent() {
             <NextTrack onClick={() => nextTrack()}>
               <ForwardIcon />
             </NextTrack>
-            <RepeatTrack>
+            <RepeatTrack
+              onClick={() => setIsRandom(false)}
+              style={{
+                backgroundColor: `${isRandom ? "transparent" : "#a00677"}`,
+              }}
+            >
               <RepeatIcon />
             </RepeatTrack>
           </ButtonContainer>
