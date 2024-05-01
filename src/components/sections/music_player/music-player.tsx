@@ -76,75 +76,81 @@ export default function PlayerComponent() {
     setCurrTrack(track);
     setVolume(50);
   };
-  return (
-    <Player>
-      <Wrapper style={{ position: "relative" }}>
-        <Details>
-          <PlayingNow>
-            {" "}
-            {trackIndex} / {songs.playing_music_list.length}{" "}
-          </PlayingNow>
-          <TrackContainer>
-            {isPlaying && (
-              <Loader>
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-              </Loader>
-            )}
-          </TrackContainer>
-          <TrackName> {songs.current_song_to_play?.title} </TrackName>
-          <TrackArtist>{songs.current_song_to_play?.artist}</TrackArtist>
-        </Details>
-        <SliderContainer>
-          <CurrentTime>Song Current Time</CurrentTime>
-          <SeekSlider
-            type="range"
-            min="0"
-            max={currTrack.duration.toString()}
-            value={currTrack.currentTime}
-          />
-          <TotalDuration>
-            {" "}
-            {formatTime(songs.current_song_to_play?.duration || 0)}{" "}
-          </TotalDuration>
-        </SliderContainer>
-        <SliderContainer>
-          <VolumeContainer>
-            <VolumeDownIcon />
-            <VolumeSlider type="range" min="0" max="100" value={volume} />
-            <VolumeUpIcon />
-          </VolumeContainer>
-          <ButtonContainer>
-            <RandomTrack>
-              <RandomActive />
-            </RandomTrack>
-            <PrevTrack>
-              <BackIcon />
-            </PrevTrack>
-            <PlayPauseTrack>
-              {isPlaying ? <IconPause /> : <IconPlay />}
-            </PlayPauseTrack>
-            <NextTrack>
-              <ForwardIcon />
-            </NextTrack>
-            <RepeatTrack>
-              <RepeatIcon />
-            </RepeatTrack>
-          </ButtonContainer>
-        </SliderContainer>
-      </Wrapper>
-    </Player>
-  );
+    const handleTimeChange = (event: any) => {
+      const time = event.target.value;
+      currTrack.currentTime = time;
+      setCurrentTime(formatTime(time));
+    };
+    return (
+      <Player>
+        <Wrapper style={{ position: "relative" }}>
+          <Details>
+            <PlayingNow>
+              {" "}
+              {trackIndex} / {songs.playing_music_list.length}{" "}
+            </PlayingNow>
+            <TrackContainer>
+              {isPlaying && (
+                <Loader>
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                </Loader>
+              )}
+            </TrackContainer>
+            <TrackName> {songs.current_song_to_play?.title} </TrackName>
+            <TrackArtist>{songs.current_song_to_play?.artist}</TrackArtist>
+          </Details>
+          <SliderContainer>
+            <CurrentTime>Song Current Time</CurrentTime>
+            <SeekSlider
+              type="range"
+              min="0"
+              max={currTrack.duration.toString()}
+              value={currTrack.currentTime}
+              onChange={handleTimeChange}
+            />
+            <TotalDuration>
+              {" "}
+              {formatTime(songs.current_song_to_play?.duration || 0)}{" "}
+            </TotalDuration>
+          </SliderContainer>
+          <SliderContainer>
+            <VolumeContainer>
+              <VolumeDownIcon />
+              <VolumeSlider type="range" min="0" max="100" value={volume} />
+              <VolumeUpIcon />
+            </VolumeContainer>
+            <ButtonContainer>
+              <RandomTrack>
+                <RandomActive />
+              </RandomTrack>
+              <PrevTrack>
+                <BackIcon />
+              </PrevTrack>
+              <PlayPauseTrack>
+                {isPlaying ? <IconPause /> : <IconPlay />}
+              </PlayPauseTrack>
+              <NextTrack>
+                <ForwardIcon />
+              </NextTrack>
+              <RepeatTrack>
+                <RepeatIcon />
+              </RepeatTrack>
+            </ButtonContainer>
+          </SliderContainer>
+        </Wrapper>
+      </Player>
+    );
 }
