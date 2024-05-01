@@ -1,3 +1,4 @@
+import { BsVolumeUp, BsVolumeDown } from "react-icons/bs";
 import styled, { css } from "styled-components";
 
 export const Player = styled.section`
@@ -139,4 +140,34 @@ export const VolumeSlider = styled.input`
   ${SlidersStyle}
   width: 100%;
   height: 2px;
+`;
+
+export const TimeStyles = css`
+  padding: 10px;
+  color: #fff;
+`;
+
+export const CurrentTime = styled.div`
+  ${TimeStyles}
+`;
+
+export const TotalDuration = styled.div`
+  ${TimeStyles}
+`;
+
+export const VolumeIconStyles = css`
+  color: aliceblue;
+  font-size: 35px;
+  font-weight: bold;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const VolumeUpIcon = styled(BsVolumeUp)`
+  ${VolumeIconStyles}
+`;
+
+export const VolumeDownIcon = styled(BsVolumeDown)`
+  ${VolumeIconStyles}
 `;
