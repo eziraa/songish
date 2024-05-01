@@ -85,7 +85,7 @@ export default function PlayerComponent() {
     currTrack.currentTime = time;
     setCurrentTime(formatTime(time));
   };
-  if (songs.playing_music_list.length < 0) return;
+  if (songs.playing_music_list.length == 0) return;
 
   return (
     <Player>
