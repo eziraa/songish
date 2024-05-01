@@ -24,6 +24,8 @@ import {
   RepeatIcon,
   IconPause,
   RandomActive,
+  Loader,
+  Stroke,
 } from "./components.style";
 
 export const formatTime = (seconds: number) => {
@@ -45,7 +47,24 @@ export default function PlayerComponent() {
       <Wrapper style={{ position: "relative" }}>
         <Details>
           <PlayingNow>PLAYING current_index / Total_song</PlayingNow>
-          <TrackContainer></TrackContainer>
+          <TrackContainer>
+            <Loader>
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+              <Stroke />
+            </Loader>
+          </TrackContainer>
           <TrackName> Track Name </TrackName>
           <TrackArtist> Artist </TrackArtist>
         </Details>
