@@ -155,7 +155,16 @@ export default function PlayerComponent() {
                 currTrack.volume = volume / 100;
               }}
             />
-            <VolumeSlider type="range" min="0" max="100" value={volume} />
+            <VolumeSlider
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              onChange={(e) => {
+                setVolume(Number(e.target.value));
+                currTrack.volume = volume / 100;
+              }}
+            />
             <VolumeUpIcon
               onClick={() => {
                 setVolume(volume + 5 < 100 ? volume + 5 : volume);
