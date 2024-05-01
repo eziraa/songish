@@ -111,6 +111,15 @@ export default function PlayerComponent() {
         })
       );
     };
+    const playPauseTrack = () => {
+      if (isPlaying) {
+        currTrack.pause();
+        setIsPlaying(false);
+      } else {
+        currTrack.play();
+        setIsPlaying(true);
+      }
+    };
     const loadTrack = (address: string) => {
       reset();
       const track = new Audio(address);
@@ -133,122 +142,122 @@ export default function PlayerComponent() {
     const setUpdate = () => {
       setCurrentTime(formatTime(currTrack.currentTime));
     };
-  if (songs.playing_music_list.length == 0) return;
+    if (songs.playing_music_list.length == 0) return;
 
-  return (
-    <Player>
-      <Wrapper style={{ position: "relative" }}>
-        <CloseButton
-          style={{
-            top: "0px",
-            right: "20px",
-          }}
-          onClick={() => {
-            currTrack.pause();
-            dispatch(
-              setCurrentSongToPlay({
-                song: undefined,
-                song_list: [],
-              })
-            );
-          }}
-        />
-        <Details>
-          <PlayingNow>
-            {" "}
-            {trackIndex} / {songs.playing_music_list.length}{" "}
-          </PlayingNow>
-          <TrackContainer>
-            {isPlaying && (
-              <Loader>
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-                <Stroke />
-              </Loader>
-            )}
-          </TrackContainer>
-          <TrackName> {songs.current_song_to_play?.title} </TrackName>
-          <TrackArtist>{songs.current_song_to_play?.artist}</TrackArtist>
-        </Details>
-        <SliderContainer>
-          <CurrentTime>Song Current Time</CurrentTime>
-          <SeekSlider
-            type="range"
-            min="0"
-            max={currTrack.duration.toString()}
-            value={currTrack.currentTime}
-            onChange={handleTimeChange}
+    return (
+      <Player>
+        <Wrapper style={{ position: "relative" }}>
+          <CloseButton
+            style={{
+              top: "0px",
+              right: "20px",
+            }}
+            onClick={() => {
+              currTrack.pause();
+              dispatch(
+                setCurrentSongToPlay({
+                  song: undefined,
+                  song_list: [],
+                })
+              );
+            }}
           />
-          <TotalDuration>
-            {" "}
-            {formatTime(songs.current_song_to_play?.duration || 0)}{" "}
-          </TotalDuration>
-        </SliderContainer>
-        <SliderContainer>
-          <VolumeContainer>
-            <VolumeDownIcon
-              onClick={() => {
-                setVolume(volume - 5 > 0 ? volume - 5 : volume);
-                currTrack.volume = volume / 100;
-              }}
-            />
-            <VolumeSlider
+          <Details>
+            <PlayingNow>
+              {" "}
+              {trackIndex} / {songs.playing_music_list.length}{" "}
+            </PlayingNow>
+            <TrackContainer>
+              {isPlaying && (
+                <Loader>
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                  <Stroke />
+                </Loader>
+              )}
+            </TrackContainer>
+            <TrackName> {songs.current_song_to_play?.title} </TrackName>
+            <TrackArtist>{songs.current_song_to_play?.artist}</TrackArtist>
+          </Details>
+          <SliderContainer>
+            <CurrentTime>Song Current Time</CurrentTime>
+            <SeekSlider
               type="range"
               min="0"
-              max="100"
-              value={volume}
-              onChange={(e) => {
-                setVolume(Number(e.target.value));
-                currTrack.volume = volume / 100;
-              }}
+              max={currTrack.duration.toString()}
+              value={currTrack.currentTime}
+              onChange={handleTimeChange}
             />
-            <VolumeUpIcon
-              onClick={() => {
-                setVolume(volume + 5 < 100 ? volume + 5 : volume);
-                currTrack.volume = volume / 100;
-              }}
-            />
-          </VolumeContainer>
-          <ButtonContainer>
-            <RandomTrack
-              style={{
-                backgroundColor: `${isRandom ? "#a00677" : "transparent"}`,
-              }}
-              onClick={() => setIsRandom(true)}
-            >
-              <RandomActive />
-            </RandomTrack>
-            <PrevTrack onClick={() => prevTrack()}>
-              <BackIcon />
-            </PrevTrack>
-            <PlayPauseTrack>
-              {isPlaying ? <IconPause /> : <IconPlay />}
-            </PlayPauseTrack>
-            <NextTrack onClick={() => nextTrack()}>
-              <ForwardIcon />
-            </NextTrack>
-            <RepeatTrack
-              onClick={() => setIsRandom(false)}
-              style={{
-                backgroundColor: `${isRandom ? "transparent" : "#a00677"}`,
-              }}
-            >
-              <RepeatIcon />
-            </RepeatTrack>
-          </ButtonContainer>
-        </SliderContainer>
-      </Wrapper>
-    </Player>
-  );
+            <TotalDuration>
+              {" "}
+              {formatTime(songs.current_song_to_play?.duration || 0)}{" "}
+            </TotalDuration>
+          </SliderContainer>
+          <SliderContainer>
+            <VolumeContainer>
+              <VolumeDownIcon
+                onClick={() => {
+                  setVolume(volume - 5 > 0 ? volume - 5 : volume);
+                  currTrack.volume = volume / 100;
+                }}
+              />
+              <VolumeSlider
+                type="range"
+                min="0"
+                max="100"
+                value={volume}
+                onChange={(e) => {
+                  setVolume(Number(e.target.value));
+                  currTrack.volume = volume / 100;
+                }}
+              />
+              <VolumeUpIcon
+                onClick={() => {
+                  setVolume(volume + 5 < 100 ? volume + 5 : volume);
+                  currTrack.volume = volume / 100;
+                }}
+              />
+            </VolumeContainer>
+            <ButtonContainer>
+              <RandomTrack
+                style={{
+                  backgroundColor: `${isRandom ? "#a00677" : "transparent"}`,
+                }}
+                onClick={() => setIsRandom(true)}
+              >
+                <RandomActive />
+              </RandomTrack>
+              <PrevTrack onClick={() => prevTrack()}>
+                <BackIcon />
+              </PrevTrack>
+              <PlayPauseTrack onClick={() => playPauseTrack()}>
+                {isPlaying ? <IconPause /> : <IconPlay />}
+              </PlayPauseTrack>
+              <NextTrack onClick={() => nextTrack()}>
+                <ForwardIcon />
+              </NextTrack>
+              <RepeatTrack
+                onClick={() => setIsRandom(false)}
+                style={{
+                  backgroundColor: `${isRandom ? "transparent" : "#a00677"}`,
+                }}
+              >
+                <RepeatIcon />
+              </RepeatTrack>
+            </ButtonContainer>
+          </SliderContainer>
+        </Wrapper>
+      </Player>
+    );
 }
