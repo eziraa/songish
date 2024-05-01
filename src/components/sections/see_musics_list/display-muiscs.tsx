@@ -1,51 +1,51 @@
+import { useState } from "react";
+import { useAppSelector } from "../../../utils/customHook";
+import { Title } from "../../utils/form_field_elements.style";
 import {
-  SongContainer,
-  SongInfoContainer,
-  SongTitle,
-  SongInfo,
-  SongArtist,
-  SongAlbum,
-  SongDuration,
-  SongMetaData,
   MusicIcon,
   PlayPause,
-  SongActions,
+  SongAlbum,
+  SongArtist,
+  SongContainer,
   SongHeader,
+  SongInfo,
+  SongInfoContainer,
+  SongMetaData,
+  SongTitle,
+  SongsListTitle,
   SongsNotFound,
 } from "./components.style";
-import { css } from "@emotion/react";
-import { Title } from "../../utils/form_field_elements.style";
-
-const SongsListTitle = css`
-  text-align: left;
-  width: 90%;
-  transform: skew(-10deg);
-`;
+import { SongResponse } from "../../../typo/songs/response";
 
 function MusicTable() {
+  const songs = useAppSelector((state) => state.songs);
+  const [song_list, setSongList] = useState<SongResponse[]>(songs.songs);
+
   return (
     <>
-      <Title css={SongsListTitle}>All songs</Title>
-      <SongHeader>
-        <SongsNotFound>No songs found </SongsNotFound>
-      </SongHeader>
+      <SongsListTitle>All songs</SongsListTitle>
 
-      <SongContainer>
-        <SongMetaData>
-          <PlayPause />
-          <MusicIcon />
-          <SongInfoContainer>
-            <SongTitle> Song Title</SongTitle>
-            <SongInfo>
-              <SongArtist> Artist </SongArtist>
-              <SongAlbum> Album </SongAlbum>
-            </SongInfo>
-          </SongInfoContainer>
-        </SongMetaData>
-        <SongActions>
-          <SongDuration>Song duration </SongDuration>
-        </SongActions>
-      </SongContainer>
+      {song_list.length === 0 ? (
+        <SongHeader>
+          <SongsNotFound>No songs found</SongsNotFound>
+        </SongHeader>
+      ) : (
+        song_list.map((song, index, song_list) => (
+          <SongContainer key={index}>
+            <SongMetaData>
+              <PlayPause />
+              <MusicIcon />
+              <SongInfoContainer>
+                <SongTitle> {song.title} </SongTitle>
+                <SongInfo>
+                  <SongArtist> {song.artist} </SongArtist>
+                  <SongAlbum> {song.album || "No Album"} </SongAlbum>
+                </SongInfo>
+              </SongInfoContainer>
+            </SongMetaData>
+          </SongContainer>
+        ))
+      )}
     </>
   );
 }
