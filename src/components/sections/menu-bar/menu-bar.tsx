@@ -5,8 +5,12 @@ import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineReplay10, MdFavorite } from "react-icons/md";
 import { RiPlayListFill } from "react-icons/ri";
 import { useAppDispatch } from "../../../utils/customHook";
-import { setMinorTask } from "../../../store/user/userSlice";
-import { UPLOAD_SONG } from "../../../config/constants/user-current-task";
+import { setMajorTask, setMinorTask } from "../../../store/user/userSlice";
+import {
+  SEE_ALL_SONGS,
+  UPLOAD_SONG,
+} from "../../../config/constants/user-current-task";
+import { loadSongsRequested } from "../../../store/song/songSlice";
 
 const LeftMenu = () => {
   const dispatcher = useAppDispatch();
@@ -27,6 +31,10 @@ const LeftMenu = () => {
               onClick={(e) => {
                 e.preventDefault();
                 index == 1 && dispatcher(setMinorTask(UPLOAD_SONG));
+                if (index == 2) {
+                  dispatcher(setMajorTask(SEE_ALL_SONGS));
+                  dispatcher(loadSongsRequested());
+                }
               }}
               key={index}
             >
