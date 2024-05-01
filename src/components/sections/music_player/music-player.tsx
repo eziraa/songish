@@ -59,6 +59,7 @@ export default function PlayerComponent() {
   );
   const [isRandom, setIsRandom] = useState(false);
   const [volume, setVolume] = useState(50); // Initial volume level
+  const [currentTime, setCurrentTime] = useState("00"); // Initial volume level
   const [currTrack, setCurrTrack] = useState(
     new Audio(api + songs.current_song_to_play?.song_file)
   );
@@ -71,6 +72,13 @@ export default function PlayerComponent() {
       loadTrack(api + songs.playing_music_list[trackIndex].song_file);
   }, [trackIndex]);
 
+  useEffect(() => {
+    const updateTimer = setInterval(setUpdate, 1000);
+    return () => clearInterval(updateTimer);
+  }, [currTrack]);
+  const setUpdate = () => {
+    setCurrentTime(formatTime(currTrack.currentTime));
+  };
   const loadTrack = (address: string) => {
     const track = new Audio(address);
     setCurrTrack(track);
@@ -128,6 +136,7 @@ export default function PlayerComponent() {
   const handleTimeChange = (event: any) => {
     const time = event.target.value;
     currTrack.currentTime = time;
+    setCurrentTime(time);
   };
   const handleDragStart = (event: any) => {
     event.dataTransfer.setData("text/plain", event.target.id);
