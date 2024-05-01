@@ -18,6 +18,8 @@ export type Theme = {
   songTableBackgroundColor: string;
   songsListItemBGColor: string;
   songsListItemBGHoverColor: string;
+  playerBackgroundColorPrimary: string;
+  playerBackgroundColorSecondary: string;
 };
 
 export const lightTheme: Theme = {
@@ -38,8 +40,10 @@ export const lightTheme: Theme = {
   outLinedBtnColor: '#FF01B7',
   searchBackgroundColor: '#FFFFFF',
   songTableBackgroundColor: '#D5DADE',
-  songsListItemBGColor: '#BABCBEDE',
-  songsListItemBGHoverColor: '#8EA1B5DE ',
+  songsListItemBGColor: '#9FACB9DE',
+  songsListItemBGHoverColor: '#8098B2DE ',
+  playerBackgroundColorPrimary: '#020D15',
+  playerBackgroundColorSecondary: '#FFFFFF77',
 
 }
 
@@ -64,6 +68,8 @@ export const darkTheme:Theme = {
   songTableBackgroundColor: '#031a2e',
   songsListItemBGColor: '#122b47de',
   songsListItemBGHoverColor: '#284b74de ',
+  playerBackgroundColorPrimary: '#00000090',
+  playerBackgroundColorSecondary: '#0000005A',
 
 
 };
