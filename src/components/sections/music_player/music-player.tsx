@@ -21,6 +21,9 @@ import {
   VolumeUpIcon,
   TotalDuration,
   CurrentTime,
+  RepeatIcon,
+  IconPause,
+  RandomActive,
 } from "./components.style";
 
 export const formatTime = (seconds: number) => {
@@ -58,15 +61,21 @@ export default function PlayerComponent() {
             <VolumeUpIcon />
           </VolumeContainer>
           <ButtonContainer>
-            <RandomTrack></RandomTrack>
+            <RandomTrack>
+              <RandomActive />
+            </RandomTrack>
             <PrevTrack>
               <BackIcon />
             </PrevTrack>
-            <PlayPauseTrack></PlayPauseTrack>
+            <PlayPauseTrack>
+              <IconPause />
+            </PlayPauseTrack>
             <NextTrack>
               <ForwardIcon />
             </NextTrack>
-            <RepeatTrack></RepeatTrack>
+            <RepeatTrack>
+              <RepeatIcon />
+            </RepeatTrack>
           </ButtonContainer>
         </SliderContainer>
       </Wrapper>
