@@ -90,3 +90,53 @@ export const RandomTrack = styled.div`
   ${TrackStyles};
   width: 30%;
 `;
+
+export const SliderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+`;
+
+export const VolumeContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SlidersStyle = css`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: #83a9ff;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border: 2px solid #3774ff;
+    cursor: grab;
+    border-radius: 100%;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const SeekSlider = styled.input`
+  ${SlidersStyle}
+  width: 100%;
+  height: 2px;
+`;
+
+export const VolumeSlider = styled.input`
+  ${SlidersStyle}
+  width: 100%;
+  height: 2px;
+`;
