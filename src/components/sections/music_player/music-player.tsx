@@ -17,6 +17,10 @@ import {
   PlayPauseTrack,
   NextTrack,
   RepeatTrack,
+  VolumeDownIcon,
+  VolumeUpIcon,
+  TotalDuration,
+  CurrentTime,
 } from "./components.style";
 
 export const formatTime = (seconds: number) => {
@@ -43,11 +47,15 @@ export default function PlayerComponent() {
           <TrackArtist> Artist </TrackArtist>
         </Details>
         <SliderContainer>
+          <CurrentTime>Song Current Time</CurrentTime>
           <SeekSlider type="range" min="0" />
+          <TotalDuration>Song Duration</TotalDuration>
         </SliderContainer>
         <SliderContainer>
           <VolumeContainer>
+            <VolumeDownIcon />
             <VolumeSlider type="range" min="0" max="100" />
+            <VolumeUpIcon />
           </VolumeContainer>
           <ButtonContainer>
             <RandomTrack></RandomTrack>
