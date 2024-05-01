@@ -9,7 +9,7 @@ import {
   setCurrentSongForAction,
 } from "./songSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { AddSongParams } from "../../typo/songs/parameters";
+import { AddSongParams, EditSongParams } from "../../typo/songs/parameters";
 import { setMinorTask } from "../user/userSlice";
 
 function* LoadSongs() {
