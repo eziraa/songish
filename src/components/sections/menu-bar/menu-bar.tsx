@@ -1,4 +1,4 @@
-import { Menu, MenuBar, MenuBarItem } from "./componets.style";
+import { Menu, MenuBar, MenuBarItem } from "./components.style";
 import { IoAlbumsSharp, IoHomeSharp } from "react-icons/io5";
 import { CgPlayListAdd } from "react-icons/cg";
 import { FaCircleUser } from "react-icons/fa6";
