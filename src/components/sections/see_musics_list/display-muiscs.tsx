@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../utils/customHook";
-import { Title } from "../../utils/form_field_elements.style";
 import {
   MusicIcon,
   PlayPause,
@@ -25,8 +24,7 @@ function MusicTable() {
 
   useEffect(() => {
     setSongList(songs.songs);
-    console.table(song_list);
-  }, []);
+  }, [songs.songs]);
   if (songs.loading) {
     return <LoadingSpinner />;
   }
