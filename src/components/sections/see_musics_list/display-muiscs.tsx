@@ -17,6 +17,7 @@ import {
 } from "./components.style";
 import { SongResponse } from "../../../typo/songs/response";
 import LoadingSpinner from "../spinner/spinner";
+import { ScrollBar } from "../../utils/scrollbar.style";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
@@ -33,28 +34,35 @@ function MusicTable() {
   return (
     <>
       <SongsListTitle>All songs</SongsListTitle>
-
-      {song_list.length === 0 ? (
-        <SongHeader>
-          <SongsNotFound>No songs found</SongsNotFound>
-        </SongHeader>
-      ) : (
-        song_list.map((song, index, song_list) => (
-          <SongContainer key={index}>
-            <SongMetaData>
-              <PlayPause />
-              <MusicIcon />
-              <SongInfoContainer>
-                <SongTitle> {song.title} </SongTitle>
-                <SongInfo>
-                  <SongArtist> {song.artist} </SongArtist>
-                  <SongAlbum> {song.album || "No Album"} </SongAlbum>
-                </SongInfo>
-              </SongInfoContainer>
-            </SongMetaData>
-          </SongContainer>
-        ))
-      )}
+      <ScrollBar
+        style={{
+          position: "relative",
+          width: "70vw",
+          maxHeight: "60vh",
+        }}
+      >
+        {song_list.length === 0 ? (
+          <SongHeader>
+            <SongsNotFound>No songs found</SongsNotFound>
+          </SongHeader>
+        ) : (
+          song_list.map((song, index, song_list) => (
+            <SongContainer key={index}>
+              <SongMetaData>
+                <PlayPause />
+                <MusicIcon />
+                <SongInfoContainer>
+                  <SongTitle> {song.title} </SongTitle>
+                  <SongInfo>
+                    <SongArtist> {song.artist} </SongArtist>
+                    <SongAlbum> {song.album || "No Album"} </SongAlbum>
+                  </SongInfo>
+                </SongInfoContainer>
+              </SongMetaData>
+            </SongContainer>
+          ))
+        )}
+      </ScrollBar>
     </>
   );
 }
