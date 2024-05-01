@@ -4,7 +4,7 @@ import { IoMdMusicalNote } from "react-icons/io";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { Button } from "../../utils/form_field_elements.style";
 import { ThemeProps } from "../../../styles/theme-interface";
-import { css, styled } from "styled-components";
+import { styled } from "styled-components";
 import { Title } from "../recent-songs/components.style";
 
 export const SongContainer = styled.div<ThemeProps>`
@@ -15,10 +15,10 @@ export const SongContainer = styled.div<ThemeProps>`
   padding: 10px 1rem;
   background-color: ${({ theme }) => theme.songTableBackgroundColor};
   justify-content: space-between;
-  :nth-of-type(even) {
+  &:nth-of-type(even) {
     background-color: ${({ theme }) => theme.songsListItemBGColor};
   }
-  :hover {
+  &:hover {
     background-color: ${({ theme }) => theme.songsListItemBGHoverColor};
     cursor: pointer;
   }
