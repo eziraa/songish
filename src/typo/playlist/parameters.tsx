@@ -14,3 +14,13 @@ export interface DeletePlaylistParams extends AddPlaylistParams {
   id: string;
   callback?: () => void;
 }
+
+export type AddSongToPlaylistParams = {
+  playlist_id: string;
+  song_id: string;
+};
+
+export type GetPlaylistSongsParams = {
+  playlist_id: string;
+};
+
