@@ -37,10 +37,13 @@ import {
   UPDATE_SONG,
 } from "../../../config/constants/user-current-task";
 import { Button } from "../../utils/form_field_elements.style";
+import { addSongToPlaylistRequested } from "../../../store/playlist/playlistSlice";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
   const user = useAppSelector((state) => state.user);
+  const playlists = useAppSelector((state) => state.playlists);
+
   const [song_list, setSongList] = useState<SongResponse[]>(songs.songs);
   const dispatch = useAppDispatch();
   const [popUpIndex, setPopIndex] = useState(-1);
@@ -60,7 +63,14 @@ function MusicTable() {
     dispatch(setMinorTask(UPDATE_SONG));
     setPopIndex(-1);
   };
-
+  const onSelect = (song: SongResponse) => {
+    dispatch(
+      addSongToPlaylistRequested({
+        playlist_id: playlists.currentPlaylist?.id || "",
+        song_id: song.id,
+      })
+    );
+  };
   if (![SEE_ALL_SONGS, ADD_SONG_TO_PLAYLIST].includes(user.majorTask || ""))
     return;
   if (songs.loading) {
@@ -113,7 +123,12 @@ function MusicTable() {
               </SongMetaData>
               <SongActions>
                 {user.majorTask === ADD_SONG_TO_PLAYLIST ? (
-                  <Button style={{ backgroundColor: "blue" }}>SELECT</Button>
+                  <Button
+                    style={{ backgroundColor: "blue" }}
+                    onClick={() => onSelect(song)}
+                  >
+                    SELECT
+                  </Button>
                 ) : null}
                 <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
 
