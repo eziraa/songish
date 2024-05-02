@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   AddPlaylistParams,
   AddSongToPlaylistParams,
+  GetPlaylistSongsParams,
 } from "../typo/playlist/parameters";
 import { api } from "./api";
 import { PlaylistResponse } from "../typo/playlist/response";
@@ -44,9 +45,19 @@ const addSongToPlayList = async (params: AddSongToPlaylistParams) => {
   return songs;
 };
 
+const getPlaylistSongs = async (params: GetPlaylistSongsParams) => {
+  const songs = await axios
+    .get<SongResponse[]>(
+      api + "/song/playlist/" + params.playlist_id + "/songs/"
+    )
+    .then((res) => res.data);
+  return songs;
+};
+
 const PlaylistsAPI = {
   addPlaylist,
   loadPlaylists,
   addSongToPlayList,
+  getPlaylistSongs,
 };
 export default PlaylistsAPI;
