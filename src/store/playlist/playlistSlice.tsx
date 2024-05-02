@@ -3,6 +3,7 @@ import { PlaylistStateType } from "../../typo/playlist/state";
 import {
   AddPlaylistParams,
   AddSongToPlaylistParams,
+  GetPlaylistSongsParams,
 } from "../../typo/playlist/parameters";
 import { PlaylistResponse } from "../../typo/playlist/response";
 import { SongResponse } from "../../typo/songs/response";
@@ -28,6 +29,13 @@ const PlaylistSlice = createSlice({
     },
     loadPlaylistsRequested: (state, actions: PayloadAction<string>) => {
       state.loading = true;
+    },
+    loadPlaylistSongsRequested: (
+      state,
+      action: PayloadAction<GetPlaylistSongsParams>
+    ) => {
+      state.loading = true;
+      state.songs = [];
     },
     loadPlaylistSongsDone: (state, action: PayloadAction<SongResponse[]>) => {
       state.loading = false;
@@ -64,5 +72,6 @@ export const {
   loadingFinished,
   addSongToPlaylistRequested,
   addSongToPlaylistDone,
+  setCurrentPlaylist,
 } = PlaylistSlice.actions;
 export default PlaylistSlice.reducer;
