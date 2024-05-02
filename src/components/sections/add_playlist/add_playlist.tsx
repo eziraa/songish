@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { CreatingPlaylistSchema } from "../../../schema/playlist-schema/playlist";
-import { useAppSelector } from "../../../utils/customHook";
+import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
   Button,
   Description,
@@ -14,11 +14,13 @@ import {
 } from "../../utils/form_field_elements.style";
 import Modal from "../modal/modal";
 import { AddPlaylistContainer } from "./components.style";
+import { addPlaylistRequested } from "../../../store/playlist/playlistSlice";
 import { CREATE_PLAYLIST } from "../../../config/constants/user-current-task";
 import { FormError } from "../sign_up/components.style";
 
 const PlaylistForm = () => {
   const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   const initialValues = {
     name: "",
     description: "",
@@ -28,7 +30,9 @@ const PlaylistForm = () => {
   const formHandler = useFormik({
     initialValues,
     validationSchema: CreatingPlaylistSchema,
-    onSubmit: (values, actions) => {},
+    onSubmit: (values, actions) => {
+      dispatch(addPlaylistRequested({ ...values, customer_id: user.user.id }));
+    },
   });
 
   if (user.minorTask !== CREATE_PLAYLIST) return;
