@@ -67,6 +67,9 @@ export default function PlayerComponent() {
 
   useEffect(() => {
     currTrack.pause();
+  }, [songs.current_song_to_play]);
+  useEffect(() => {
+    currTrack.pause();
     setIsPlaying(false);
     if (trackIndex >= 0 && trackIndex < songs.playing_music_list.length)
       loadTrack(api + songs.playing_music_list[trackIndex].song_file);
