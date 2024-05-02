@@ -1,8 +1,14 @@
 import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { AddingSongSchema } from "../../../schema/song-schema/songs";
-import { addSongRequested } from "../../../store/song/songSlice";
-import { UPLOAD_SONG } from "../../../config/constants/user-current-task";
+import {
+  addSongRequested,
+  editSongRequest,
+} from "../../../store/song/songSlice";
+import {
+  UPDATE_SONG,
+  UPLOAD_SONG,
+} from "../../../config/constants/user-current-task";
 import Modal from "../modal/modal";
 import { AddSongContainer } from "./components.style";
 import { Description, Title } from "../about/components.style";
@@ -20,11 +26,42 @@ import SongsAPI from "../../../services/songAPI";
 
 const SongForm = () => {
   const user = useAppSelector((state) => state.user);
+  const songs = useAppSelector((state) => state.songs);
   const dispatch = useAppDispatch();
+
   let isSubmitting = false;
 
   const formHandler = useFormik({
     initialValues: {
+      title: songs.current_song_for_action?.title || "",
+      artist: songs.current_song_for_action?.artist || "",
+      album: songs.current_song_for_action?.album || "",
+      release_date: songs.current_song_for_action?.release_date || "",
+      customer_id: user.user.id,
+      duration: songs.current_song_for_action?.duration || 0,
+      song_file: songs.current_song_for_action?.song_file || undefined,
+    },
+    validationSchema: AddingSongSchema,
+    onSubmit: (values) => {
+      isSubmitting = true;
+      if (user.minorTask === UPLOAD_SONG) {
+        dispatch(addSongRequested({ ...values, customer_id: user.user.id }));
+      } else if (user.minorTask === UPDATE_SONG) {
+        dispatch(
+          editSongRequest({
+            ...values,
+            customer_id: user.user.id,
+            id: songs.current_song_for_action?.id,
+          })
+        );
+      }
+    },
+    enableReinitialize: user.minorTask === UPDATE_SONG ? true : false, // add this line
+  });
+
+  if (![UPDATE_SONG, UPLOAD_SONG].includes(user.minorTask || "")) return;
+  if (user.minorTask === UPLOAD_SONG)
+    formHandler.values = formHandler.values = {
       title: "",
       artist: "",
       album: "",
@@ -32,23 +69,20 @@ const SongForm = () => {
       customer_id: user.user.id,
       duration: 0,
       song_file: undefined,
-    },
-    validationSchema: AddingSongSchema,
-    onSubmit: (values) => {
-      isSubmitting = true;
-      dispatch(addSongRequested({ ...values, customer_id: user.user.id }));
-    },
-  });
-
-  if (user.minorTask != UPLOAD_SONG) return;
-
+    };
   return (
     <Modal>
       <AddSongContainer>
         <Description>
-          <Title>Add Yours</Title>
+          <Title>
+            {user.minorTask === UPLOAD_SONG
+              ? "Add Yours"
+              : "Update Yours musics"}
+          </Title>
           <DescriptionText>
-            Add your playlist local music and listen it on cool website
+            {user.minorTask === UPLOAD_SONG
+              ? "Add your playlist local music and listen it on cool website"
+              : "Update your playlist that you uploaded before"}
           </DescriptionText>
         </Description>
         <FormContainer>
@@ -134,7 +168,10 @@ const SongForm = () => {
                 )}
               </FormError>{" "}
             </FormGroup>
-            <Button type="submit"> Add</Button>
+            <Button type="submit">
+              {" "}
+              {user.minorTask === UPLOAD_SONG ? "Add" : "Update"}{" "}
+            </Button>
           </Form>
         </FormContainer>
       </AddSongContainer>
