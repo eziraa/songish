@@ -16,6 +16,8 @@ import SongForm from "../../sections/song_add_update/song-form";
 import MusicTable from "../../sections/see_musics_list/display-muiscs";
 import PlayerComponent from "../../sections/music_player/music-player";
 import { useAppSelector } from "../../../utils/customHook";
+import PlaylistForm from "../../sections/add_playlist/add_playlist";
+import { PlaylistCard } from "../../sections/see_playlist/playlist-card";
 
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -54,6 +56,7 @@ const HomePage = () => {
           </Header>
           <LeftMenu />
           <Main>
+            <PlaylistCard />
             <MusicTable />
             <RecentSection />
             <AboutPage />
@@ -61,7 +64,8 @@ const HomePage = () => {
             <Footer />
             <LoginPage />
             <SignUpPage />
-            {<Notification />}
+            <Notification />
+            <PlaylistForm />
             <SongForm />
           </Main>
         </Home>
