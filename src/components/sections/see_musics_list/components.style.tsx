@@ -15,6 +15,7 @@ export const SongContainer = styled.div<ThemeProps>`
   padding: 10px 1rem;
   background-color: ${({ theme }) => theme.songTableBackgroundColor};
   justify-content: space-between;
+  color: ${({ theme }) => theme.textSecondary};
   &:nth-of-type(even) {
     background-color: ${({ theme }) => theme.songsListItemBGColor};
   }
@@ -42,6 +43,7 @@ export const SongInfoContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
+  color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const SongInfo = styled.div<ThemeProps>`
