@@ -15,6 +15,8 @@ export const Player = styled.section<ThemeProps>`
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  top: 3rem;
+  left: 6rem;
   z-index: 50000;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.playerBackgroundColorPrimary};
