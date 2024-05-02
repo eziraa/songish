@@ -7,6 +7,7 @@ import { RiPlayListFill } from "react-icons/ri";
 import { useAppDispatch } from "../../../utils/customHook";
 import { setMajorTask, setMinorTask } from "../../../store/user/userSlice";
 import {
+  CREATE_PLAYLIST,
   SEE_ALL_SONGS,
   UPLOAD_SONG,
 } from "../../../config/constants/user-current-task";
@@ -44,7 +45,12 @@ const LeftMenu = () => {
             </MenuBarItem>
           );
         })}
-        <MenuBarItem>
+        <MenuBarItem
+          onClick={(e) => {
+            e.preventDefault();
+            dispatcher(setMinorTask(CREATE_PLAYLIST));
+          }}
+        >
           <CgPlayListAdd size={20} />
           Add Playlist
         </MenuBarItem>
