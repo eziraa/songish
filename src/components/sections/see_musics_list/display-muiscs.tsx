@@ -30,6 +30,8 @@ import {
 } from "../../../store/song/songSlice";
 import { formatTime } from "../music_player/music-player";
 import { CloseButton } from "../modal/components.style";
+import { setMinorTask } from "../../../store/user/userSlice";
+import { UPDATE_SONG } from "../../../config/constants/user-current-task";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
@@ -47,6 +49,11 @@ function MusicTable() {
   const onDelete = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
     dispatch(deleteSongRequest(Number(song.id)));
+    setPopIndex(-1);
+  };
+  const onUpdate = (song: SongResponse) => {
+    dispatch(setCurrentSongForAction(song));
+    dispatch(setMinorTask(UPDATE_SONG));
     setPopIndex(-1);
   };
   return (
@@ -114,7 +121,9 @@ function MusicTable() {
                       <DeleteButton onClick={() => onDelete(song)}>
                         Delete
                       </DeleteButton>
-                      <UpdateButton>Update</UpdateButton>
+                      <UpdateButton onClick={() => onUpdate(song)}>
+                        Update
+                      </UpdateButton>
                     </PopUpContainer>
                   )}
                 </div>
