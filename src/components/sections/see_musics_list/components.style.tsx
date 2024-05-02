@@ -115,13 +115,13 @@ export const PopUpContainer = styled.div<ThemeProps>`
   top: 0%;
   left: -8rem;
   width: 150px;
-  background-color: ${({ theme }) => theme.backgroundPrimary};
+  background-color: ${({ theme }) => theme.backgroundSecondaryHover};
   border: 1px solid ${({ theme }) => theme.backgroundSecondary};
   padding: 10px;
   z-index: 89999;
   display: flex;
   flex-direction: column;
-
+  color: ${({ theme }) => theme.textSecondary};
   gap: 10px;
 `;
 
@@ -129,23 +129,21 @@ export const DeleteButton = styled(Button)`
   margin-top: 1rem;
   background-color: transparent;
   border: 3px solid red;
-  color: black;
   transition: all 0.5s;
 
   &:hover {
     background-color: red;
-    color: white;
+    color: #b7b2b2;
   }
 `;
 
 export const UpdateButton = styled(Button)`
   background-color: transparent;
   border: 3px solid #d38106;
-  color: black;
   transition: all 0.5s;
   &:hover {
     background-color: #d38106;
-    color: white;
+    color: #c7bebe;
   }
 `;
 
