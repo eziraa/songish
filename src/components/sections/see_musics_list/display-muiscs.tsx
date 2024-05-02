@@ -31,20 +31,23 @@ import {
 import { formatTime } from "../music_player/music-player";
 import { CloseButton } from "../modal/components.style";
 import { setMinorTask } from "../../../store/user/userSlice";
-import { UPDATE_SONG } from "../../../config/constants/user-current-task";
+import {
+  ADD_SONG_TO_PLAYLIST,
+  SEE_ALL_SONGS,
+  UPDATE_SONG,
+} from "../../../config/constants/user-current-task";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
+  const user = useAppSelector((state) => state.user);
   const [song_list, setSongList] = useState<SongResponse[]>(songs.songs);
   const dispatch = useAppDispatch();
   const [popUpIndex, setPopIndex] = useState(-1);
 
   useEffect(() => {
-    setSongList(songs.songs);
-  }, [songs.songs]);
-  if (songs.loading) {
-    return <LoadingSpinner />;
-  }
+    if (user.majorTask === SEE_ALL_SONGS) setSongList(songs.songs);
+    else if (user.majorTask === ADD_SONG_TO_PLAYLIST) setSongList(songs.songs);
+  }, [songs.songs, user.user]);
 
   const onDelete = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
@@ -56,6 +59,12 @@ function MusicTable() {
     dispatch(setMinorTask(UPDATE_SONG));
     setPopIndex(-1);
   };
+
+  if (![SEE_ALL_SONGS, ADD_SONG_TO_PLAYLIST].includes(user.majorTask || ""))
+    return;
+  if (songs.loading) {
+    return <LoadingSpinner />;
+  }
   return (
     <>
       <SongsListTitle>All songs</SongsListTitle>
