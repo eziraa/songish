@@ -4,12 +4,14 @@ import PlaylistsAPI from "../../services/playlistAPI";
 import {
   AddPlaylistParams,
   AddSongToPlaylistParams,
+  GetPlaylistSongsParams,
 } from "../../typo/playlist/parameters";
 import { setNotification } from "../notification/notificationSlice";
 import { loadPlaylistsDone, setMinorTask } from "../user/userSlice";
 import {
   addPlaylistDone,
   addSongToPlaylistDone,
+  loadPlaylistSongsDone,
   loadingFinished,
 } from "./playlistSlice";
 
@@ -77,6 +79,7 @@ export function* watchLoadPlaylists() {
 
 function* addSongToPlaylist(action: PayloadAction<AddSongToPlaylistParams>) {
   try {
+    console.table(action.payload);
     const songs: SagaReturnType<typeof PlaylistsAPI.addSongToPlayList> =
       yield call(PlaylistsAPI.addSongToPlayList, action.payload);
 
@@ -105,4 +108,36 @@ function* addSongToPlaylist(action: PayloadAction<AddSongToPlaylistParams>) {
 
 export function* watchAddSongToPlaylist() {
   yield takeEvery("playlist/addSongToPlaylistRequested", addSongToPlaylist);
+}
+
+function* LoadPlaylistSongs(action: PayloadAction<GetPlaylistSongsParams>) {
+  try {
+    const songs: SagaReturnType<typeof PlaylistsAPI.getPlaylistSongs> =
+      yield call(PlaylistsAPI.getPlaylistSongs, action.payload);
+
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Loading Playlist songs",
+        desc: "The playlist songs successfully loaded",
+        duration: 3,
+      })
+    );
+    yield put(loadPlaylistSongsDone(songs));
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Loading Playlist",
+        desc: "Can not load the playlists from the database",
+        duration: 3,
+      })
+    );
+  }
+}
+
+export function* watchLoadPlaylistSongs() {
+  yield takeEvery("playlist/loadPlaylistSongsRequested", LoadPlaylistSongs);
 }
