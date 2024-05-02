@@ -23,7 +23,11 @@ import {
 import { SongResponse } from "../../../typo/songs/response";
 import LoadingSpinner from "../spinner/spinner";
 import { ScrollBar } from "../../utils/scrollbar.style";
-import { setCurrentSongToPlay } from "../../../store/song/songSlice";
+import {
+  deleteSongRequest,
+  setCurrentSongForAction,
+  setCurrentSongToPlay,
+} from "../../../store/song/songSlice";
 import { formatTime } from "../music_player/music-player";
 import { CloseButton } from "../modal/components.style";
 
@@ -40,6 +44,11 @@ function MusicTable() {
     return <LoadingSpinner />;
   }
 
+  const onDelete = (song: SongResponse) => {
+    dispatch(setCurrentSongForAction(song));
+    dispatch(deleteSongRequest(Number(song.id)));
+    setPopIndex(-1);
+  };
   return (
     <>
       <SongsListTitle>All songs</SongsListTitle>
@@ -102,7 +111,9 @@ function MusicTable() {
                         style={{ top: "0", right: "0", color: "black" }}
                         onClick={() => setPopIndex(-1)}
                       />
-                      <DeleteButton>Delete</DeleteButton>
+                      <DeleteButton onClick={() => onDelete(song)}>
+                        Delete
+                      </DeleteButton>
                       <UpdateButton>Update</UpdateButton>
                     </PopUpContainer>
                   )}
