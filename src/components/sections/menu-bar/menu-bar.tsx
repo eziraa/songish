@@ -4,18 +4,20 @@ import { CgPlayListAdd } from "react-icons/cg";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineReplay10, MdFavorite } from "react-icons/md";
 import { RiPlayListFill } from "react-icons/ri";
-import { useAppDispatch } from "../../../utils/customHook";
+import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { setMajorTask, setMinorTask } from "../../../store/user/userSlice";
 import {
   CREATE_PLAYLIST,
   SEE_ALL_SONGS,
+  SEE_YOUR_PLAYLIST,
   UPLOAD_SONG,
 } from "../../../config/constants/user-current-task";
 import { loadSongsRequested } from "../../../store/song/songSlice";
+import { loadPlaylistsRequested } from "../../../store/playlist/playlistSlice";
 
 const LeftMenu = () => {
   const dispatcher = useAppDispatch();
-
+  const user = useAppSelector((state) => state.user);
   return (
     <Menu>
       <MenuBar>
@@ -35,6 +37,10 @@ const LeftMenu = () => {
                 if (index == 2) {
                   dispatcher(setMajorTask(SEE_ALL_SONGS));
                   dispatcher(loadSongsRequested());
+                }
+                if (index == 5) {
+                  dispatcher(loadPlaylistsRequested(user.user.id));
+                  dispatcher(setMajorTask(SEE_YOUR_PLAYLIST));
                 }
               }}
               key={index}
