@@ -11,10 +11,15 @@ import { BackIcon, ForwardIcon } from "../music_player/components.style";
 import { Paragraph } from "../about/components.style";
 import { OutLinedButton } from "../../utils/buttons.style";
 import { api } from "../../../services/api";
-import { useAppSelector } from "../../../utils/customHook";
+import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { useEffect, useState } from "react";
-import { SEE_YOUR_PLAYLIST } from "../../../config/constants/user-current-task";
+import {
+  ADD_SONG_TO_PLAYLIST,
+  SEE_YOUR_PLAYLIST,
+} from "../../../config/constants/user-current-task";
 import LoadingSpinner from "../spinner/spinner";
+import { PlaylistResponse } from "../../../typo/playlist/response";
+import { setMajorTask } from "../../../store/user/userSlice";
 
 export const PlaylistCard = () => {
   const playlists = useAppSelector((state) => state.playlists);
@@ -23,7 +28,7 @@ export const PlaylistCard = () => {
   const [nextIndex, setNextIndex] = useState(1);
   const [noPrev, setNoPrev] = useState(true);
   const [noNext, setNoNext] = useState(false);
-
+  const dispatcher = useAppDispatch();
   useEffect(() => {
     handleNextPrev();
   }, [prevIndex, nextIndex]);
@@ -79,6 +84,10 @@ export const PlaylistCard = () => {
         <SlidesContainer>
           {user.user.my_playlists.map((playlist, index) => {
             if (true) {
+              function setCurrentPlaylist(playlist: PlaylistResponse): any {
+                throw new Error("Function not implemented.");
+              }
+
               return (
                 <Card>
                   <div key={index} style={{ transform: "translateX(34vw)" }}>
@@ -142,6 +151,10 @@ export const PlaylistCard = () => {
                               color: "#f9f6f8",
                               border: "2px solid #f80bb1",
                               padding: "10px 20px",
+                            }}
+                            onClick={() => {
+                              dispatcher(setCurrentPlaylist(playlist));
+                              dispatcher(setMajorTask(ADD_SONG_TO_PLAYLIST));
                             }}
                           >
                             Add musics
