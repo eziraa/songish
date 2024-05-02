@@ -18,8 +18,8 @@ import {
   SEE_YOUR_PLAYLIST,
 } from "../../../config/constants/user-current-task";
 import LoadingSpinner from "../spinner/spinner";
-import { PlaylistResponse } from "../../../typo/playlist/response";
 import { setMajorTask } from "../../../store/user/userSlice";
+import { setCurrentPlaylist } from "../../../store/playlist/playlistSlice";
 
 export const PlaylistCard = () => {
   const playlists = useAppSelector((state) => state.playlists);
@@ -84,10 +84,6 @@ export const PlaylistCard = () => {
         <SlidesContainer>
           {user.user.my_playlists.map((playlist, index) => {
             if (true) {
-              function setCurrentPlaylist(playlist: PlaylistResponse): any {
-                throw new Error("Function not implemented.");
-              }
-
               return (
                 <Card>
                   <div key={index} style={{ transform: "translateX(34vw)" }}>
