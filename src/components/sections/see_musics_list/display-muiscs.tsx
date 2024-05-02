@@ -36,6 +36,7 @@ import {
   SEE_ALL_SONGS,
   UPDATE_SONG,
 } from "../../../config/constants/user-current-task";
+import { Button } from "../../utils/form_field_elements.style";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
@@ -111,6 +112,9 @@ function MusicTable() {
                 </SongInfoContainer>
               </SongMetaData>
               <SongActions>
+                {user.majorTask === ADD_SONG_TO_PLAYLIST ? (
+                  <Button style={{ backgroundColor: "blue" }}>SELECT</Button>
+                ) : null}
                 <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
 
                 <div
