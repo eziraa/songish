@@ -47,6 +47,12 @@ const PlaylistSlice = createSlice({
       state.loading = false;
       state.songs = action.payload;
     },
+    setCurrentPlaylist: (
+      state,
+      actions: PayloadAction<PlaylistResponse | undefined>
+    ) => {
+      state.currentPlaylist = actions.payload;
+    },
   },
 });
 
