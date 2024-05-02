@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlaylistStateType } from "../../typo/playlist/state";
-import { AddPlaylistParams } from "../../typo/playlist/parameters";
+import {
+  AddPlaylistParams,
+  AddSongToPlaylistParams,
+} from "../../typo/playlist/parameters";
 import { PlaylistResponse } from "../../typo/playlist/response";
+import { SongResponse } from "../../typo/songs/response";
 
 const initialPlaylistState: PlaylistStateType = {
   deleting: false,
@@ -32,6 +36,17 @@ const PlaylistSlice = createSlice({
     loadingFinished: (state) => {
       state.loading = false;
     },
+    addSongToPlaylistRequested: (
+      state,
+      action: PayloadAction<AddSongToPlaylistParams>
+    ) => {
+      state.loading = true;
+      state.songs = [];
+    },
+    addSongToPlaylistDone: (state, action: PayloadAction<SongResponse[]>) => {
+      state.loading = false;
+      state.songs = action.payload;
+    },
   },
 });
 
@@ -39,6 +54,9 @@ export const {
   addPlaylistRequested,
   addPlaylistDone,
   loadPlaylistsRequested,
+  loadPlaylistSongsDone,
   loadingFinished,
+  addSongToPlaylistRequested,
+  addSongToPlaylistDone,
 } = PlaylistSlice.actions;
 export default PlaylistSlice.reducer;
