@@ -15,11 +15,15 @@ import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { useEffect, useState } from "react";
 import {
   ADD_SONG_TO_PLAYLIST,
+  SEE_PLAYLIST_SONGS,
   SEE_YOUR_PLAYLIST,
 } from "../../../config/constants/user-current-task";
 import LoadingSpinner from "../spinner/spinner";
 import { setMajorTask } from "../../../store/user/userSlice";
-import { setCurrentPlaylist } from "../../../store/playlist/playlistSlice";
+import {
+  loadPlaylistSongsRequested,
+  setCurrentPlaylist,
+} from "../../../store/playlist/playlistSlice";
 
 export const PlaylistCard = () => {
   const playlists = useAppSelector((state) => state.playlists);
@@ -138,6 +142,15 @@ export const PlaylistCard = () => {
                               color: "#f9f6f8",
                               border: "2px solid #f80bb1",
                               padding: "10px 20px",
+                            }}
+                            onClick={() => {
+                              dispatcher(setMajorTask(SEE_PLAYLIST_SONGS));
+                              dispatcher(setCurrentPlaylist(playlist));
+                              dispatcher(
+                                loadPlaylistSongsRequested({
+                                  playlist_id: playlist.id,
+                                })
+                              );
                             }}
                           >
                             See Musics
