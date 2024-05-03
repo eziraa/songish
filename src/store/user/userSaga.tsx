@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { SignUpParameters } from "../../typo/user/parameters";
+import { LoginParameters, SignUpParameters } from "../../typo/user/parameters";
 import { SagaReturnType, call, put, takeEvery } from "redux-saga/effects";
 import UserAPI from "../../services/useAPI";
 import { setNotification } from "../notification/notificationSlice";
@@ -21,15 +21,13 @@ function* SignUp(action: PayloadAction<SignUpParameters>) {
       })
     );
   } catch (e) {
-    if (e instanceof AxiosError) {
-      setNotification({
-        color: "green",
-        status: true,
-        title: "User sign up in",
-        desc: "Cannot register you",
-        duration: 3,
-      });
-    }
+    setNotification({
+      color: "green",
+      status: true,
+      title: "User sign up in",
+      desc: "Cannot register you",
+      duration: 3,
+    });
   }
 }
 export function* watchSignup() {
