@@ -2,7 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { SongStateType } from "../../typo/songs/state";
 import { SongResponse } from "../../typo/songs/response";
-import { AddSongParams } from "../../typo/songs/parameters";
+import {
+  AddSongParams,
+  EditSongParams,
+  PlayingParams,
+} from "../../typo/songs/parameters";
 
 const InitialSongState: SongStateType = {
   deleting: false,
@@ -57,6 +61,10 @@ const SongSlice = createSlice({
     ) => {
       state.current_song_for_action = actions.payload;
     },
+    setCurrentSongToPlay: (state, actions: PayloadAction<PlayingParams>) => {
+      state.current_song_to_play = actions.payload.song;
+      state.playing_music_list = actions.payload.song_list;
+    },
   },
 });
 
@@ -68,5 +76,8 @@ export const {
   editSongRequest,
   editSongDone,
   setCurrentSongForAction,
+  deleteSongRequest,
+  deleteSongDone,
+  setCurrentSongToPlay,
 } = SongSlice.actions;
 export default SongSlice.reducer;
