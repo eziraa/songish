@@ -33,7 +33,9 @@ import { CloseButton } from "../modal/components.style";
 import { setMinorTask } from "../../../store/user/userSlice";
 import {
   ADD_SONG_TO_PLAYLIST,
+  SEARCH_SONG_FROM_ALL,
   SEE_ALL_SONGS,
+  SEE_PLAYLIST_SONGS,
   UPDATE_SONG,
 } from "../../../config/constants/user-current-task";
 import { Button } from "../../utils/form_field_elements.style";
@@ -51,7 +53,9 @@ function MusicTable() {
   useEffect(() => {
     if (user.majorTask === SEE_ALL_SONGS) setSongList(songs.songs);
     else if (user.majorTask === ADD_SONG_TO_PLAYLIST) setSongList(songs.songs);
-  }, [songs.songs, user.user]);
+    else if (user.majorTask === SEE_PLAYLIST_SONGS)
+      setSongList(playlists.songs);
+  }, [songs.songs, user.user, playlists.songs]);
 
   const onDelete = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
@@ -71,14 +75,22 @@ function MusicTable() {
       })
     );
   };
-  if (![SEE_ALL_SONGS, ADD_SONG_TO_PLAYLIST].includes(user.majorTask || ""))
+  if (
+    ![SEE_ALL_SONGS, SEE_PLAYLIST_SONGS, ADD_SONG_TO_PLAYLIST].includes(
+      user.majorTask || ""
+    )
+  )
     return;
   if (songs.loading) {
     return <LoadingSpinner />;
   }
   return (
     <>
-      <SongsListTitle>All songs</SongsListTitle>
+      <SongsListTitle>
+        All songs
+        {user.majorTask == SEE_PLAYLIST_SONGS && " from this playlist"}{" "}
+        {user.majorTask == SEARCH_SONG_FROM_ALL && " Based on your query"}{" "}
+      </SongsListTitle>
       <ScrollBar
         style={{
           position: "relative",
