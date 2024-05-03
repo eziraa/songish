@@ -53,11 +53,23 @@ const getPlaylistSongs = async (params: GetPlaylistSongsParams) => {
     .then((res) => res.data);
   return songs;
 };
-
+const removeSongFromPlayList = async (params: AddSongToPlaylistParams) => {
+  const songs = await axios
+    .delete<SongResponse[]>(
+      api +
+        "/song/playlist/" +
+        params.playlist_id +
+        "/remove_song/" +
+        params.song_id
+    )
+    .then((res) => res.data);
+  return songs;
+};
 const PlaylistsAPI = {
   addPlaylist,
   loadPlaylists,
   addSongToPlayList,
   getPlaylistSongs,
+  removeSongFromPlayList,
 };
 export default PlaylistsAPI;
