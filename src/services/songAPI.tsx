@@ -5,7 +5,7 @@ import { api } from "./api";
 
 const loadSongs = async () => {
   const songs = await axios
-    .get<SongResponse[]>("api" + "/song/get-songs/", {
+    .get<SongResponse[]>(api + "/song/get-songs/", {
       headers: {
         "Content-Type": "multipart/form-data",
       },
