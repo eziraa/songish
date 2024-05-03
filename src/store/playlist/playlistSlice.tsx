@@ -88,5 +88,7 @@ export const {
   addSongToPlaylistDone,
   setCurrentPlaylist,
   loadPlaylistSongsRequested,
+  removeSongFromPlaylistDone,
+  removeSongFromPlaylistRequested,
 } = PlaylistSlice.actions;
 export default PlaylistSlice.reducer;
