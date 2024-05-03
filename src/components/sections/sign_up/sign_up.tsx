@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useFormik } from "formik";
 import { SignUpContainer, FormError } from "./components.style";
 import { SIGN_UP } from "../../../config/constants/user-current-task";
