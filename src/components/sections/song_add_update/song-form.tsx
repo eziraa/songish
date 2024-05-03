@@ -60,16 +60,6 @@ const SongForm = () => {
   });
 
   if (![UPDATE_SONG, UPLOAD_SONG].includes(user.minorTask || "")) return;
-  if (user.minorTask === UPLOAD_SONG)
-    formHandler.values = formHandler.values = {
-      title: "",
-      artist: "",
-      album: "",
-      release_date: "",
-      customer_id: user.user.id,
-      duration: 0,
-      song_file: undefined,
-    };
   return (
     <Modal>
       <AddSongContainer>
@@ -81,7 +71,7 @@ const SongForm = () => {
           </Title>
           <DescriptionText>
             {user.minorTask === UPLOAD_SONG
-              ? "Add your playlist local music and listen it on cool website"
+              ? "Add your  local music and listen it on cool website"
               : "Update your playlist that you uploaded before"}
           </DescriptionText>
         </Description>
