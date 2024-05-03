@@ -4,6 +4,7 @@ import {
   watchLoadPlaylists,
   watchAddPlaylist,
   watchAddSongToPlaylist,
+  watchLoadPlaylistSongs,
 } from "../store/playlist/playlistSaga";
 import {
   watchLoadSongs,
@@ -25,5 +26,6 @@ export function* rootSaga() {
     watchAddPlaylist(),
     watchSetNotification(),
     watchAddSongToPlaylist(),
+    watchLoadPlaylistSongs(),
   ]);
 }
