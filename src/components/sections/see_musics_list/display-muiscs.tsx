@@ -39,7 +39,10 @@ import {
   UPDATE_SONG,
 } from "../../../config/constants/user-current-task";
 import { Button } from "../../utils/form_field_elements.style";
-import { addSongToPlaylistRequested } from "../../../store/playlist/playlistSlice";
+import {
+  addSongToPlaylistRequested,
+  removeSongFromPlaylistRequested,
+} from "../../../store/playlist/playlistSlice";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
@@ -142,6 +145,24 @@ function MusicTable() {
                     SELECT
                   </Button>
                 ) : null}
+                {user.majorTask === SEE_PLAYLIST_SONGS && (
+                  <Button
+                    style={{ backgroundColor: "red" }}
+                    onClick={async () => {
+                      await dispatch(
+                        removeSongFromPlaylistRequested({
+                          playlist_id: playlists.currentPlaylist?.id || "",
+                          song_id: song.id,
+                        })
+                      );
+                      setSongList(
+                        song_list.filter((item) => item.id !== song.id)
+                      );
+                    }}
+                  >
+                    Remove
+                  </Button>
+                )}
                 <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
 
                 <div
