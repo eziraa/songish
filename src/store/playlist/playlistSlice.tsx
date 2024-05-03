@@ -73,5 +73,6 @@ export const {
   addSongToPlaylistRequested,
   addSongToPlaylistDone,
   setCurrentPlaylist,
+  loadPlaylistSongsRequested,
 } = PlaylistSlice.actions;
 export default PlaylistSlice.reducer;
