@@ -61,6 +61,20 @@ const PlaylistSlice = createSlice({
     ) => {
       state.currentPlaylist = actions.payload;
     },
+    removeSongFromPlaylistRequested: (
+      state,
+      action: PayloadAction<AddSongToPlaylistParams>
+    ) => {
+      state.loading = true;
+      state.songs = [];
+    },
+
+    removeSongFromPlaylistDone: (
+      state,
+      action: PayloadAction<SongResponse[]>
+    ) => {
+      state.loading = false;
+    },
   },
 });
 
