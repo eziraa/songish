@@ -13,6 +13,7 @@ import {
   addSongToPlaylistDone,
   loadPlaylistSongsDone,
   loadingFinished,
+  removeSongFromPlaylistDone,
 } from "./playlistSlice";
 
 function* AddPlaylist(action: PayloadAction<AddPlaylistParams>) {
@@ -140,4 +141,41 @@ function* LoadPlaylistSongs(action: PayloadAction<GetPlaylistSongsParams>) {
 
 export function* watchLoadPlaylistSongs() {
   yield takeEvery("playlist/loadPlaylistSongsRequested", LoadPlaylistSongs);
+}
+
+function* removeSongFromPlaylist(
+  action: PayloadAction<AddSongToPlaylistParams>
+) {
+  try {
+    const songs: SagaReturnType<typeof PlaylistsAPI.removeSongFromPlayList> =
+      yield call(PlaylistsAPI.removeSongFromPlayList, action.payload);
+
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Removing song from Playlist",
+        desc: "The song successfully  removed  from playlist",
+        duration: 3,
+      })
+    );
+    yield put(removeSongFromPlaylistDone(songs));
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Removing  song from Playlist",
+        desc: "Cannot remove song from Playlist",
+        duration: 3,
+      })
+    );
+  }
+}
+
+export function* watchRemoveSongFromPlaylist() {
+  yield takeEvery(
+    "playlist/removeSongFromPlaylistRequested",
+    removeSongFromPlaylist
+  );
 }
