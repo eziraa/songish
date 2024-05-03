@@ -1,6 +1,6 @@
+import { PlaylistResponse } from "../playlist/response";
 import { SongResponse } from "../songs/response";
 
-interface PlaylistResponse {}
 export interface UserResponse {
   id: string;
   firstName: string;
