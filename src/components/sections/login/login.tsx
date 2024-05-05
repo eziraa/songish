@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { LoginPageContainer, LoginFormContainer } from "./components.style";
 import { LOGIN } from "../../../config/constants/user-current-task";
@@ -37,7 +35,6 @@ const LoginPage = () => {
   //     route("/home/");
   //   }
   // }, [user.user]);
-  console.table(user);
   if (user.minorTask !== LOGIN) return;
 
   return (
