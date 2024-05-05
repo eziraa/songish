@@ -93,6 +93,8 @@ export const {
   loadPlaylistsRequested,
   loadPlaylistSongsDone,
   loadingFinished,
+  deletePlaylistRequest,
+  deletePlaylistDone,
   addSongToPlaylistRequested,
   addSongToPlaylistDone,
   setCurrentPlaylist,
