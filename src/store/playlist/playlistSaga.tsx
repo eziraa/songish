@@ -11,6 +11,7 @@ import { loadPlaylistsDone, setMinorTask } from "../user/userSlice";
 import {
   addPlaylistDone,
   addSongToPlaylistDone,
+  deletePlaylistDone,
   loadPlaylistSongsDone,
   loadingFinished,
   removeSongFromPlaylistDone,
@@ -77,6 +78,39 @@ function* LoadPlaylists(action: PayloadAction<string>) {
 export function* watchLoadPlaylists() {
   yield takeEvery("playlist/loadPlaylistsRequested", LoadPlaylists);
 }
+
+function* DeletePlaylist(action: PayloadAction<number>) {
+  try {
+    const deletedPlaylist: SagaReturnType<typeof PlaylistsAPI.deletePlaylist> =
+      yield call(PlaylistsAPI.deletePlaylist, action.payload);
+    yield put(setMinorTask(undefined));
+    yield put(deletePlaylistDone(deletedPlaylist));
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Deleting Playlist",
+        desc: "The playlist successfully deleted",
+        duration: 3,
+      })
+    );
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Deleting Playlist",
+        desc: "The playlist not  deleted",
+        duration: 3,
+      })
+    );
+  }
+}
+
+export function* watchDeletePlaylist() {
+  yield takeEvery("playlist/deletePlaylistRequest", DeletePlaylist);
+}
+
 
 function* addSongToPlaylist(action: PayloadAction<AddSongToPlaylistParams>) {
   try {
