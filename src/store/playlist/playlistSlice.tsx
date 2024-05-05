@@ -74,6 +74,16 @@ const PlaylistSlice = createSlice({
     ) => {
       state.loading = false;
     },
+    deletePlaylistRequest: (state, action: PayloadAction<number>) => {
+      state.deleting = true;
+    },
+    deletePlaylistDone: (state, action: PayloadAction<PlaylistResponse>) => {
+      state.deleting = false;
+      state.playlists = state.playlists.filter(
+        (playlist) => playlist.id != state.currentPlaylist?.id
+      );
+      state.currentPlaylist = undefined;
+    },
   },
 });
 
