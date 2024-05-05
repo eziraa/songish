@@ -66,7 +66,6 @@ const PlaylistSlice = createSlice({
       action: PayloadAction<AddSongToPlaylistParams>
     ) => {
       state.loading = true;
-      state.songs = [];
     },
 
     removeSongFromPlaylistDone: (
