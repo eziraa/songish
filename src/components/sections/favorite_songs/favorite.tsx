@@ -3,15 +3,21 @@ import { H0 } from "../../utils/heading.style";
 import { Paragraph } from "../about/components.style";
 import { AboutMusic } from "../recent-songs/components.style";
 import { SliderBody, SlidesContainer, Slide } from "../slider/components.style";
-import { FavoriteContainer } from "./components.style";
-import { useAppSelector } from "../../../utils/customHook";
+import {
+  Button,
+  FavoriteBtnContainer,
+  FavoriteContainer,
+} from "./components.style";
+import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { SongResponse } from "../../../typo/songs/response";
 import { SEE_MY_FAVORITE_SONGS } from "../../../config/constants/user-current-task";
 import LoadingSpinner from "../spinner/spinner";
 import { BackIcon, ForwardIcon } from "../music_player/components.style";
+import { setCurrentSongToPlay } from "../../../store/song/songSlice";
 
 export const FavoriteSongs = () => {
   const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   const [prevIndex, setPrevIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
   const [noPrev, setNoPrev] = useState(true);
@@ -92,6 +98,21 @@ export const FavoriteSongs = () => {
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Tempora mollitia saepe alias corrupti ut?
                       </Paragraph>
+                      <FavoriteBtnContainer>
+                        <Button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            dispatch(
+                              setCurrentSongToPlay({
+                                song: music,
+                                song_list: music_list,
+                              })
+                            );
+                          }}
+                        >
+                          Listen now
+                        </Button>
+                      </FavoriteBtnContainer>
                     </AboutMusic>
                   </Slide>
                 </div>
