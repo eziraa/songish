@@ -7,13 +7,13 @@ import {
   GetPlaylistSongsParams,
 } from "../../typo/playlist/parameters";
 import { setNotification } from "../notification/notificationSlice";
-import { loadPlaylistsDone, setMinorTask } from "../user/userSlice";
+import { setMinorTask } from "../user/userSlice";
 import {
   addPlaylistDone,
   addSongToPlaylistDone,
   deletePlaylistDone,
   loadPlaylistSongsDone,
-  loadingFinished,
+  loadPlaylistsDone,
   removeSongFromPlaylistDone,
 } from "./playlistSlice";
 
@@ -51,6 +51,7 @@ function* LoadPlaylists(action: PayloadAction<string>) {
   try {
     const playlists: SagaReturnType<typeof PlaylistsAPI.loadPlaylists> =
       yield call(PlaylistsAPI.loadPlaylists, action.payload);
+    yield put(loadPlaylistsDone(playlists));
 
     yield put(
       setNotification({
@@ -61,8 +62,6 @@ function* LoadPlaylists(action: PayloadAction<string>) {
         duration: 3,
       })
     );
-    yield put(loadingFinished());
-    yield put(loadPlaylistsDone(playlists));
   } catch (error) {
     yield put(
       setNotification({
