@@ -36,11 +36,20 @@ const getMyFavoriteSongs = async (params: GetMyFavoriteParams) => {
     .then((res) => res.data);
   return songs;
 };
+const removeSongFromMyFavorite = async (params: AddFavoriteSongsParams) => {
+  const song = await axios
+    .delete<SongResponse>(
+      api + "/song/songs/" + params.user_id + "/remove_song/" + params.song_id
+    )
+    .then((res) => res.data);
+  return song;
+};
 const UserAPI = {
   signUp,
   login,
   addFavoriteSongs,
   getMyFavoriteSongs,
+  removeSongFromMyFavorite,
 };
 
 export default UserAPI;
