@@ -10,3 +10,12 @@ export interface SignUpParameters {
   password: string;
   confirm_password: string;
 }
+
+export type AddFavoriteSongsParams = {
+  user_id: string;
+  song_id: string;
+};
+
+export type GetMyFavoriteParams = {
+  user_id: string;
+};
