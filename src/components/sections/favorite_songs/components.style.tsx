@@ -3,7 +3,7 @@ import { OutLinedButton } from "../../utils/buttons.style";
 import { BtnContainer } from "../see_playlist/components.style";
 import { RecentContainer } from "../recent-songs/components.style";
 
-export const FavoriteBtn = styled(OutLinedButton)`
+export const Button = styled(OutLinedButton)`
   padding: 10px 20px;
   color: white;
 `;
