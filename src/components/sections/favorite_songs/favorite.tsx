@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { H0 } from "../../utils/heading.style";
 import { Unfavorite } from "../../utils/icons/button-like-icon";
 import { Paragraph } from "../about/components.style";
@@ -8,21 +9,36 @@ import {
   FavoriteBtnContainer,
   FavoriteBtn,
 } from "./components.style";
+import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
+import { SongResponse } from "../../../typo/songs/response";
+import { SEE_MY_FAVORITE_SONGS } from "../../../config/constants/user-current-task";
+import LoadingSpinner from "../spinner/spinner";
 
 export const FavoriteSongs = () => {
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const [song_list, setSongList] = useState<SongResponse[]>([]);
+  useEffect(() => {
+    setSongList(user.user.favorite_songs);
+  }, [user.user, user.minorTask]);
+
+  if (user.majorTask !== SEE_MY_FAVORITE_SONGS) return;
+  if (user.loading) {
+    return <LoadingSpinner />;
+  }
   return (
     <FavoriteContainer>
       <H0>Your favorite songs</H0>
       <SliderBody>
         <SlidesContainer>
-          {[1, 2, 3, 4, 5, 6, 6].map((song, index, song_list) => {
+          {song_list?.map((song, index, song_list) => {
             if (true) {
               return (
                 <div key={index} style={{ transform: "translateX(34vw)" }}>
                   <Slide
                     key={index}
                     style={{
-                      transform: "translateX(" + index * 37 + "vw)",
+                      transform: "translateX(" + -index * 37 + "vw)",
                       transition: "transform 2s ease-out",
                       backgroundImage:
                         "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
@@ -32,7 +48,7 @@ export const FavoriteSongs = () => {
                     }}
                   >
                     <AboutMusic>
-                      <H0> {song} </H0>
+                      <H0> {song.title} </H0>
                       <Paragraph style={{ width: "20vw" }}>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Tempora mollitia saepe alias corrupti ut?
