@@ -43,6 +43,7 @@ import {
   addSongToPlaylistRequested,
   removeSongFromPlaylistRequested,
 } from "../../../store/playlist/playlistSlice";
+import { ClipLoader } from "react-spinners";
 
 function MusicTable() {
   const songs = useAppSelector((state) => state.songs);
@@ -51,24 +52,25 @@ function MusicTable() {
 
   const [song_list, setSongList] = useState<SongResponse[]>(songs.songs);
   const dispatch = useAppDispatch();
-  const [popUpIndex, setPopIndex] = useState(-1);
+  const [actionItemIndex, setActionItemIndex] = useState(-1);
+  const [popUpIndex, setPopUpIndex] = useState(-1);
 
   useEffect(() => {
     if (user.majorTask === SEE_ALL_SONGS) setSongList(songs.songs);
     else if (user.majorTask === ADD_SONG_TO_PLAYLIST) setSongList(songs.songs);
     else if (user.majorTask === SEE_PLAYLIST_SONGS)
       setSongList(playlists.songs);
-  }, [songs.songs, user.user, playlists.songs]);
+  }, [songs.songs, user.user, playlists.songs, user.majorTask]);
 
   const onDelete = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
     dispatch(deleteSongRequest(Number(song.id)));
-    setPopIndex(-1);
+    setActionItemIndex(-1);
   };
   const onUpdate = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
     dispatch(setMinorTask(UPDATE_SONG));
-    setPopIndex(-1);
+    setActionItemIndex(-1);
   };
   const onSelect = (song: SongResponse) => {
     dispatch(
@@ -139,16 +141,31 @@ function MusicTable() {
               <SongActions>
                 {user.majorTask === ADD_SONG_TO_PLAYLIST ? (
                   <Button
-                    style={{ backgroundColor: "blue" }}
-                    onClick={() => onSelect(song)}
+                    style={{
+                      backgroundColor: "blue",
+                      textAlign: "center",
+                      width: "110px",
+                    }}
+                    onClick={() => {
+                      setActionItemIndex(index);
+                      onSelect(song);
+                    }}
                   >
-                    SELECT
+                    {playlists.adding && index == actionItemIndex ? (
+                      <ClipLoader
+                        color="#4A90E2"
+                        loading={playlists.adding}
+                        size={20}
+                      />
+                    ) : (
+                      "SELECT"
+                    )}
                   </Button>
                 ) : null}
                 {user.majorTask === SEE_PLAYLIST_SONGS && (
                   <Button
                     style={{ backgroundColor: "red" }}
-                    onClick={async () => {
+                    onClick={async (e) => {
                       await dispatch(
                         removeSongFromPlaylistRequested({
                           playlist_id: playlists.currentPlaylist?.id || "",
@@ -170,23 +187,22 @@ function MusicTable() {
                     position: "relative",
                   }}
                 >
-                  <VerticalDots
-                    onClick={() => setPopIndex(index)}
-                  ></VerticalDots>
-                  {index === popUpIndex && (
-                    <PopUpContainer>
-                      <CloseButton
-                        style={{ top: "0", right: "0", color: "black" }}
-                        onClick={() => setPopIndex(-1)}
-                      />
-                      <DeleteButton onClick={() => onDelete(song)}>
-                        Delete
-                      </DeleteButton>
-                      <UpdateButton onClick={() => onUpdate(song)}>
-                        Update
-                      </UpdateButton>
-                    </PopUpContainer>
-                  )}
+                  <VerticalDots onClick={() => setPopUpIndex(index)}>
+                    {index === actionItemIndex && (
+                      <PopUpContainer>
+                        <CloseButton
+                          style={{ top: "0", right: "0", color: "black" }}
+                          onClick={() => setPopUpIndex(-1)}
+                        />
+                        <DeleteButton onClick={() => onDelete(song)}>
+                          Delete
+                        </DeleteButton>
+                        <UpdateButton onClick={() => onUpdate(song)}>
+                          Update
+                        </UpdateButton>
+                      </PopUpContainer>
+                    )}
+                  </VerticalDots>
                 </div>
               </SongActions>
             </SongContainer>
