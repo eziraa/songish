@@ -10,60 +10,66 @@ import {
 } from "./components.style";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { SongResponse } from "../../../typo/songs/response";
-import { SEE_MY_FAVORITE_SONGS } from "../../../config/constants/user-current-task";
+import {
+  REMOVE_SONG_FROM_FAVORITE,
+  SEE_MY_FAVORITE_SONGS,
+} from "../../../config/constants/user-current-task";
 import LoadingSpinner from "../spinner/spinner";
 import { BackIcon, ForwardIcon } from "../music_player/components.style";
-import { setCurrentSongToPlay } from "../../../store/song/songSlice";
+import {
+  setCurrentSongForAction,
+  setCurrentSongToPlay,
+} from "../../../store/song/songSlice";
+import {
+  loadMyFavoriteSongsRequested,
+  removeSongFromMyFavoriteRequested,
+  setMinorTask,
+} from "../../../store/user/userSlice";
+import { Unfavorite } from "../../utils/icons/button-like-icon";
 
 export const FavoriteSongs = () => {
   const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [prevIndex, setPrevIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
-  const [noPrev, setNoPrev] = useState(true);
-  const [noNext, setNoNext] = useState(false);
-  const [song_list, setSongList] = useState<SongResponse[]>([]);
-  useEffect(() => {
-    setSongList(user.user.favorite_songs);
-  }, [user.user, user.minorTask]);
+  const [hasPrev, setHasPrev] = useState(true);
+  const [hasNext, setHasNext] = useState(true);
 
   useEffect(() => {
     handleNextPrev();
-  }, [prevIndex, nextIndex]);
+  }, [user]);
   const handleNextPrev = () => {
-    if (nextIndex < (song_list ? song_list.length - 1 : 0)) {
-      setNoNext(false);
+    if (nextIndex >= user.favorite_songs.length - 1) {
+      setHasNext(false);
     } else {
-      setNoNext(true);
+      setHasNext(true);
     }
-    if (prevIndex > 0) {
-      setNoPrev(false);
+    if (prevIndex <= 0) {
+      setHasPrev(false);
     } else {
-      setNoPrev(true);
+      setHasPrev(true);
     }
   };
   const nextSlide = () => {
-    if (song_list?.length || 0 > 0)
-      if (nextIndex + 2 < (song_list ? song_list.length : 0)) {
-        setNextIndex(nextIndex + 2);
-        setPrevIndex(prevIndex + 2);
-      } else if (nextIndex + 1 < (song_list ? song_list.length : 0)) {
-        setNextIndex(nextIndex + 1);
-        setPrevIndex(prevIndex + 1);
-      }
+    if (nextIndex + 2 < user.favorite_songs.length) {
+      setNextIndex(nextIndex + 2);
+      setPrevIndex(prevIndex + 2);
+    } else if (nextIndex + 1 < user.favorite_songs.length) {
+      setNextIndex(nextIndex + 1);
+      setPrevIndex(prevIndex + 1);
+    }
+    handleNextPrev();
   };
 
   const prevSlide = () => {
-    if (song_list?.length || 0 > 0)
-      if (prevIndex - 2 >= 0) {
-        setNextIndex(nextIndex - 2);
-        setPrevIndex(prevIndex - 2);
-        handleNextPrev();
-      } else if (prevIndex - 1 >= 0) {
-        setNextIndex(nextIndex - 1);
-        setPrevIndex(prevIndex - 1);
-        handleNextPrev();
-      }
+    if (prevIndex - 2 >= 0) {
+      setNextIndex(nextIndex - 2);
+      setPrevIndex(prevIndex - 2);
+    } else if (prevIndex - 1 >= 0) {
+      setNextIndex(nextIndex - 1);
+      setPrevIndex(prevIndex - 1);
+    }
+    handleNextPrev();
   };
 
   if (user.majorTask !== SEE_MY_FAVORITE_SONGS) return;
@@ -74,9 +80,9 @@ export const FavoriteSongs = () => {
     <FavoriteContainer>
       <H0>Your favorite songs</H0>
       <SliderBody>
-        {!noPrev && <BackIcon onClick={() => prevSlide()} />}
+        {hasPrev && <BackIcon onClick={() => prevSlide()} />}
         <SlidesContainer>
-          {song_list?.map((music, index, music_list) => {
+          {user.favorite_songs.map((music, index, music_list) => {
             if (true) {
               return (
                 <div key={index} style={{ transform: "translateX(34vw)" }}>
@@ -112,6 +118,20 @@ export const FavoriteSongs = () => {
                         >
                           Listen now
                         </Button>
+                        <Button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            dispatch(setMinorTask(REMOVE_SONG_FROM_FAVORITE));
+                            dispatch(
+                              removeSongFromMyFavoriteRequested({
+                                user_id: user.user.id || "",
+                                song_id: music.id,
+                              })
+                            );
+                          }}
+                        >
+                          <Unfavorite /> Remove
+                        </Button>
                       </FavoriteBtnContainer>
                     </AboutMusic>
                   </Slide>
@@ -120,7 +140,7 @@ export const FavoriteSongs = () => {
             }
           })}
         </SlidesContainer>
-        {!noNext && <ForwardIcon onClick={() => nextSlide()} />}
+        {hasNext && <ForwardIcon onClick={() => nextSlide()} />}
       </SliderBody>
     </FavoriteContainer>
   );
