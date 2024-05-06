@@ -37,7 +37,7 @@ export const PlaylistCard = () => {
 
   useEffect(() => {
     handleNextPrev();
-  }, []);
+  }, [playlists]);
   const handleNextPrev = () => {
     if (nextIndex >= playlists.playlists.length - 1) {
       setHasNext(false);
