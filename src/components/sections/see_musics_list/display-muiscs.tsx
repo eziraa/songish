@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
   DeleteButton,
+  FavoriteIcon,
+  FavoritedIcon,
   MusicIcon,
   PlayPause,
   PopUpContainer,
@@ -30,7 +32,10 @@ import {
 } from "../../../store/song/songSlice";
 import { formatTime } from "../music_player/music-player";
 import { CloseButton } from "../modal/components.style";
-import { setMinorTask } from "../../../store/user/userSlice";
+import {
+  addFavoriteSongRequested,
+  setMinorTask,
+} from "../../../store/user/userSlice";
 import {
   ADD_SONG_TO_PLAYLIST,
   SEARCH_SONG_FROM_ALL,
@@ -76,6 +81,15 @@ function MusicTable() {
     dispatch(
       addSongToPlaylistRequested({
         playlist_id: playlists.currentPlaylist?.id || "",
+        song_id: song.id,
+      })
+    );
+  };
+  const addToFavorite = (song: SongResponse) => {
+    if (user.user?.id === undefined) alert("Please login to add to favorite");
+    dispatch(
+      addFavoriteSongRequested({
+        user_id: user.user?.id || "",
         song_id: song.id,
       })
     );
@@ -179,6 +193,13 @@ function MusicTable() {
                   >
                     Remove
                   </Button>
+                )}
+                {user.user.favorite_songs.find(
+                  (item, index) => song.id === item.id
+                ) ? (
+                  <FavoritedIcon onClick={() => {}} />
+                ) : (
+                  <FavoriteIcon onClick={() => addToFavorite(song)} />
                 )}
                 <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
 
