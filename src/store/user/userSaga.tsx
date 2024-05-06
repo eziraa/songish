@@ -1,13 +1,18 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import {
   AddFavoriteSongsParams,
+  GetMyFavoriteParams,
   LoginParameters,
   SignUpParameters,
 } from "../../typo/user/parameters";
 import { SagaReturnType, call, put, takeEvery } from "redux-saga/effects";
 import UserAPI from "../../services/useAPI";
 import { setNotification } from "../notification/notificationSlice";
-import { addFavoriteSongDone, loginDone } from "./userSlice";
+import {
+  addFavoriteSongDone,
+  loadMyFavoriteSongsDone,
+  loginDone,
+} from "./userSlice";
 function* SignUp(action: PayloadAction<SignUpParameters>) {
   try {
     let user: SagaReturnType<typeof UserAPI.signUp> = yield call(
@@ -101,5 +106,37 @@ function* addFavoriteSong(action: PayloadAction<AddFavoriteSongsParams>) {
 
 export function* watchAddFavoriteSong() {
   yield takeEvery("user/addFavoriteSongRequested", addFavoriteSong);
+}
+
+function* loadMyFavoriteSongs(action: PayloadAction<GetMyFavoriteParams>) {
+  try {
+    const songs: SagaReturnType<typeof UserAPI.getMyFavoriteSongs> = yield call(
+      UserAPI.getMyFavoriteSongs,
+      action.payload
+    );
+    setNotification({
+      color: "red",
+      status: true,
+      title: "Loading your favorite songs",
+      desc: "Your favorite songs loaded successfully",
+      duration: 3,
+    });
+
+    yield put(loadMyFavoriteSongsDone(songs));
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Loading your favorite songs",
+        desc: "Can not load your favorite songs",
+        duration: 3,
+      })
+    );
+  }
+}
+
+export function* watchLoadMyFavoriteSongs() {
+  yield takeEvery("user/loadMyFavoriteSongsRequested", loadMyFavoriteSongs);
 }
 
