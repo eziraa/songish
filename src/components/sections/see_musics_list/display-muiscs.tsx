@@ -98,7 +98,7 @@ function MusicTable() {
         song_id: song.id,
       })
     );
-    await dispatch(loadMyFavoriteSongsRequested({ user_id: user.user.id }));
+    // await dispatch(loadMyFavoriteSongsRequested({ user_id: user.user.id }));
   };
   if (
     ![SEE_ALL_SONGS, SEE_PLAYLIST_SONGS, ADD_SONG_TO_PLAYLIST].includes(
@@ -200,7 +200,7 @@ function MusicTable() {
                     Remove
                   </Button>
                 )}
-                {user.favorite_songs.find(
+                {user.favorite_songs.some(
                   (item, index) => song.id === item.id
                 ) ? (
                   <FavoritedIcon
@@ -216,9 +216,14 @@ function MusicTable() {
                   />
                 ) : (
                   <FavoriteIcon
-                    onClick={() => {
+                    onClick={(e) => {
                       setActionItemIndex(index);
-                      addToFavorite(song);
+                      dispatch(
+                        addFavoriteSongRequested({
+                          user_id: user.user?.id || "",
+                          song_id: song.id,
+                        })
+                      );
                     }}
                   />
                 )}
