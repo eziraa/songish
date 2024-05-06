@@ -35,6 +35,7 @@ import { CloseButton } from "../modal/components.style";
 import {
   addFavoriteSongRequested,
   loadMyFavoriteSongsRequested,
+  removeSongFromMyFavoriteRequested,
   setMinorTask,
 } from "../../../store/user/userSlice";
 import {
@@ -75,12 +76,12 @@ function MusicTable() {
   const onDelete = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
     dispatch(deleteSongRequest(Number(song.id)));
-    setActionItemIndex(-1);
+    setPopUpIndex(-1);
   };
   const onUpdate = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
     dispatch(setMinorTask(UPDATE_SONG));
-    setActionItemIndex(-1);
+    setPopUpIndex(-1);
   };
   const onSelect = (song: SongResponse) => {
     dispatch(
@@ -199,16 +200,20 @@ function MusicTable() {
                     Remove
                   </Button>
                 )}
-                {user.isOnAction && index == actionItemIndex ? (
-                  <ClipLoader
-                    color="#4A90E2"
-                    loading={user.isOnAction}
-                    size={20}
+                {user.favorite_songs.find(
+                  (item, index) => song.id === item.id
+                ) ? (
+                  <FavoritedIcon
+                    onClick={() => {
+                      setActionItemIndex(index);
+                      dispatch(
+                        removeSongFromMyFavoriteRequested({
+                          user_id: user.user.id || "",
+                          song_id: song.id,
+                        })
+                      );
+                    }}
                   />
-                ) : user.favorite_songs.find(
-                    (item, index) => song.id === item.id
-                  ) ? (
-                  <FavoritedIcon onClick={() => {}} />
                 ) : (
                   <FavoriteIcon
                     onClick={() => {
@@ -219,14 +224,19 @@ function MusicTable() {
                 )}
 
                 <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
+                {user.user.id === song.customer && (
+                  <div
+                    style={{
+                      position: "relative",
+                    }}
+                  >
+                    <VerticalDots
+                      onClick={() => {
+                        setPopUpIndex(index);
+                      }}
+                    />
 
-                <div
-                  style={{
-                    position: "relative",
-                  }}
-                >
-                  <VerticalDots onClick={() => setPopUpIndex(index)}>
-                    {index === actionItemIndex && (
+                    {index === popUpIndex && (
                       <PopUpContainer>
                         <CloseButton
                           style={{ top: "0", right: "0", color: "black" }}
@@ -240,8 +250,8 @@ function MusicTable() {
                         </UpdateButton>
                       </PopUpContainer>
                     )}
-                  </VerticalDots>
-                </div>
+                  </div>
+                )}
               </SongActions>
             </SongContainer>
           ))
