@@ -1,7 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserStateType } from "../../typo/user/states";
-import { LoginParameters, SignUpParameters } from "../../typo/user/parameters";
+import {
+  AddFavoriteSongsParams,
+  LoginParameters,
+  SignUpParameters,
+} from "../../typo/user/parameters";
 import { UserResponse } from "../../typo/user/response";
+import { SongResponse } from "../../typo/songs/response";
 const defaultUserResponse = {
   id: "",
   firstName: "",
@@ -16,6 +21,7 @@ const InitialUserState: UserStateType = {
   loading: false,
   user: defaultUserResponse,
   isLogin: false,
+  isOnAction: false,
   minorTask: undefined,
   majorTask: undefined,
 };
@@ -42,6 +48,18 @@ const UserSlice = createSlice({
     setMajorTask: (state, actions: PayloadAction<string | undefined>) => {
       state.majorTask = actions.payload;
     },
+    addFavoriteSongRequested: (
+      state,
+      action: PayloadAction<AddFavoriteSongsParams>
+    ) => {
+      state.isOnAction = true;
+      state.user.favorite_songs = [];
+    },
+
+    addFavoriteSongDone: (state, action: PayloadAction<SongResponse>) => {
+      state.isOnAction = false;
+      state.user.favorite_songs?.push(action.payload);
+    },
   },
 });
 
@@ -51,6 +69,8 @@ export const {
   signUpRequest,
   setMajorTask,
   setMinorTask,
+  addFavoriteSongRequested,
+  addFavoriteSongDone,
 } = UserSlice.actions;
 export default UserSlice.reducer;
 
