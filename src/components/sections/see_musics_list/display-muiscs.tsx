@@ -34,6 +34,7 @@ import { formatTime } from "../music_player/music-player";
 import { CloseButton } from "../modal/components.style";
 import {
   addFavoriteSongRequested,
+  loadMyFavoriteSongsRequested,
   setMinorTask,
 } from "../../../store/user/userSlice";
 import {
@@ -61,12 +62,16 @@ function MusicTable() {
   const [popUpIndex, setPopUpIndex] = useState(-1);
 
   useEffect(() => {
-    if (user.majorTask === SEE_ALL_SONGS) setSongList(songs.songs);
-    else if (user.majorTask === ADD_SONG_TO_PLAYLIST) setSongList(songs.songs);
+    if (user.majorTask === SEE_ALL_SONGS) {
+      setSongList(songs.songs);
+      dispatch(loadMyFavoriteSongsRequested({ user_id: user.user.id }));
+    } else if (user.majorTask === ADD_SONG_TO_PLAYLIST)
+      setSongList(songs.songs);
     else if (user.majorTask === SEE_PLAYLIST_SONGS)
       setSongList(playlists.songs);
   }, [songs.songs, user.user, playlists.songs, user.majorTask]);
 
+  useEffect(() => {}, []);
   const onDelete = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
     dispatch(deleteSongRequest(Number(song.id)));
@@ -85,14 +90,14 @@ function MusicTable() {
       })
     );
   };
-  const addToFavorite = (song: SongResponse) => {
-    if (user.user?.id === undefined) alert("Please login to add to favorite");
-    dispatch(
+  const addToFavorite = async (song: SongResponse) => {
+    await dispatch(
       addFavoriteSongRequested({
         user_id: user.user?.id || "",
         song_id: song.id,
       })
     );
+    await dispatch(loadMyFavoriteSongsRequested({ user_id: user.user.id }));
   };
   if (
     ![SEE_ALL_SONGS, SEE_PLAYLIST_SONGS, ADD_SONG_TO_PLAYLIST].includes(
@@ -200,7 +205,7 @@ function MusicTable() {
                     loading={user.isOnAction}
                     size={20}
                   />
-                ) : user.user.favorite_songs.find(
+                ) : user.favorite_songs.find(
                     (item, index) => song.id === item.id
                   ) ? (
                   <FavoritedIcon onClick={() => {}} />
