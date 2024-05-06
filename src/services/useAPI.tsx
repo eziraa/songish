@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   AddFavoriteSongsParams,
+  GetMyFavoriteParams,
   LoginParameters,
   SignUpParameters,
 } from "../typo/user/parameters";
@@ -29,9 +30,17 @@ const addFavoriteSongs = async (params: AddFavoriteSongsParams) => {
     .then((res) => res.data);
   return response;
 };
+const getMyFavoriteSongs = async (params: GetMyFavoriteParams) => {
+  const songs = await axios
+    .get<SongResponse[]>(api + "/song/user/" + params.user_id + "/songs/")
+    .then((res) => res.data);
+  return songs;
+};
 const UserAPI = {
   signUp,
   login,
+  addFavoriteSongs,
+  getMyFavoriteSongs,
 };
 
 export default UserAPI;
