@@ -11,6 +11,7 @@ import { SongResponse } from "../../typo/songs/response";
 const initialPlaylistState: PlaylistStateType = {
   deleting: false,
   loading: false,
+  adding: false,
   playlists: [],
   query_set: [],
   songs: [],
@@ -29,6 +30,7 @@ const PlaylistSlice = createSlice({
     },
     loadPlaylistsRequested: (state, actions: PayloadAction<string>) => {
       state.loading = true;
+      state.playlists = [];
     },
     loadPlaylistSongsRequested: (
       state,
@@ -41,18 +43,19 @@ const PlaylistSlice = createSlice({
       state.loading = false;
       state.songs = action.payload;
     },
-    loadingFinished: (state) => {
+    loadPlaylistsDone: (state, action: PayloadAction<PlaylistResponse[]>) => {
+      state.playlists = action.payload;
       state.loading = false;
     },
     addSongToPlaylistRequested: (
       state,
       action: PayloadAction<AddSongToPlaylistParams>
     ) => {
-      state.loading = true;
+      state.adding = true;
       state.songs = [];
     },
     addSongToPlaylistDone: (state, action: PayloadAction<SongResponse[]>) => {
-      state.loading = false;
+      state.adding = false;
       state.songs = action.payload;
     },
     setCurrentPlaylist: (
@@ -65,14 +68,14 @@ const PlaylistSlice = createSlice({
       state,
       action: PayloadAction<AddSongToPlaylistParams>
     ) => {
-      state.loading = true;
+      state.deleting = true;
     },
 
     removeSongFromPlaylistDone: (
       state,
       action: PayloadAction<SongResponse[]>
     ) => {
-      state.loading = false;
+      state.deleting = false;
     },
     deletePlaylistRequest: (state, action: PayloadAction<number>) => {
       state.deleting = true;
@@ -92,7 +95,7 @@ export const {
   addPlaylistDone,
   loadPlaylistsRequested,
   loadPlaylistSongsDone,
-  loadingFinished,
+  loadPlaylistsDone,
   deletePlaylistRequest,
   deletePlaylistDone,
   addSongToPlaylistRequested,
