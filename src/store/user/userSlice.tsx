@@ -23,6 +23,7 @@ const InitialUserState: UserStateType = {
   user: defaultUserResponse,
   isLogin: false,
   isOnAction: false,
+  favorite_songs: [],
   minorTask: undefined,
   majorTask: undefined,
 };
@@ -54,12 +55,12 @@ const UserSlice = createSlice({
       action: PayloadAction<AddFavoriteSongsParams>
     ) => {
       state.isOnAction = true;
-      state.user.favorite_songs = [];
+      state.favorite_songs = [];
     },
 
     addFavoriteSongDone: (state, action: PayloadAction<SongResponse>) => {
       state.isOnAction = false;
-      state.user.favorite_songs?.push(action.payload);
+      state.favorite_songs?.push(action.payload);
     },
 
     loadMyFavoriteSongsRequested: (
@@ -67,11 +68,11 @@ const UserSlice = createSlice({
       action: PayloadAction<GetMyFavoriteParams>
     ) => {
       state.loading = true;
-      state.user.favorite_songs = [];
+      state.favorite_songs = [];
     },
     loadMyFavoriteSongsDone: (state, action: PayloadAction<SongResponse[]>) => {
       state.loading = false;
-      state.user.favorite_songs = action.payload;
+      state.favorite_songs = action.payload;
     },
     removeSongFromMyFavoriteRequested: (
       state,
@@ -84,13 +85,10 @@ const UserSlice = createSlice({
       state,
       action: PayloadAction<SongResponse>
     ) => {
+      state.favorite_songs = state.favorite_songs.filter(
+        (song) => song.id !== action.payload.id
+      );
       state.loading = false;
-      state.user = {
-        ...state.user,
-        favorite_songs: state.user.favorite_songs.filter(
-          (song) => song.id !== action.payload.id
-        ),
-      };
       state.minorTask = undefined;
     },
   },
