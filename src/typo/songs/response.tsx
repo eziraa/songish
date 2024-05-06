@@ -6,6 +6,6 @@ export interface SongResponse {
   duration?: number;
   release_date: string;
   playlist_id?: string;
-  customer_id: string;
+  customer: string;
   song_file: File | undefined;
 }
