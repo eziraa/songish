@@ -18,6 +18,7 @@ import PlayerComponent from "../../sections/music_player/music-player";
 import { useAppSelector } from "../../../utils/customHook";
 import PlaylistForm from "../../sections/add_playlist/add_playlist";
 import { PlaylistCard } from "../../sections/see_playlist/playlist-card";
+import { FavoriteSongs } from "../../sections/favorite_songs/favorite";
 
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -58,6 +59,7 @@ const HomePage = () => {
           <Main>
             <PlaylistCard />
             <MusicTable />
+            <FavoriteSongs />
             <RecentSection />
             <AboutPage />
             <ContactPage />
