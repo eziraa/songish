@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserStateType } from "../../typo/user/states";
 import {
   AddFavoriteSongsParams,
+  GetMyFavoriteParams,
   LoginParameters,
   SignUpParameters,
 } from "../../typo/user/parameters";
@@ -59,6 +60,18 @@ const UserSlice = createSlice({
     addFavoriteSongDone: (state, action: PayloadAction<SongResponse>) => {
       state.isOnAction = false;
       state.user.favorite_songs?.push(action.payload);
+    },
+
+    loadMyFavoriteSongsRequested: (
+      state,
+      action: PayloadAction<GetMyFavoriteParams>
+    ) => {
+      state.loading = true;
+      state.user.favorite_songs = [];
+    },
+    loadMyFavoriteSongsDone: (state, action: PayloadAction<SongResponse[]>) => {
+      state.loading = false;
+      state.user.favorite_songs = action.payload;
     },
   },
 });
