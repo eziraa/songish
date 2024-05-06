@@ -31,48 +31,46 @@ export const PlaylistCard = () => {
   const user = useAppSelector((state) => state.user);
   const [prevIndex, setPrevIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
-  const [noPrev, setNoPrev] = useState(true);
-  const [noNext, setNoNext] = useState(false);
+  const [hasPrev, setHasPrev] = useState(true);
+  const [hasNext, setHasNext] = useState(true);
   const dispatcher = useAppDispatch();
 
   useEffect(() => {
     handleNextPrev();
-  }, [prevIndex, nextIndex]);
+  }, []);
   const handleNextPrev = () => {
-    if (nextIndex < playlists.playlists.length - 1) {
-      setNoNext(false);
+    if (nextIndex >= playlists.playlists.length - 1) {
+      setHasNext(false);
     } else {
-      setNoNext(true);
+      setHasNext(true);
     }
-    if (prevIndex > 0) {
-      setNoPrev(false);
+    if (prevIndex <= 0) {
+      setHasPrev(false);
     } else {
-      setNoPrev(true);
+      setHasPrev(true);
     }
   };
   const nextSlide = () => {
     if (nextIndex + 2 < playlists.playlists.length) {
       setNextIndex(nextIndex + 2);
       setPrevIndex(prevIndex + 2);
-      console.log(prevIndex, nextIndex);
     } else if (nextIndex + 1 < playlists.playlists.length) {
       setNextIndex(nextIndex + 1);
       setPrevIndex(prevIndex + 1);
     }
+    handleNextPrev();
   };
 
   const prevSlide = () => {
     if (prevIndex - 2 >= 0) {
       setNextIndex(nextIndex - 2);
       setPrevIndex(prevIndex - 2);
-      handleNextPrev();
     } else if (prevIndex - 1 >= 0) {
       setNextIndex(nextIndex - 1);
       setPrevIndex(prevIndex - 1);
-      handleNextPrev();
     }
+    handleNextPrev();
   };
-
   if (user.majorTask !== SEE_YOUR_PLAYLIST) return;
   if (playlists.loading) {
     return <LoadingSpinner />;
@@ -84,11 +82,12 @@ export const PlaylistCard = () => {
         <H0>No Playlists Found</H0>
       </>
     );
+
   return (
     <PlaylistContainer>
       <H0>Your PlayList</H0>
       <SliderBody>
-        {!noPrev && <BackIcon onClick={() => prevSlide()} />}
+        {hasPrev && <BackIcon onClick={() => prevSlide()} />}
         <SlidesContainer>
           {playlists.playlists.map((playlist, index) => {
             {
@@ -198,7 +197,7 @@ export const PlaylistCard = () => {
             }
           })}
         </SlidesContainer>
-        {!noNext && <ForwardIcon onClick={() => nextSlide()} />}
+        {hasNext && <ForwardIcon onClick={() => nextSlide()} />}
       </SliderBody>
     </PlaylistContainer>
   );
