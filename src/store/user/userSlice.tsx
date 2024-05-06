@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserStateType } from "../../typo/user/states";
 import { LoginParameters, SignUpParameters } from "../../typo/user/parameters";
 import { UserResponse } from "../../typo/user/response";
-import { PlaylistResponse } from "../../typo/playlist/response";
 const defaultUserResponse = {
   id: "",
   firstName: "",
@@ -43,9 +42,6 @@ const UserSlice = createSlice({
     setMajorTask: (state, actions: PayloadAction<string | undefined>) => {
       state.majorTask = actions.payload;
     },
-    loadPlaylistsDone: (state, action: PayloadAction<PlaylistResponse[]>) => {
-      state.user.my_playlists = action.payload;
-    },
   },
 });
 
@@ -55,7 +51,6 @@ export const {
   signUpRequest,
   setMajorTask,
   setMinorTask,
-  loadPlaylistsDone,
 } = UserSlice.actions;
 export default UserSlice.reducer;
 
