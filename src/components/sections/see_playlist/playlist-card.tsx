@@ -21,6 +21,7 @@ import {
 import LoadingSpinner from "../spinner/spinner";
 import { setMajorTask } from "../../../store/user/userSlice";
 import {
+  deletePlaylistRequest,
   loadPlaylistSongsRequested,
   setCurrentPlaylist,
 } from "../../../store/playlist/playlistSlice";
@@ -33,11 +34,12 @@ export const PlaylistCard = () => {
   const [noPrev, setNoPrev] = useState(true);
   const [noNext, setNoNext] = useState(false);
   const dispatcher = useAppDispatch();
+
   useEffect(() => {
     handleNextPrev();
   }, [prevIndex, nextIndex]);
   const handleNextPrev = () => {
-    if (nextIndex < user.user.my_playlists.length - 1) {
+    if (nextIndex < playlists.playlists.length - 1) {
       setNoNext(false);
     } else {
       setNoNext(true);
@@ -49,11 +51,11 @@ export const PlaylistCard = () => {
     }
   };
   const nextSlide = () => {
-    if (nextIndex + 2 < user.user.my_playlists.length) {
+    if (nextIndex + 2 < playlists.playlists.length) {
       setNextIndex(nextIndex + 2);
       setPrevIndex(prevIndex + 2);
       console.log(prevIndex, nextIndex);
-    } else if (nextIndex + 1 < user.user.my_playlists.length) {
+    } else if (nextIndex + 1 < playlists.playlists.length) {
       setNextIndex(nextIndex + 1);
       setPrevIndex(prevIndex + 1);
     }
@@ -70,11 +72,13 @@ export const PlaylistCard = () => {
       handleNextPrev();
     }
   };
+
   if (user.majorTask !== SEE_YOUR_PLAYLIST) return;
   if (playlists.loading) {
     return <LoadingSpinner />;
   }
-  if (!user.user.my_playlists)
+
+  if (!playlists.playlists)
     return (
       <>
         <H0>No Playlists Found</H0>
@@ -86,105 +90,112 @@ export const PlaylistCard = () => {
       <SliderBody>
         {!noPrev && <BackIcon onClick={() => prevSlide()} />}
         <SlidesContainer>
-          {user.user.my_playlists.map((playlist, index) => {
-             {
-               return (
-                 <Card key={index}>
-                   <div key={index} style={{ transform: "translateX(34vw)" }}>
-                     <Slide
-                       key={index}
-                       style={{
-                         transform: "translateX(" + -nextIndex * 37 + "vw)",
-                         transition: "transform 2s ease-out",
-                       }}
-                     >
-                       <AboutPlaylist>
-                         <CardSideFront
-                           style={{
-                             backgroundImage:
-                               "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
-                               `${api + playlist.image}` +
-                               ")",
-                             backgroundSize: "cover",
-                           }}
-                         >
-                           <PlaylistInfo>
-                             {/* <H1> {playlist.songs.length} </H1> */}
-                             <H0> {playlist.name} </H0>
-                             <Paragraph style={{ width: "20vw" }}>
-                               Lorem ipsum dolor sit amet consectetur
-                               adipisicing elit. Tempora mollitia saepe alias
-                               corrupti ut?
-                             </Paragraph>
-                           </PlaylistInfo>
-                         </CardSideFront>
-                       </AboutPlaylist>
-                       <CardSideBack
-                         style={{
-                           backgroundImage:
-                             "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
-                             `${api + playlist.image}` +
-                             ")",
-                           backgroundSize: "cover",
-                         }}
-                       >
-                         <H0
-                           style={{
-                             fontSize: "40px",
-                             marginTop: "4rem",
-                           }}
-                         >
-                           {" "}
-                           {user.user.my_playlists[index].song.length} Songs
-                         </H0>
-                         <BtnContainer>
-                           <OutLinedButton
-                             style={{
-                               color: "#f9f6f8",
-                               border: "2px solid #f80bb1",
-                               padding: "10px 20px",
-                             }}
-                             onClick={() => {
-                               dispatcher(setMajorTask(SEE_PLAYLIST_SONGS));
-                               dispatcher(setCurrentPlaylist(playlist));
-                               dispatcher(
-                                 loadPlaylistSongsRequested({
-                                   playlist_id: playlist.id,
-                                 })
-                               );
-                             }}
-                           >
-                             See Musics
-                           </OutLinedButton>
-                           <OutLinedButton
-                             style={{
-                               color: "#f9f6f8",
-                               border: "2px solid #f80bb1",
-                               padding: "10px 20px",
-                             }}
-                             onClick={() => {
-                               dispatcher(setCurrentPlaylist(playlist));
-                               dispatcher(setMajorTask(ADD_SONG_TO_PLAYLIST));
-                             }}
-                           >
-                             Add musics
-                           </OutLinedButton>
-                           <OutLinedButton
-                             style={{
-                               color: "#f9f6f8",
-                               border: "2px solid #f80101",
-                               padding: "10px 20px",
-                             }}
-                           >
-                             Delete
-                           </OutLinedButton>
-                         </BtnContainer>
-                       </CardSideBack>
-                     </Slide>
-                   </div>
-                 </Card>
-               );
-             }
+          {playlists.playlists.map((playlist, index) => {
+            {
+              return (
+                <Card key={index}>
+                  <div key={index} style={{ transform: "translateX(34vw)" }}>
+                    <Slide
+                      key={index}
+                      style={{
+                        transform: "translateX(" + -nextIndex * 37 + "vw)",
+                        transition: "transform 2s ease-out",
+                      }}
+                    >
+                      <AboutPlaylist>
+                        <CardSideFront
+                          style={{
+                            backgroundImage:
+                              "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
+                              `${api + playlist.image}` +
+                              ")",
+                            backgroundSize: "cover",
+                          }}
+                        >
+                          <PlaylistInfo>
+                            {/* <H1> {playlist.songs.length} </H1> */}
+                            <H0> {playlist.name} </H0>
+                            <Paragraph style={{ width: "20vw" }}>
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Tempora mollitia saepe alias corrupti ut?
+                            </Paragraph>
+                          </PlaylistInfo>
+                        </CardSideFront>
+                      </AboutPlaylist>
+                      <CardSideBack
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
+                            `${api + playlist.image}` +
+                            ")",
+                          backgroundSize: "cover",
+                        }}
+                      >
+                        <H0
+                          style={{
+                            fontSize: "40px",
+                            marginTop: "4rem",
+                          }}
+                        >
+                          {" "}
+                          {playlists.playlists[index].song.length} Songs
+                        </H0>
+                        <BtnContainer>
+                          <OutLinedButton
+                            style={{
+                              color: "#f9f6f8",
+                              border: "2px solid #f80bb1",
+                              padding: "10px 20px",
+                            }}
+                            onClick={() => {
+                              dispatcher(setMajorTask(SEE_PLAYLIST_SONGS));
+                              dispatcher(setCurrentPlaylist(playlist));
+                              dispatcher(
+                                loadPlaylistSongsRequested({
+                                  playlist_id: playlist.id,
+                                })
+                              );
+                            }}
+                          >
+                            See Musics
+                          </OutLinedButton>
+                          <OutLinedButton
+                            style={{
+                              color: "#f9f6f8",
+                              border: "2px solid #f80bb1",
+                              padding: "10px 20px",
+                            }}
+                            onClick={() => {
+                              dispatcher(setCurrentPlaylist(playlist));
+                              dispatcher(setMajorTask(ADD_SONG_TO_PLAYLIST));
+                            }}
+                          >
+                            Add musics
+                          </OutLinedButton>
+                          <OutLinedButton
+                            style={{
+                              color: "#f9f6f8",
+                              border: "2px solid #f80101",
+                              padding: "10px 20px",
+                            }}
+                            onClick={() => {
+                              dispatcher(setCurrentPlaylist(playlist));
+                              dispatcher(
+                                deletePlaylistRequest(
+                                  Number.parseInt(playlist.id)
+                                )
+                              );
+                            }}
+                          >
+                            Delete
+                          </OutLinedButton>
+                        </BtnContainer>
+                      </CardSideBack>
+                    </Slide>
+                  </div>
+                </Card>
+              );
+            }
           })}
         </SlidesContainer>
         {!noNext && <ForwardIcon onClick={() => nextSlide()} />}
