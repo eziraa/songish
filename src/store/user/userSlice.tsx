@@ -73,6 +73,26 @@ const UserSlice = createSlice({
       state.loading = false;
       state.user.favorite_songs = action.payload;
     },
+    removeSongFromMyFavoriteRequested: (
+      state,
+      action: PayloadAction<AddFavoriteSongsParams>
+    ) => {
+      state.loading = true;
+    },
+
+    removeSongFromMyFavoriteDone: (
+      state,
+      action: PayloadAction<SongResponse>
+    ) => {
+      state.loading = false;
+      state.user = {
+        ...state.user,
+        favorite_songs: state.user.favorite_songs.filter(
+          (song) => song.id !== action.payload.id
+        ),
+      };
+      state.minorTask = undefined;
+    },
   },
 });
 
@@ -84,6 +104,10 @@ export const {
   setMinorTask,
   addFavoriteSongRequested,
   addFavoriteSongDone,
+  loadMyFavoriteSongsRequested,
+  loadMyFavoriteSongsDone,
+  removeSongFromMyFavoriteRequested,
+  removeSongFromMyFavoriteDone,
 } = UserSlice.actions;
 export default UserSlice.reducer;
 
