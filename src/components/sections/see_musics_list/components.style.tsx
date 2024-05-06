@@ -73,6 +73,8 @@ export const SongActions = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  justify-items: start;
+  min-width: 7vw;
 `;
 
 export const SongAlbum = styled.p`
