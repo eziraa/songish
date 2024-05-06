@@ -6,7 +6,6 @@ export interface UserResponse {
   firstName: string;
   lastName: string;
   email: string;
-  favorite_songs: SongResponse[];
   my_songs: SongResponse[];
   my_playlists: PlaylistResponse[];
 }
