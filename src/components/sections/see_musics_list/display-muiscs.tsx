@@ -194,13 +194,25 @@ function MusicTable() {
                     Remove
                   </Button>
                 )}
-                {user.user.favorite_songs.find(
-                  (item, index) => song.id === item.id
-                ) ? (
+                {user.isOnAction && index == actionItemIndex ? (
+                  <ClipLoader
+                    color="#4A90E2"
+                    loading={user.isOnAction}
+                    size={20}
+                  />
+                ) : user.user.favorite_songs.find(
+                    (item, index) => song.id === item.id
+                  ) ? (
                   <FavoritedIcon onClick={() => {}} />
                 ) : (
-                  <FavoriteIcon onClick={() => addToFavorite(song)} />
+                  <FavoriteIcon
+                    onClick={() => {
+                      setActionItemIndex(index);
+                      addToFavorite(song);
+                    }}
+                  />
                 )}
+
                 <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
 
                 <div
