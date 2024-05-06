@@ -12,6 +12,7 @@ import {
   addFavoriteSongDone,
   loadMyFavoriteSongsDone,
   loginDone,
+  removeSongFromMyFavoriteDone,
 } from "./userSlice";
 function* SignUp(action: PayloadAction<SignUpParameters>) {
   try {
@@ -140,3 +141,39 @@ export function* watchLoadMyFavoriteSongs() {
   yield takeEvery("user/loadMyFavoriteSongsRequested", loadMyFavoriteSongs);
 }
 
+function* removeSongFromMyFavorite(
+  action: PayloadAction<AddFavoriteSongsParams>
+) {
+  try {
+    const songs: SagaReturnType<typeof UserAPI.removeSongFromMyFavorite> =
+      yield call(UserAPI.removeSongFromMyFavorite, action.payload);
+
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Removing song from my you favorite",
+        desc: "The song successfully  removed  from your favorite",
+        duration: 3,
+      })
+    );
+    yield put(removeSongFromMyFavoriteDone(songs));
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Removing  song from Playlist",
+        desc: "Cannot remove song from Playlist",
+        duration: 3,
+      })
+    );
+  }
+}
+
+export function* watchRemoveSongFromMyFavorite() {
+  yield takeEvery(
+    "user/removeSongFromMyFavoriteRequested",
+    removeSongFromMyFavorite
+  );
+}
