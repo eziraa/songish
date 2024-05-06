@@ -55,7 +55,6 @@ const UserSlice = createSlice({
       action: PayloadAction<AddFavoriteSongsParams>
     ) => {
       state.isOnAction = true;
-      state.favorite_songs = [];
     },
 
     addFavoriteSongDone: (state, action: PayloadAction<SongResponse>) => {
@@ -78,7 +77,7 @@ const UserSlice = createSlice({
       state,
       action: PayloadAction<AddFavoriteSongsParams>
     ) => {
-      state.loading = true;
+      state.isOnAction = true;
     },
 
     removeSongFromMyFavoriteDone: (
@@ -88,7 +87,7 @@ const UserSlice = createSlice({
       state.favorite_songs = state.favorite_songs.filter(
         (song) => song.id !== action.payload.id
       );
-      state.loading = false;
+      state.isOnAction = false;
       state.minorTask = undefined;
     },
   },
