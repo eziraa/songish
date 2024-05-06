@@ -16,12 +16,8 @@ import {
 } from "../../../config/constants/user-current-task";
 import LoadingSpinner from "../spinner/spinner";
 import { BackIcon, ForwardIcon } from "../music_player/components.style";
+import { setCurrentSongToPlay } from "../../../store/song/songSlice";
 import {
-  setCurrentSongForAction,
-  setCurrentSongToPlay,
-} from "../../../store/song/songSlice";
-import {
-  loadMyFavoriteSongsRequested,
   removeSongFromMyFavoriteRequested,
   setMinorTask,
 } from "../../../store/user/userSlice";
@@ -37,7 +33,7 @@ export const FavoriteSongs = () => {
 
   useEffect(() => {
     handleNextPrev();
-  }, [user]);
+  }, [user.favorite_songs]);
   const handleNextPrev = () => {
     if (nextIndex >= user.favorite_songs.length - 1) {
       setHasNext(false);
