@@ -4,13 +4,14 @@ import {
   BtnContainer,
   PlaylistInfo,
   PlaylistIcon,
+  DeleteBtn,
+  PlayListBtn,
 } from "./components.style";
 import { Card, CardSideBack, CardSideFront } from "../amazing_card/components";
 import { H0, H1 } from "../../utils/heading.style";
 import { Slide, SliderBody, SlidesContainer } from "../slider/components.style";
 import { BackIcon, ForwardIcon } from "../music_player/components.style";
-import { Paragraph } from "../about/components.style";
-import { OutLinedButton } from "../../utils/buttons.style";
+import { Paragraph } from "./components.style";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { useEffect, useState } from "react";
 import {
@@ -26,6 +27,9 @@ import {
   setCurrentPlaylist,
 } from "../../../store/playlist/playlistSlice";
 import { api } from "../../../services/api";
+import { BsMusicNoteList } from "react-icons/bs";
+import { CgPlayListAdd } from "react-icons/cg";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const PlaylistCard = () => {
   const playlists = useAppSelector((state) => state.playlists);
@@ -113,13 +117,20 @@ export const PlaylistCard = () => {
                           }}
                         >
                           <PlaylistInfo>
-                            <H1> {playlist.song.length} songs </H1>
-                            <H0> {playlist.name} </H0>
+                            <H0 style={{ color: "#FE06B4" }}>
+                              {" "}
+                              {playlist.name}{" "}
+                            </H0>
+                            <H1 style={{ color: "#fff" }}>
+                              {" "}
+                              {playlist.song.length} songs{" "}
+                            </H1>
                             <Paragraph style={{ width: "20vw" }}>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Tempora mollitia saepe alias corrupti ut?
+                              Your Gateway to Melodies: Dive into a Symphony of
+                              Emotions 🎶
                             </Paragraph>
                           </PlaylistInfo>
+                          <PlaylistIcon color="white" />
                         </CardSideFront>
                       </AboutPlaylist>
                       <CardSideBack>
@@ -128,18 +139,16 @@ export const PlaylistCard = () => {
                             style={{
                               fontSize: "40px",
                               marginTop: "4rem",
+                              display: "flex",
+                              alignItems: "center",
+                              gap: ".5rem",
                             }}
                           >
-                            {" "}
-                            {playlists.playlists[index].song.length} Songs
+                            <BsMusicNoteList />
+                            <>{playlists.playlists[index].song.length} Songs</>
                           </H0>
                           <BtnContainer>
-                            <OutLinedButton
-                              style={{
-                                color: "#f9f6f8",
-                                border: "2px solid #f80bb1",
-                                padding: "10px 20px",
-                              }}
+                            <PlayListBtn
                               onClick={() => {
                                 dispatcher(setMajorTask(SEE_PLAYLIST_SONGS));
                                 dispatcher(setCurrentPlaylist(playlist));
@@ -150,27 +159,19 @@ export const PlaylistCard = () => {
                                 );
                               }}
                             >
-                              See Musics
-                            </OutLinedButton>
-                            <OutLinedButton
-                              style={{
-                                color: "#f9f6f8",
-                                border: "2px solid #f80bb1",
-                                padding: "10px 20px",
-                              }}
+                              <BsMusicNoteList />
+                              Songs
+                            </PlayListBtn>
+                            <PlayListBtn
                               onClick={() => {
                                 dispatcher(setCurrentPlaylist(playlist));
                                 dispatcher(setMajorTask(ADD_SONG_TO_PLAYLIST));
                               }}
                             >
-                              Add musics
-                            </OutLinedButton>
-                            <OutLinedButton
-                              style={{
-                                color: "#f9f6f8",
-                                border: "2px solid #f80101",
-                                padding: "10px 20px",
-                              }}
+                              <CgPlayListAdd size={18} />
+                              Add
+                            </PlayListBtn>
+                            <DeleteBtn
                               onClick={() => {
                                 dispatcher(setCurrentPlaylist(playlist));
                                 dispatcher(
@@ -180,8 +181,9 @@ export const PlaylistCard = () => {
                                 );
                               }}
                             >
+                              <RiDeleteBin6Line />
                               Delete
-                            </OutLinedButton>
+                            </DeleteBtn>
                           </BtnContainer>
                         </PlaylistInfo>
                         <PlaylistIcon />
