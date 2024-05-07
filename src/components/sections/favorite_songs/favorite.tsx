@@ -3,12 +3,12 @@ import { H0 } from "../../utils/heading.style";
 import { AboutMusic } from "../recent-songs/components.style";
 import { SliderBody, SlidesContainer, Slide } from "../slider/components.style";
 import {
-  Button,
   DeleteButton,
   FavParagraph,
   FavSongIcon,
   FavoriteBtnContainer,
   FavoriteContainer,
+  TimeCreated,
 } from "./components.style";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
@@ -22,10 +22,10 @@ import {
   removeSongFromMyFavoriteRequested,
   setMinorTask,
 } from "../../../store/user/userSlice";
-import { Unfavorite } from "../../utils/icons/button-like-icon";
-import { DeleteBtn, PlayListBtn } from "../see_playlist/components.style";
+import { PlayListBtn } from "../see_playlist/components.style";
 import { GiSpeaker } from "react-icons/gi";
 import { MdFavorite } from "react-icons/md";
+import { timeAgo } from "../../utils/time_ago";
 
 export const FavoriteSongs = () => {
   const user = useAppSelector((state) => state.user);
@@ -100,7 +100,9 @@ export const FavoriteSongs = () => {
                       <FavParagraph style={{ width: "20vw" }}>
                         Timeless Treasures: A Collection of My Personal
                         Symphony, Each Melody a Cherished Memory 🎶
+                        {music.created_at}
                       </FavParagraph>
+
                       <FavoriteBtnContainer>
                         <PlayListBtn
                           style={{
@@ -137,6 +139,7 @@ export const FavoriteSongs = () => {
                       </FavoriteBtnContainer>
                     </AboutMusic>
                     <FavSongIcon />
+                    <TimeCreated> {timeAgo(music.created_at)} </TimeCreated>
                   </Slide>
                 </div>
               );
