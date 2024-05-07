@@ -55,10 +55,10 @@ import {
   removeSongFromPlaylistRequested,
 } from "../../../store/playlist/playlistSlice";
 import { ClipLoader } from "react-spinners";
-import { IoBagRemoveSharp, IoRemoveSharp } from "react-icons/io5";
-import { MdModeEditOutline, MdRemoveDone } from "react-icons/md";
-import { IoMdRemoveCircle } from "react-icons/io";
+import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { CgPlayListAdd, CgPlayListRemove } from "react-icons/cg";
+import { PlayListBtn } from "../see_playlist/components.style";
 
 interface PopUPProps {
   popUpIndex: number;
@@ -198,12 +198,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
               </SongMetaData>
               <SongActions>
                 {user.majorTask === ADD_SONG_TO_PLAYLIST ? (
-                  <Button
-                    style={{
-                      backgroundColor: "blue",
-                      textAlign: "center",
-                      width: "110px",
-                    }}
+                  <PlayListBtn
                     onClick={() => {
                       setActionItemIndex(index);
                       onSelect(song);
@@ -216,13 +211,16 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                         size={20}
                       />
                     ) : (
-                      "SELECT"
+                      <>
+                        <CgPlayListAdd size={18} />
+                        Add
+                      </>
                     )}
-                  </Button>
+                  </PlayListBtn>
                 ) : null}
                 {user.majorTask === SEE_PLAYLIST_SONGS && (
-                  <IoBagRemoveSharp
-                    style={{ color: "#B41515", fontSize: "20px" }}
+                  <CgPlayListRemove
+                    style={{ color: "#B41515", fontSize: "24px" }}
                     onClick={async (e) => {
                       await dispatch(
                         removeSongFromPlaylistRequested({
