@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { H0 } from "../../utils/heading.style";
-import { Paragraph } from "../about/components.style";
 import { AboutMusic } from "../recent-songs/components.style";
 import { SliderBody, SlidesContainer, Slide } from "../slider/components.style";
 import {
   Button,
+  DeleteButton,
+  FavParagraph,
+  FavSongIcon,
   FavoriteBtnContainer,
   FavoriteContainer,
 } from "./components.style";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
-import { SongResponse } from "../../../typo/songs/response";
 import {
   REMOVE_SONG_FROM_FAVORITE,
   SEE_MY_FAVORITE_SONGS,
@@ -22,6 +23,9 @@ import {
   setMinorTask,
 } from "../../../store/user/userSlice";
 import { Unfavorite } from "../../utils/icons/button-like-icon";
+import { DeleteBtn, PlayListBtn } from "../see_playlist/components.style";
+import { GiSpeaker } from "react-icons/gi";
+import { MdFavorite } from "react-icons/md";
 
 export const FavoriteSongs = () => {
   const user = useAppSelector((state) => state.user);
@@ -88,20 +92,21 @@ export const FavoriteSongs = () => {
                       transform: "translateX(" + -nextIndex * 37 + "vw)",
                       transition: "transform 2s ease-out",
                       backgroundImage:
-                        "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
-                        `/src/assets/images/${index + 1}` +
-                        ".jpg)",
-                      backgroundSize: "cover",
+                        "linear-gradient(to right, #2626a5a3, #561e1ed5)",
                     }}
                   >
                     <AboutMusic>
                       <H0 style={{ color: "white" }}> {music.title} </H0>
-                      <Paragraph style={{ width: "20vw", color: "white" }}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Tempora mollitia saepe alias corrupti ut?
-                      </Paragraph>
+                      <FavParagraph style={{ width: "20vw" }}>
+                        Timeless Treasures: A Collection of My Personal
+                        Symphony, Each Melody a Cherished Memory 🎶
+                      </FavParagraph>
                       <FavoriteBtnContainer>
-                        <Button
+                        <PlayListBtn
+                          style={{
+                            color: "white",
+                            fontSize: "20px",
+                          }}
                           onClick={(e) => {
                             e.preventDefault();
                             dispatch(
@@ -112,9 +117,10 @@ export const FavoriteSongs = () => {
                             );
                           }}
                         >
+                          <GiSpeaker size={24} />
                           Listen now
-                        </Button>
-                        <Button
+                        </PlayListBtn>
+                        <DeleteButton
                           onClick={(e) => {
                             e.preventDefault();
                             dispatch(setMinorTask(REMOVE_SONG_FROM_FAVORITE));
@@ -126,10 +132,11 @@ export const FavoriteSongs = () => {
                             );
                           }}
                         >
-                          <Unfavorite /> Remove
-                        </Button>
+                          <MdFavorite /> Remove
+                        </DeleteButton>
                       </FavoriteBtnContainer>
                     </AboutMusic>
+                    <FavSongIcon />
                   </Slide>
                 </div>
               );
