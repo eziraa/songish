@@ -76,7 +76,17 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
     else if (user.majorTask === SEE_PLAYLIST_SONGS)
       setSongList(playlists.songs);
     else if (user.majorTask === SEE_MY_SONGS) setSongList(user.user.my_songs);
-  }, [songs.songs, user.user, playlists.songs, user.majorTask]);
+    else {
+      setSongList(songs.query_set);
+    }
+  }, [
+    songs.songs,
+    user.user,
+    songs.query_set,
+    playlists.songs,
+
+    user.majorTask,
+  ]);
 
   const onDelete = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
@@ -102,6 +112,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
       SEE_ALL_SONGS,
       SEE_PLAYLIST_SONGS,
       ADD_SONG_TO_PLAYLIST,
+      SEARCH_SONG_FROM_ALL,
       SEE_MY_SONGS,
     ].includes(user.majorTask || "")
   )
