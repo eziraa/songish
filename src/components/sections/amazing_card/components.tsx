@@ -1,4 +1,6 @@
+import { CgPlayList } from "react-icons/cg";
 import styled from "styled-components";
+import { ThemeProps } from "../../../styles/theme-interface";
 
 export const CardSide = styled.div`
   display: flex;
@@ -18,8 +20,10 @@ export const CardSide = styled.div`
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
 `;
 
-export const CardSideFront = styled(CardSide)`
-  background-color: green;
+export const CardSideFront = styled(CardSide)<ThemeProps>`
+  background-image: linear-gradient(to right, #561e1e7d, #24249267);
+  display: flex;
+  align-items: flex-end;
 `;
 
 export const CardSideBack = styled(CardSide)`
@@ -36,7 +40,7 @@ export const Card = styled.div`
   perspective: 150rem;
   -moz-perspective: 150rem;
   position: relative;
-
+  position: relative;
   &:hover ${CardSideFront} {
     transform: rotateY(-180deg);
   }
@@ -45,17 +49,11 @@ export const Card = styled.div`
     transform: rotateY(0);
   }
 `;
-export const CardPicture = styled.div`
+export const CardPicture = styled(CgPlayList)`
   background-size: cover;
   background-position: bottom;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   background-blend-mode: screen;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(white, 1),
-      rgba(green, 1)
-    ),
-    url(../img/nat-5.jpg);
 `;
 
 export const CardHeading = styled.div`
