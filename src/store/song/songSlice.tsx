@@ -7,6 +7,7 @@ import {
   EditSongParams,
   PlayingParams,
 } from "../../typo/songs/parameters";
+import { api } from "../../services/api";
 
 const InitialSongState: SongStateType = {
   deleting: false,
@@ -16,6 +17,7 @@ const InitialSongState: SongStateType = {
   current_song_for_action: undefined,
   current_song_to_play: undefined,
   playing_music_list: [],
+  current_song: new Audio(),
 };
 
 const SongSlice = createSlice({
@@ -64,6 +66,13 @@ const SongSlice = createSlice({
     setCurrentSongToPlay: (state, actions: PayloadAction<PlayingParams>) => {
       state.current_song_to_play = actions.payload.song;
       state.playing_music_list = actions.payload.song_list;
+      state.current_song.pause();
+      state.current_song = new Audio(api + actions.payload.song?.song_file);
+    },
+    changeSong: (state, actions: PayloadAction<SongResponse>) => {
+      state.current_song_to_play = actions.payload;
+      state.current_song.pause();
+      state.current_song = new Audio(api + actions.payload?.song_file);
     },
     setQuerySet: (state, actions: PayloadAction<SongResponse[]>) => {
       state.query_set = actions.payload;
@@ -83,5 +92,6 @@ export const {
   deleteSongDone,
   setCurrentSongToPlay,
   setQuerySet,
+  changeSong,
 } = SongSlice.actions;
 export default SongSlice.reducer;
