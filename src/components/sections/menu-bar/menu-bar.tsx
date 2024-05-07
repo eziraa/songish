@@ -21,8 +21,10 @@ import {
 } from "../../../config/constants/user-current-task";
 import { loadSongsRequested } from "../../../store/song/songSlice";
 import { loadPlaylistsRequested } from "../../../store/playlist/playlistSlice";
-
-const LeftMenu = () => {
+interface MenuBarProps {
+  smoothScroll: (id: string) => void;
+}
+const LeftMenu = ({ smoothScroll }: MenuBarProps) => {
   const dispatcher = useAppDispatch();
   const user = useAppSelector((state) => state.user);
   return (
@@ -40,6 +42,7 @@ const LeftMenu = () => {
             <MenuBarItem
               onClick={(e) => {
                 e.preventDefault();
+                smoothScroll("content");
                 index == 1 && dispatcher(setMinorTask(UPLOAD_SONG));
                 if (index == 2) {
                   dispatcher(setMajorTask(SEE_ALL_SONGS));

@@ -64,8 +64,9 @@ const HomePage = () => {
             <SearchComponent />
             <NavBar smoothScroll={handleSmoothScroll} />
           </Header>
-          <LeftMenu />
+          <LeftMenu smoothScroll={handleSmoothScroll} />
           <Main>
+            <div id="content" style={{ marginBottom: "100px" }}></div>
             <PlaylistCard />
             <MusicTable popUpIndex={popUpIndex} setPopUpIndex={setPopUpIndex} />
             <FavoriteSongs />
