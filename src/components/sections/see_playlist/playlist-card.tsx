@@ -25,6 +25,7 @@ import {
   loadPlaylistSongsRequested,
   setCurrentPlaylist,
 } from "../../../store/playlist/playlistSlice";
+import { api } from "../../../services/api";
 
 export const PlaylistCard = () => {
   const playlists = useAppSelector((state) => state.playlists);
@@ -102,7 +103,15 @@ export const PlaylistCard = () => {
                       }}
                     >
                       <AboutPlaylist>
-                        <CardSideFront>
+                        <CardSideFront
+                          style={{
+                            backgroundImage:
+                              "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
+                              `${api + playlist.image}` +
+                              ")",
+                            backgroundSize: "cover",
+                          }}
+                        >
                           <PlaylistInfo>
                             <H1> {playlist.song.length} songs </H1>
                             <H0> {playlist.name} </H0>
@@ -111,69 +120,71 @@ export const PlaylistCard = () => {
                               elit. Tempora mollitia saepe alias corrupti ut?
                             </Paragraph>
                           </PlaylistInfo>
-                          <PlaylistIcon />
                         </CardSideFront>
                       </AboutPlaylist>
                       <CardSideBack>
-                        <H0
-                          style={{
-                            fontSize: "40px",
-                            marginTop: "4rem",
-                          }}
-                        >
-                          {" "}
-                          {playlists.playlists[index].song.length} Songs
-                        </H0>
-                        <BtnContainer>
-                          <OutLinedButton
+                        <PlaylistInfo>
+                          <H0
                             style={{
-                              color: "#f9f6f8",
-                              border: "2px solid #f80bb1",
-                              padding: "10px 20px",
-                            }}
-                            onClick={() => {
-                              dispatcher(setMajorTask(SEE_PLAYLIST_SONGS));
-                              dispatcher(setCurrentPlaylist(playlist));
-                              dispatcher(
-                                loadPlaylistSongsRequested({
-                                  playlist_id: playlist.id,
-                                })
-                              );
+                              fontSize: "40px",
+                              marginTop: "4rem",
                             }}
                           >
-                            See Musics
-                          </OutLinedButton>
-                          <OutLinedButton
-                            style={{
-                              color: "#f9f6f8",
-                              border: "2px solid #f80bb1",
-                              padding: "10px 20px",
-                            }}
-                            onClick={() => {
-                              dispatcher(setCurrentPlaylist(playlist));
-                              dispatcher(setMajorTask(ADD_SONG_TO_PLAYLIST));
-                            }}
-                          >
-                            Add musics
-                          </OutLinedButton>
-                          <OutLinedButton
-                            style={{
-                              color: "#f9f6f8",
-                              border: "2px solid #f80101",
-                              padding: "10px 20px",
-                            }}
-                            onClick={() => {
-                              dispatcher(setCurrentPlaylist(playlist));
-                              dispatcher(
-                                deletePlaylistRequest(
-                                  Number.parseInt(playlist.id)
-                                )
-                              );
-                            }}
-                          >
-                            Delete
-                          </OutLinedButton>
-                        </BtnContainer>
+                            {" "}
+                            {playlists.playlists[index].song.length} Songs
+                          </H0>
+                          <BtnContainer>
+                            <OutLinedButton
+                              style={{
+                                color: "#f9f6f8",
+                                border: "2px solid #f80bb1",
+                                padding: "10px 20px",
+                              }}
+                              onClick={() => {
+                                dispatcher(setMajorTask(SEE_PLAYLIST_SONGS));
+                                dispatcher(setCurrentPlaylist(playlist));
+                                dispatcher(
+                                  loadPlaylistSongsRequested({
+                                    playlist_id: playlist.id,
+                                  })
+                                );
+                              }}
+                            >
+                              See Musics
+                            </OutLinedButton>
+                            <OutLinedButton
+                              style={{
+                                color: "#f9f6f8",
+                                border: "2px solid #f80bb1",
+                                padding: "10px 20px",
+                              }}
+                              onClick={() => {
+                                dispatcher(setCurrentPlaylist(playlist));
+                                dispatcher(setMajorTask(ADD_SONG_TO_PLAYLIST));
+                              }}
+                            >
+                              Add musics
+                            </OutLinedButton>
+                            <OutLinedButton
+                              style={{
+                                color: "#f9f6f8",
+                                border: "2px solid #f80101",
+                                padding: "10px 20px",
+                              }}
+                              onClick={() => {
+                                dispatcher(setCurrentPlaylist(playlist));
+                                dispatcher(
+                                  deletePlaylistRequest(
+                                    Number.parseInt(playlist.id)
+                                  )
+                                );
+                              }}
+                            >
+                              Delete
+                            </OutLinedButton>
+                          </BtnContainer>
+                        </PlaylistInfo>
+                        <PlaylistIcon />
                       </CardSideBack>
                     </Slide>
                   </div>
