@@ -2,7 +2,7 @@ export function timeAgo(dateString: string) {
     const date = new Date(dateString).getTime();
     const now = new Date().getTime();
      const diffTime = Math.abs(now- date);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   const diffWeeks = Math.floor(diffDays / 7);
   const diffMonths = Math.floor(diffDays / 30.44); // Average number of days in a month
   const diffYears = Math.floor(diffDays / 365.25); // Average number of days in a year, accounting for leap years
