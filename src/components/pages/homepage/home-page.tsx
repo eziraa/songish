@@ -9,7 +9,7 @@ import { ScrollBar } from "../../utils/scrollbar.style";
 import SignUpPage from "../../sections/sign_up/sign_up";
 import SearchComponent from "../../sections/search/search";
 import ContactPage from "../../sections/contact/contact";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import LoginPage from "../../sections/login/login";
 import Notification from "../../sections/mini-notification/mini-notification";
 import SongForm from "../../sections/song_add_update/song-form";
@@ -23,6 +23,8 @@ import { FavoriteSongs } from "../../sections/favorite_songs/favorite";
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
   const songs = useAppSelector((state) => state.songs);
+  const [popUpIndex, setPopUpIndex] = useState(-1);
+
   const handleSmoothScroll = (nav: string) => {
     homeRef.current?.querySelector(`#${nav}`)?.scrollIntoView({
       behavior: "smooth",
@@ -50,7 +52,14 @@ const HomePage = () => {
       {songs.current_song_to_play && <PlayerComponent />}
 
       <ScrollBar>
-        <Home ref={homeRef}>
+        <Home
+          ref={homeRef}
+          onClick={(e) => {
+            !e.currentTarget.classList.contains("pop") &&
+              popUpIndex > -1 &&
+              setPopUpIndex(-1);
+          }}
+        >
           <Header>
             <SearchComponent />
             <NavBar smoothScroll={handleSmoothScroll} />
@@ -58,7 +67,7 @@ const HomePage = () => {
           <LeftMenu />
           <Main>
             <PlaylistCard />
-            <MusicTable />
+            <MusicTable popUpIndex={popUpIndex} setPopUpIndex={setPopUpIndex} />
             <FavoriteSongs />
             <RecentSection />
             <AboutPage />

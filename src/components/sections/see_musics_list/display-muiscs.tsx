@@ -42,6 +42,7 @@ import {
   ADD_SONG_TO_PLAYLIST,
   SEARCH_SONG_FROM_ALL,
   SEE_ALL_SONGS,
+  SEE_MY_SONGS,
   SEE_PLAYLIST_SONGS,
   UPDATE_SONG,
 } from "../../../config/constants/user-current-task";
@@ -52,7 +53,11 @@ import {
 } from "../../../store/playlist/playlistSlice";
 import { ClipLoader } from "react-spinners";
 
-function MusicTable() {
+interface PopUPProps {
+  popUpIndex: number;
+  setPopUpIndex: (index: number) => void;
+}
+function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
   const songs = useAppSelector((state) => state.songs);
   const user = useAppSelector((state) => state.user);
   const playlists = useAppSelector((state) => state.playlists);
@@ -60,7 +65,6 @@ function MusicTable() {
   const [song_list, setSongList] = useState<SongResponse[]>(songs.songs);
   const dispatch = useAppDispatch();
   const [actionItemIndex, setActionItemIndex] = useState(-1);
-  const [popUpIndex, setPopUpIndex] = useState(-1);
 
   useEffect(() => {
     if (user.majorTask === SEE_ALL_SONGS) {
@@ -70,6 +74,7 @@ function MusicTable() {
       setSongList(songs.songs);
     else if (user.majorTask === SEE_PLAYLIST_SONGS)
       setSongList(playlists.songs);
+    else if (user.majorTask === SEE_MY_SONGS) setSongList(user.user.my_songs);
   }, [songs.songs, user.user, playlists.songs, user.majorTask]);
 
   useEffect(() => {}, []);
@@ -91,26 +96,21 @@ function MusicTable() {
       })
     );
   };
-  const addToFavorite = async (song: SongResponse) => {
-    await dispatch(
-      addFavoriteSongRequested({
-        user_id: user.user?.id || "",
-        song_id: song.id,
-      })
-    );
-    // await dispatch(loadMyFavoriteSongsRequested({ user_id: user.user.id }));
-  };
+
   if (
-    ![SEE_ALL_SONGS, SEE_PLAYLIST_SONGS, ADD_SONG_TO_PLAYLIST].includes(
-      user.majorTask || ""
-    )
+    ![
+      SEE_ALL_SONGS,
+      SEE_PLAYLIST_SONGS,
+      ADD_SONG_TO_PLAYLIST,
+      SEE_MY_SONGS,
+    ].includes(user.majorTask || "")
   )
     return;
   if (songs.loading) {
     return <LoadingSpinner />;
   }
   return (
-    <>
+    <div>
       <SongsListTitle>
         All songs
         {user.majorTask == SEE_PLAYLIST_SONGS && " from this playlist"}{" "}
@@ -242,7 +242,7 @@ function MusicTable() {
                     />
 
                     {index === popUpIndex && (
-                      <PopUpContainer>
+                      <PopUpContainer className="pop">
                         <CloseButton
                           style={{ top: "0", right: "0", color: "black" }}
                           onClick={() => setPopUpIndex(-1)}
@@ -262,7 +262,7 @@ function MusicTable() {
           ))
         )}
       </ScrollBar>
-    </>
+    </div>
   );
 }
 
