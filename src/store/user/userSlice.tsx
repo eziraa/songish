@@ -90,6 +90,17 @@ const UserSlice = createSlice({
       state.isOnAction = false;
       state.minorTask = undefined;
     },
+    loadMySongsRequested: (
+      state,
+      action: PayloadAction<GetMyFavoriteParams>
+    ) => {
+      state.loading = true;
+      state.user.my_songs = [];
+    },
+    loadMySongsDone: (state, action: PayloadAction<SongResponse[]>) => {
+      state.loading = false;
+      state.user.my_songs = action.payload;
+    },
   },
 });
 
@@ -105,6 +116,8 @@ export const {
   loadMyFavoriteSongsDone,
   removeSongFromMyFavoriteRequested,
   removeSongFromMyFavoriteDone,
+  loadMySongsRequested,
+  loadMySongsDone,
 } = UserSlice.actions;
 export default UserSlice.reducer;
 
