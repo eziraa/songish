@@ -3,14 +3,14 @@ import {
   AboutPlaylist,
   BtnContainer,
   PlaylistInfo,
+  PlaylistIcon,
 } from "./components.style";
 import { Card, CardSideBack, CardSideFront } from "../amazing_card/components";
-import { H0 } from "../../utils/heading.style";
+import { H0, H1 } from "../../utils/heading.style";
 import { Slide, SliderBody, SlidesContainer } from "../slider/components.style";
 import { BackIcon, ForwardIcon } from "../music_player/components.style";
 import { Paragraph } from "../about/components.style";
 import { OutLinedButton } from "../../utils/buttons.style";
-import { api } from "../../../services/api";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { useEffect, useState } from "react";
 import {
@@ -102,34 +102,19 @@ export const PlaylistCard = () => {
                       }}
                     >
                       <AboutPlaylist>
-                        <CardSideFront
-                          style={{
-                            backgroundImage:
-                              "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
-                              `${api + playlist.image}` +
-                              ")",
-                            backgroundSize: "cover",
-                          }}
-                        >
+                        <CardSideFront>
                           <PlaylistInfo>
-                            {/* <H1> {playlist.songs.length} </H1> */}
+                            <H1> {playlist.song.length} songs </H1>
                             <H0> {playlist.name} </H0>
                             <Paragraph style={{ width: "20vw" }}>
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Tempora mollitia saepe alias corrupti ut?
                             </Paragraph>
                           </PlaylistInfo>
+                          <PlaylistIcon />
                         </CardSideFront>
                       </AboutPlaylist>
-                      <CardSideBack
-                        style={{
-                          backgroundImage:
-                            "linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)),url(" +
-                            `${api + playlist.image}` +
-                            ")",
-                          backgroundSize: "cover",
-                        }}
-                      >
+                      <CardSideBack>
                         <H0
                           style={{
                             fontSize: "40px",
