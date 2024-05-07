@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { api } from "../../../services/api";
-import { setCurrentSongToPlay } from "../../../store/song/songSlice";
+import {
+  changeSong,
+  setCurrentSongToPlay,
+} from "../../../store/song/songSlice";
 import { useAppSelector, useAppDispatch } from "../../../utils/customHook";
 import { CloseButton } from "../modal/components.style";
 import {
@@ -60,46 +63,35 @@ export default function PlayerComponent() {
   const [isRandom, setIsRandom] = useState(false);
   const [volume, setVolume] = useState(50); // Initial volume level
   const [currentTime, setCurrentTime] = useState("00"); // Initial volume level
-  const [currTrack, setCurrTrack] = useState(
-    new Audio(api + songs.current_song_to_play?.song_file)
-  );
-  const [isPlaying, setIsPlaying] = useState(!currTrack.paused);
+  const [isPlaying, setIsPlaying] = useState(!songs.current_song.paused);
 
   useEffect(() => {
-    currTrack.pause();
-  }, [songs.current_song_to_play]);
-  useEffect(() => {
-    currTrack.pause();
+    songs.current_song.pause();
     setIsPlaying(false);
     if (trackIndex >= 0 && trackIndex < songs.playing_music_list.length)
-      loadTrack(api + songs.playing_music_list[trackIndex].song_file);
+      changeSong(songs.playing_music_list[trackIndex]);
   }, [trackIndex]);
 
   useEffect(() => {
     const updateTimer = setInterval(setUpdate, 1000);
     return () => clearInterval(updateTimer);
-  }, [currTrack]);
+  }, [songs.current_song]);
   const setUpdate = () => {
-    setCurrentTime(formatTime(currTrack.currentTime));
-  };
-  const loadTrack = (address: string) => {
-    const track = new Audio(address);
-    setCurrTrack(track);
-    setVolume(50);
+    setCurrentTime(formatTime(songs.current_song.currentTime));
   };
 
   const playPauseTrack = () => {
     if (isPlaying) {
-      currTrack.pause();
+      songs.current_song.pause();
       setIsPlaying(false);
     } else {
-      currTrack.play();
+      songs.current_song.play();
       setIsPlaying(true);
     }
   };
 
   const nextTrack = () => {
-    currTrack.paused ?? currTrack.pause();
+    songs.current_song.paused ?? songs.current_song.pause();
     let newIndex;
     if (isRandom) {
       newIndex = Math.floor(Math.random() * songs.playing_music_list.length);
@@ -138,7 +130,7 @@ export default function PlayerComponent() {
 
   const handleTimeChange = (event: any) => {
     const time = event.target.value;
-    currTrack.currentTime = time;
+    songs.current_song.currentTime = time;
     setCurrentTime(time);
   };
   const handleDragStart = (event: any) => {
@@ -155,7 +147,7 @@ export default function PlayerComponent() {
             right: "20px",
           }}
           onClick={() => {
-            currTrack.pause();
+            songs.current_song.pause();
             dispatch(
               setCurrentSongToPlay({
                 song: undefined,
@@ -196,12 +188,15 @@ export default function PlayerComponent() {
           <TrackArtist>{songs.current_song_to_play?.artist}</TrackArtist>
         </Details>
         <SliderContainer>
-          <CurrentTime> {formatTime(currTrack.currentTime)} </CurrentTime>
+          <CurrentTime>
+            {" "}
+            {formatTime(songs.current_song.currentTime)}{" "}
+          </CurrentTime>
           <SeekSlider
             type="range"
             min="0"
-            max={currTrack.duration.toString()}
-            value={currTrack.currentTime}
+            max={songs.current_song.duration.toString()}
+            value={songs.current_song.currentTime}
             onChange={handleTimeChange}
           />
           <TotalDuration>
@@ -214,7 +209,7 @@ export default function PlayerComponent() {
             <VolumeDownIcon
               onClick={() => {
                 setVolume(volume - 5 > 0 ? volume - 5 : volume);
-                currTrack.volume = volume / 100;
+                songs.current_song.volume = volume / 100;
               }}
             />
             <VolumeSlider
@@ -224,13 +219,13 @@ export default function PlayerComponent() {
               value={volume}
               onChange={(e) => {
                 setVolume(Number(e.target.value));
-                currTrack.volume = volume / 100;
+                songs.current_song.volume = volume / 100;
               }}
             />
             <VolumeUpIcon
               onClick={() => {
                 setVolume(volume + 5 < 100 ? volume + 5 : volume);
-                currTrack.volume = volume / 100;
+                songs.current_song.volume = volume / 100;
               }}
             />
           </VolumeContainer>
