@@ -8,4 +8,5 @@ export interface SongResponse {
   playlist_id?: string;
   customer: string;
   song_file: File | undefined;
+  created_at: string;
 }
