@@ -42,6 +42,8 @@ import {
 import {
   ADD_SONG_TO_PLAYLIST,
   SEARCH_SONG_FROM_ALL,
+  SEARCH_SONG_FROM_PLAYLIST,
+  SEARCH_SONG_FROM_YOUR_SONGS,
   SEE_ALL_SONGS,
   SEE_MY_SONGS,
   SEE_PLAYLIST_SONGS,
@@ -113,6 +115,8 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
       SEE_PLAYLIST_SONGS,
       ADD_SONG_TO_PLAYLIST,
       SEARCH_SONG_FROM_ALL,
+      SEARCH_SONG_FROM_PLAYLIST,
+      SEARCH_SONG_FROM_YOUR_SONGS,
       SEE_MY_SONGS,
     ].includes(user.majorTask || "")
   )
@@ -123,9 +127,14 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
   return (
     <div>
       <SongsListTitle>
-        All songs
-        {user.majorTask == SEE_PLAYLIST_SONGS && " from this playlist"}{" "}
-        {user.majorTask == SEARCH_SONG_FROM_ALL && " Based on your query"}{" "}
+        {user.majorTask == SEE_ALL_SONGS && "All songs "}{" "}
+        {user.majorTask == SEE_PLAYLIST_SONGS && "All songs from this playlist"}{" "}
+        {[
+          SEARCH_SONG_FROM_ALL,
+          SEARCH_SONG_FROM_PLAYLIST,
+          SEARCH_SONG_FROM_YOUR_SONGS,
+        ].includes(user.majorTask ?? "") && " Songs Based on your query"}{" "}
+        {user.majorTask == SEE_MY_SONGS && "All songs you uploaded"}{" "}
       </SongsListTitle>
       <ScrollBar
         style={{
