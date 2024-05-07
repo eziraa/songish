@@ -95,8 +95,8 @@ export const FavoriteSongs = () => {
                     }}
                   >
                     <AboutMusic>
-                      <H0> {music.title} </H0>
-                      <Paragraph style={{ width: "20vw" }}>
+                      <H0 style={{ color: "white" }}> {music.title} </H0>
+                      <Paragraph style={{ width: "20vw", color: "white" }}>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Tempora mollitia saepe alias corrupti ut?
                       </Paragraph>
