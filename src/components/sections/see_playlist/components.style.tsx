@@ -1,5 +1,6 @@
 import { CgPlayList } from "react-icons/cg";
 import styled from "styled-components";
+import { OutLinedButton } from "../../utils/buttons.style";
 
 export const PlaylistContainer = styled.div`
   display: flex;
@@ -37,25 +38,31 @@ export const PlaylistInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   align-items: center;
-  width: 100%;
-  color: ${({ theme }) => theme.textSecondary};
   font-size: 20px;
   font-weight: bold;
   font-family: "Poppins", sans-serif;
   z-index: 2;
-  background-size: cover;
   height: 100%;
   border-radius: 1rem 0;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
 `;
 export const PlaylistIcon = styled(CgPlayList)`
-  position: absolute;
-  top: 0;
-  bottom: 0;
   font-size: 150px;
-  color: #dd0a9e;
+  color: ${({ theme }) => theme.textSecondary};
+`;
+
+export const PlayListBtn = styled(OutLinedButton)`
+  color: ${({ theme }) => theme.textPrimary};
+  border: 2px solid #f80bb1;
+  font-size: 16px;
+`;
+
+export const DeleteBtn = styled(OutLinedButton)`
+  color: ${({ theme }) => theme.textSecondary};
+  border: 2px solid #c42020;
+  font-size: 16px;
+  &:hover {
+    background-color: red;
+  }
 `;
