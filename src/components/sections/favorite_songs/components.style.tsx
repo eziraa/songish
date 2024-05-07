@@ -54,5 +54,5 @@ export const TimeCreated = styled.p`
   bottom: 15px;
   right: 15px;
   font-size: 0.8rem;
-  color: #dad1d1;
+  color: white;
 `;
