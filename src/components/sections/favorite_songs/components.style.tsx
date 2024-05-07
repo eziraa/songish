@@ -48,3 +48,11 @@ export const DeleteButton = styled.button<ThemeProps>`
     color: ${({ theme }) => theme.formBtnTextColor};
   }
 `;
+
+export const TimeCreated = styled.p`
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 0.8rem;
+  color: #dad1d1;
+`;
