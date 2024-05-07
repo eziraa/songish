@@ -55,6 +55,10 @@ import {
   removeSongFromPlaylistRequested,
 } from "../../../store/playlist/playlistSlice";
 import { ClipLoader } from "react-spinners";
+import { IoBagRemoveSharp, IoRemoveSharp } from "react-icons/io5";
+import { MdModeEditOutline, MdRemoveDone } from "react-icons/md";
+import { IoMdRemoveCircle } from "react-icons/io";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 interface PopUPProps {
   popUpIndex: number;
@@ -217,8 +221,8 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                   </Button>
                 ) : null}
                 {user.majorTask === SEE_PLAYLIST_SONGS && (
-                  <Button
-                    style={{ backgroundColor: "red" }}
+                  <IoBagRemoveSharp
+                    style={{ color: "#B41515", fontSize: "20px" }}
                     onClick={async (e) => {
                       await dispatch(
                         removeSongFromPlaylistRequested({
@@ -230,9 +234,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                         song_list.filter((item) => item.id !== song.id)
                       );
                     }}
-                  >
-                    Remove
-                  </Button>
+                  />
                 )}
                 {user.favorite_songs.some(
                   (item, index) => song.id === item.id
@@ -289,10 +291,12 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                             onClick={() => setPopUpIndex(-1)}
                           />
                           <DeleteButton onClick={() => onDelete(song)}>
+                            <RiDeleteBin6Fill size={20} />
                             Delete
                           </DeleteButton>
                           <UpdateButton onClick={() => onUpdate(song)}>
-                            Update
+                            <MdModeEditOutline size={20} />
+                            Edit
                           </UpdateButton>
                         </PopUpContainer>
                       )}
