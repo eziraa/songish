@@ -6,6 +6,7 @@ import {
   watchAddSongToPlaylist,
   watchLoadPlaylistSongs,
   watchRemoveSongFromPlaylist,
+  watchDeletePlaylist,
 } from "../store/playlist/playlistSaga";
 import {
   watchLoadSongs,
@@ -13,21 +14,33 @@ import {
   watchEditSong,
   watchDeleteSong,
 } from "../store/song/songSaga";
-import { watchLogin, watchSignup } from "../store/user/userSaga";
+import {
+  watchAddFavoriteSong,
+  watchLoadMyFavoriteSongs,
+  watchLoadMySongs,
+  watchLogin,
+  watchRemoveSongFromMyFavorite,
+  watchSignup,
+} from "../store/user/userSaga";
 
 export function* rootSaga() {
   yield all([
     watchLogin(),
     watchSignup(),
+    watchAddFavoriteSong(),
+    watchLoadMyFavoriteSongs(),
+    watchRemoveSongFromMyFavorite(),
     watchLoadSongs(),
     watchAddSong(),
     watchEditSong(),
     watchDeleteSong(),
     watchLoadPlaylists(),
     watchAddPlaylist(),
+    watchDeletePlaylist(),
     watchSetNotification(),
     watchAddSongToPlaylist(),
     watchRemoveSongFromPlaylist(),
     watchLoadPlaylistSongs(),
+    watchLoadMySongs(),
   ]);
 }
