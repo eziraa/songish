@@ -11,6 +11,7 @@ import { setNotification } from "../notification/notificationSlice";
 import {
   addFavoriteSongDone,
   loadMyFavoriteSongsDone,
+  loadMySongsDone,
   loginDone,
   removeSongFromMyFavoriteDone,
 } from "./userSlice";
@@ -176,4 +177,36 @@ export function* watchRemoveSongFromMyFavorite() {
     "user/removeSongFromMyFavoriteRequested",
     removeSongFromMyFavorite
   );
+}
+
+function* loadMySongs(action: PayloadAction<GetMyFavoriteParams>) {
+  try {
+    const songs: SagaReturnType<typeof UserAPI.getMySongs> = yield call(
+      UserAPI.getMySongs,
+      action.payload
+    );
+    setNotification({
+      color: "red",
+      status: true,
+      title: "Loading your  songs",
+      desc: "Your  songs loaded successfully",
+      duration: 3,
+    });
+
+    yield put(loadMySongsDone(songs));
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Loading your  songs",
+        desc: "Can not load your  songs",
+        duration: 3,
+      })
+    );
+  }
+}
+
+export function* watchLoadMySongs() {
+  yield takeEvery("user/loadMySongsRequested", loadMySongs);
 }
