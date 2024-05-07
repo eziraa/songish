@@ -8,4 +8,5 @@ export interface SongStateType {
   current_song_to_play?: SongResponse;
   query_set: SongResponse[];
   playing_music_list: SongResponse[];
+  current_song: any;
 }
