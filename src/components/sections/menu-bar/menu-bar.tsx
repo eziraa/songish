@@ -7,6 +7,7 @@ import { RiPlayListFill } from "react-icons/ri";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
   loadMyFavoriteSongsRequested,
+  loadMySongsRequested,
   setMajorTask,
   setMinorTask,
 } from "../../../store/user/userSlice";
@@ -14,6 +15,7 @@ import {
   CREATE_PLAYLIST,
   SEE_ALL_SONGS,
   SEE_MY_FAVORITE_SONGS,
+  SEE_MY_SONGS,
   SEE_YOUR_PLAYLIST,
   UPLOAD_SONG,
 } from "../../../config/constants/user-current-task";
@@ -42,6 +44,14 @@ const LeftMenu = () => {
                 if (index == 2) {
                   dispatcher(setMajorTask(SEE_ALL_SONGS));
                   dispatcher(loadSongsRequested());
+                }
+                if (index === 3) {
+                  dispatcher(setMajorTask(SEE_MY_SONGS));
+                  dispatcher(
+                    loadMySongsRequested({
+                      user_id: user.user.id,
+                    })
+                  );
                 }
                 if (index === 4) {
                   dispatcher(
