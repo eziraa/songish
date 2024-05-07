@@ -17,6 +17,8 @@ import { Paragraph, PlayListBtn } from "../see_playlist/components.style";
 import { GiSpeaker } from "react-icons/gi";
 import { IoTimeOutline } from "react-icons/io5";
 import { H0 } from "../../utils/heading.style";
+import { timeAgo } from "../../utils/time_ago";
+import { TimeCreated } from "../favorite_songs/components.style";
 
 export const RecentSection = () => {
   const songs = useAppSelector((state) => state.songs);
@@ -118,6 +120,7 @@ export const RecentSection = () => {
                       </PlayListBtn>
                     </AboutMusic>
                     <SongsIcon />
+                    <TimeCreated>{timeAgo(music.created_at)}</TimeCreated>
                   </Slide>
                 </div>
               );
