@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../../styles/theme-interface";
+import { GiMusicalNotes } from "react-icons/gi";
+import { H0 } from "../../utils/heading.style";
 
 export const RecentContainer = styled.div`
   display: flex;
@@ -23,4 +25,15 @@ export const Title = styled.h2<ThemeProps>`
   font-size: 2rem;
   font-weight: bold;
   color: ${({ theme }) => theme.textSecondary};
+`;
+
+export const SongsIcon = styled(GiMusicalNotes)`
+  font-size: 150px;
+  color: ${({ theme }) => theme.textSecondary};
+`;
+
+export const IconisedTitle = styled(H0)`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
