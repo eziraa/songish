@@ -5,7 +5,8 @@ import {
   FavoriteIcon,
   FavoritedIcon,
   MusicIcon,
-  PlayPause,
+  Pause,
+  Play,
   PopUpContainer,
   SongActions,
   SongAlbum,
@@ -77,7 +78,6 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
     else if (user.majorTask === SEE_MY_SONGS) setSongList(user.user.my_songs);
   }, [songs.songs, user.user, playlists.songs, user.majorTask]);
 
-  useEffect(() => {}, []);
   const onDelete = (song: SongResponse) => {
     dispatch(setCurrentSongForAction(song));
     dispatch(deleteSongRequest(Number(song.id)));
@@ -131,24 +131,37 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
           song_list.map((song, index, song_list) => (
             <SongContainer key={index}>
               <SongMetaData>
-                <PlayPause
-                  onClick={() => {
-                    dispatch(
-                      setCurrentSongToPlay({
-                        song: undefined,
-                        song_list: [],
-                      })
-                    );
-                    setTimeout(() => {
-                      dispatch(
+                {song.id !== songs.current_song_to_play?.id ? (
+                  <Play
+                    onClick={async () => {
+                      await dispatch(
                         setCurrentSongToPlay({
-                          song,
-                          song_list,
+                          song: undefined,
+                          song_list: [],
                         })
                       );
-                    }, 1000);
-                  }}
-                />
+                      setTimeout(() => {
+                        dispatch(
+                          setCurrentSongToPlay({
+                            song,
+                            song_list,
+                          })
+                        );
+                      }, 0);
+                    }}
+                  />
+                ) : (
+                  <Pause
+                    onClick={async () => {
+                      await dispatch(
+                        setCurrentSongToPlay({
+                          song: undefined,
+                          song_list: [],
+                        })
+                      );
+                    }}
+                  />
+                )}
                 <MusicIcon />
                 <SongInfoContainer>
                   <SongTitle> {song.title} </SongTitle>

@@ -6,6 +6,7 @@ import { Button } from "../../utils/form_field_elements.style";
 import { ThemeProps } from "../../../styles/theme-interface";
 import { styled } from "styled-components";
 import { Title } from "../recent-songs/components.style";
+import { BiPause } from "react-icons/bi";
 
 export const SongContainer = styled.div<ThemeProps>`
   display: flex;
@@ -101,7 +102,13 @@ export const FavoritedIcon = styled(MdFavorite)`
   color: #e40ab2;
   cursor: pointer;
 `;
-export const PlayPause = styled(GoPlay)`
+export const Play = styled(GoPlay)`
+  font-size: 20px;
+  position: relative;
+  color: ${({ theme }) => theme.textSecondary};
+  cursor: pointer;
+`;
+export const Pause = styled(BiPause)`
   font-size: 20px;
   position: relative;
   color: ${({ theme }) => theme.textSecondary};
