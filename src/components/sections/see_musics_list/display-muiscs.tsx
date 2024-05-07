@@ -49,7 +49,6 @@ import {
   SEE_PLAYLIST_SONGS,
   UPDATE_SONG,
 } from "../../../config/constants/user-current-task";
-import { Button } from "../../utils/form_field_elements.style";
 import {
   addSongToPlaylistRequested,
   removeSongFromPlaylistRequested,
@@ -59,6 +58,8 @@ import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { CgPlayListAdd, CgPlayListRemove } from "react-icons/cg";
 import { PlayListBtn } from "../see_playlist/components.style";
+import { TimeCreated } from "../favorite_songs/components.style";
+import { timeAgo } from "../../utils/time_ago";
 
 interface PopUPProps {
   popUpIndex: number;
@@ -193,6 +194,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                   <SongInfo>
                     <SongArtist> {song.artist} </SongArtist>
                     <SongAlbum> {song.album || "No Album"} </SongAlbum>
+                    <p>{timeAgo(song.created_at)}</p>
                   </SongInfo>
                 </SongInfoContainer>
               </SongMetaData>
@@ -221,7 +223,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                 {user.majorTask === SEE_PLAYLIST_SONGS && (
                   <CgPlayListRemove
                     style={{ color: "#B41515", fontSize: "24px" }}
-                    onClick={async (e) => {
+                    onClick={async () => {
                       await dispatch(
                         removeSongFromPlaylistRequested({
                           playlist_id: playlists.currentPlaylist?.id || "",
@@ -234,9 +236,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                     }}
                   />
                 )}
-                {user.favorite_songs.some(
-                  (item, index) => song.id === item.id
-                ) ? (
+                {user.favorite_songs.some((item) => song.id === item.id) ? (
                   <FavoritedIcon
                     onClick={() => {
                       setActionItemIndex(index);
@@ -250,7 +250,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                   />
                 ) : (
                   <FavoriteIcon
-                    onClick={(e) => {
+                    onClick={() => {
                       setActionItemIndex(index);
                       dispatch(
                         addFavoriteSongRequested({
