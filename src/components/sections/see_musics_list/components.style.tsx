@@ -139,6 +139,9 @@ export const PopUpContainer = styled.div<ThemeProps>`
 export const DeleteButton = styled(Button)`
   margin-top: 1rem;
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   border: 3px solid red;
   transition: all 0.5s;
 
@@ -151,6 +154,9 @@ export const DeleteButton = styled(Button)`
 export const UpdateButton = styled(Button)`
   background-color: transparent;
   border: 3px solid #d38106;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   transition: all 0.5s;
   &:hover {
     background-color: #d38106;
