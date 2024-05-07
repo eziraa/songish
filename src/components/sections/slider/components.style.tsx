@@ -16,6 +16,7 @@ export const Slide = styled.div`
   padding: 2rem;
   margin: 0 1rem;
   transition: transform 2s ease-out;
+  position: relative;
 `;
 
 export const SlidesContainer = styled.div`
