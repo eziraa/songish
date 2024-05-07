@@ -23,17 +23,25 @@ export const CardSide = styled.div`
 export const CardSideFront = styled(CardSide)<ThemeProps>`
   background-image: linear-gradient(to right, #561e1e7d, #24249267);
   display: flex;
-  align-items: flex-end;
+  flex-direction: row;
+  align-items: flex-start;
+  color: ${({ theme }) => theme.textSecondary};
+  padding: 20px;
+  padding-left: 40px;
+  height: 100%;
+  width: 100%;
 `;
 
 export const CardSideBack = styled(CardSide)`
   transform: rotateY(180deg);
   text-align: center;
-  height: 100%;
-  width: 100%;
-  color: ${({ theme }) => theme.textSecondary};
+  align-items: flex-start;
   text-transform: uppercase;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-image: linear-gradient(to right, #561e1e7d, #24249267);
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  padding-left: 40px;
 `;
 
 export const Card = styled.div`
