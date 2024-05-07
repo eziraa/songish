@@ -65,6 +65,9 @@ const SongSlice = createSlice({
       state.current_song_to_play = actions.payload.song;
       state.playing_music_list = actions.payload.song_list;
     },
+    setQuerySet: (state, actions: PayloadAction<SongResponse[]>) => {
+      state.query_set = actions.payload;
+    },
   },
 });
 
@@ -79,5 +82,6 @@ export const {
   deleteSongRequest,
   deleteSongDone,
   setCurrentSongToPlay,
+  setQuerySet,
 } = SongSlice.actions;
 export default SongSlice.reducer;
