@@ -252,35 +252,43 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                   />
                 )}
 
-                <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
-                {user.user.id === song.customer && (
-                  <div
-                    style={{
-                      position: "relative",
-                    }}
-                  >
-                    <VerticalDots
-                      onClick={() => {
-                        setPopUpIndex(index);
+                <div
+                  style={{
+                    minWidth: "5vw",
+                    display: "flex",
+                    gap: "1vw",
+                  }}
+                >
+                  <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
+                  {user.user.id === song.customer && (
+                    <div
+                      style={{
+                        position: "relative",
                       }}
-                    />
+                    >
+                      <VerticalDots
+                        onClick={() => {
+                          setPopUpIndex(index);
+                        }}
+                      />
 
-                    {index === popUpIndex && (
-                      <PopUpContainer className="pop">
-                        <CloseButton
-                          style={{ top: "0", right: "0", color: "black" }}
-                          onClick={() => setPopUpIndex(-1)}
-                        />
-                        <DeleteButton onClick={() => onDelete(song)}>
-                          Delete
-                        </DeleteButton>
-                        <UpdateButton onClick={() => onUpdate(song)}>
-                          Update
-                        </UpdateButton>
-                      </PopUpContainer>
-                    )}
-                  </div>
-                )}
+                      {index === popUpIndex && (
+                        <PopUpContainer className="pop">
+                          <CloseButton
+                            style={{ top: "0", right: "0", color: "black" }}
+                            onClick={() => setPopUpIndex(-1)}
+                          />
+                          <DeleteButton onClick={() => onDelete(song)}>
+                            Delete
+                          </DeleteButton>
+                          <UpdateButton onClick={() => onUpdate(song)}>
+                            Update
+                          </UpdateButton>
+                        </PopUpContainer>
+                      )}
+                    </div>
+                  )}
+                </div>
               </SongActions>
             </SongContainer>
           ))
