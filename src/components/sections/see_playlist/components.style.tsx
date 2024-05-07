@@ -39,7 +39,7 @@ export const PlaylistInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  align-items: center;
+  align-items: start;
   font-size: 20px;
   font-weight: bold;
   font-family: "Poppins", sans-serif;
@@ -65,4 +65,22 @@ export const DeleteBtn = styled(OutLinedButton)`
   &:hover {
     background-color: red;
   }
+`;
+
+export const Paragraph = styled.p`
+  font-size: 18px;
+  line-height: 1.6;
+  width: 30vw;
+  color: transparent;
+  background-image: linear-gradient(
+    to right,
+
+    #ffa600,
+    #f92cdb,
+    #fdfcfe,
+    #ffa600,
+    #f92cdb,
+    #fefdfe
+  ); /* Set the background color */
+  background-clip: text; /* Set the text color to transparent */
 `;
