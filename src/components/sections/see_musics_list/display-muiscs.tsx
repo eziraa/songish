@@ -164,6 +164,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                 ) : (
                   <Pause
                     onClick={async () => {
+                      songs.current_song.pause();
                       await dispatch(
                         setCurrentSongToPlay({
                           song: undefined,
