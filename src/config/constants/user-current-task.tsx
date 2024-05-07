@@ -18,3 +18,4 @@ export const REMOVE_SONG_FROM_PLAYLIST = "remove_song_from_playlist";
 export const SEARCH_SONG_FROM_PLAYLIST = "search_song_from_playlist";
 export const PLAY_MUSIC = "play_music";
 export const SEARCH_SONG_FROM_ALL = "search_song_from_all";
+export const SEARCH_SONG_FROM_YOUR_SONGS = "search_song_from_your_songs";
