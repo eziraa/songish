@@ -2,6 +2,8 @@ import { useState } from "react";
 import {
   SEARCH_SONG_FROM_ALL,
   SEARCH_SONG_FROM_PLAYLIST,
+  SEARCH_SONG_FROM_YOUR_SONGS,
+  SEE_MY_SONGS,
   SEE_PLAYLIST_SONGS,
 } from "../../../config/constants/user-current-task";
 import { setQuerySet } from "../../../store/song/songSlice";
@@ -31,6 +33,8 @@ const SearchComponent = () => {
     let song_list =
       user.majorTask === SEARCH_SONG_FROM_PLAYLIST
         ? playlists.songs
+        : user.majorTask === SEARCH_SONG_FROM_YOUR_SONGS
+        ? user.user.my_songs
         : songs.songs;
     dispatch(
       setQuerySet(
@@ -53,18 +57,27 @@ const SearchComponent = () => {
         <SearchField
           type="text"
           placeholder={"Search want you want"}
-          onChange={handleSearchQueryChange}
           onFocus={() => {
             dispatch(
+              setQuerySet(
+                user.majorTask === SEE_PLAYLIST_SONGS
+                  ? playlists.songs
+                  : user.majorTask === SEE_MY_SONGS
+                  ? user.user.my_songs
+                  : songs.songs
+              )
+            );
+            dispatch(
               setMajorTask(
-                user.majorTask?.startsWith("search")
-                  ? user.majorTask
-                  : user.majorTask === SEE_PLAYLIST_SONGS
+                user.majorTask === SEE_PLAYLIST_SONGS
                   ? SEARCH_SONG_FROM_PLAYLIST
+                  : user.majorTask === SEE_MY_SONGS
+                  ? SEARCH_SONG_FROM_YOUR_SONGS
                   : SEARCH_SONG_FROM_ALL
               )
             );
           }}
+          onChange={handleSearchQueryChange}
         />
         <SearchIcon />
       </SearchContainer>
