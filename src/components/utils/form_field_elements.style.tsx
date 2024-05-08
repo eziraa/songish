@@ -33,6 +33,7 @@ export const DescriptionText = styled.p<ThemeProps>`
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   text-align: start;
+  padding-top: 20px;
 `;
 
 export const Form = styled.form`

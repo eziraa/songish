@@ -30,6 +30,7 @@ export const FooterText = styled.p<ThemeProps>`
   line-height: 1.5;
   letter-spacing: 1px;
   text-align: start;
+  width: 60%;
 `;
 
 export const CopyRight = styled(FooterText)`

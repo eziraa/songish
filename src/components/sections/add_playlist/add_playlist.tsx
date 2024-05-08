@@ -17,6 +17,7 @@ import { AddPlaylistContainer } from "./components.style";
 import { addPlaylistRequested } from "../../../store/playlist/playlistSlice";
 import { CREATE_PLAYLIST } from "../../../config/constants/user-current-task";
 import { FormError } from "../sign_up/components.style";
+import { UnderlinedTitle } from "../../utils/titles";
 
 const PlaylistForm = () => {
   const user = useAppSelector((state) => state.user);
@@ -40,7 +41,7 @@ const PlaylistForm = () => {
     <Modal>
       <AddPlaylistContainer>
         <Description>
-          <Title>{"Create Your Playlist"}</Title>
+          <UnderlinedTitle>{"Create Your Playlist"}</UnderlinedTitle>
           <DescriptionText>
             Create your own playlist and add songs to it
           </DescriptionText>

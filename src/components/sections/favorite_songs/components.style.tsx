@@ -22,6 +22,7 @@ export const FavSongIcon = styled(TbMusicHeart)`
 export const FavoriteContainer = styled(RecentContainer)``;
 
 export const FavParagraph = styled(Paragraph)`
+  text-align: start;
   background-image: linear-gradient(
     to top right,
 
