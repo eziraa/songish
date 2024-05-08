@@ -9,6 +9,7 @@ export const PlaylistContainer = styled.div`
   gap: 0.5rem;
   padding: 10px;
   width: 100%;
+  padding: 2rem;
 `;
 
 export const AboutPlaylist = styled.div`
