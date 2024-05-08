@@ -17,18 +17,23 @@ export const Title = styled.h1<ThemeProps>`
   text-align: center;
   font-weight: 700;
   transform: skew(60deg);
+  margin-bottom: 6.36rem;
+  width: 19.5vw;
+  padding: 1rem 0;
+  margin-left: -10rem;
+  background-color: ${({ theme }) => theme.aboutBackground};
 `;
 export const TitleBackGround = styled.div<ThemeProps>`
-  width: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.aboutBackground};
   transform: skew(-60deg);
   border-radius: 0 20px;
-  width: 45vw;
+  width: 20vw;
   margin: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
+  height: 0.5rem;
 `;
 export const DescriptionContainer = styled.div`
   margin: 2rem;
