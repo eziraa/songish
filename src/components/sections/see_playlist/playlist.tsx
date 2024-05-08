@@ -5,7 +5,7 @@ import { ThemeProps } from "../../../styles/theme-interface";
 import { PlaylistIcon } from "./components.style";
 import React from "react";
 import { setMinorTask } from "../../../store/user/userSlice";
-import { useAppDispatch } from "../../../utils/customHook";
+import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
   CloseButton,
   ModalContent,
@@ -13,6 +13,7 @@ import {
 } from "../modal/components.style";
 import { CgPlayListAdd } from "react-icons/cg";
 import { MdPlaylistAddCheck } from "react-icons/md";
+import { addSongToPlaylistRequested } from "../../../store/playlist/playlistSlice";
 interface ModalProps {
   children: React.ReactNode;
   length: number;
@@ -23,7 +24,9 @@ const Modal = ({ children, length }: ModalProps) => {
     <ModalOverlay onClick={() => dispatch(setMinorTask(undefined))}>
       <ModalContent
         onClick={(e) => e.stopPropagation()}
-        style={{ width: Math.ceil(Math.sqrt(length)) * 270 + "px" }}
+        style={{
+          width: Math.ceil(Math.sqrt(length)) * 270 + "px",
+        }}
       >
         <CloseButton onClick={() => dispatch(setMinorTask(undefined))} />
         {children}
@@ -110,36 +113,53 @@ export const PlaylistContainer = styled.div`
   color: ${({ theme }) => theme.textPrimary};
 `;
 
-const PlaylistCard = ({ playlist }: { playlist: PlaylistResponse }) => (
-  <CardContainer>
-    <Card>
-      <PlaylistName>{playlist.name}</PlaylistName>
-      <TimeCreated>{timeAgo(playlist.created_at)}</TimeCreated>
-    </Card>
-    <PlaylistIcon size={60} />
-    <Overlay className="overlay">
-      Add to this playlist
-      <MdPlaylistAddCheck size={40} />
-    </Overlay>
-  </CardContainer>
-);
-
-const Playlists = ({ playlists }: { playlists: PlaylistResponse[] }) => (
-  <Modal length={playlists.length}>
-    {playlists.map((playlist) => (
-      <PlaylistCard key={playlist.id} playlist={playlist} />
-    ))}
+const PlaylistCard = ({ playlist }: { playlist: PlaylistResponse }) => {
+  const dispatcher = useAppDispatch();
+  const songs = useAppSelector((state) => state.songs);
+  return (
     <CardContainer>
       <Card>
-        <PlaylistName> Create New Playlist</PlaylistName>
+        <PlaylistName>{playlist.name}</PlaylistName>
+        <TimeCreated>{timeAgo(playlist.created_at)}</TimeCreated>
       </Card>
-      <CgPlayListAdd size={60} />
-      <Overlay className="overlay">
-        Create New Playlist
-        <CgPlayListAdd size={40} />
+      <PlaylistIcon size={60} />
+      <Overlay
+        className="overlay"
+        onClick={() => {
+          dispatcher(
+            addSongToPlaylistRequested({
+              playlist_id: playlist.id,
+              song_id: songs.current_song_for_action?.id || "",
+            })
+          );
+          dispatcher(setMinorTask(undefined));
+        }}
+      >
+        Add to this playlist
+        <MdPlaylistAddCheck size={40} />
       </Overlay>
     </CardContainer>
-  </Modal>
-);
+  );
+};
+
+const Playlists = ({ playlists }: { playlists: PlaylistResponse[] }) => {
+  return (
+    <Modal length={playlists.length}>
+      {playlists.map((playlist) => (
+        <PlaylistCard key={playlist.id} playlist={playlist} />
+      ))}
+      <CardContainer>
+        <Card>
+          <PlaylistName> Create New Playlist</PlaylistName>
+        </Card>
+        <CgPlayListAdd size={60} />
+        <Overlay className="overlay">
+          Create New Playlist
+          <CgPlayListAdd size={40} />
+        </Overlay>
+      </CardContainer>
+    </Modal>
+  );
+};
 
 export default Playlists;
