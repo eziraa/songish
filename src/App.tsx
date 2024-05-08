@@ -7,6 +7,7 @@ import { GlobalStyles } from "./globalstyles/global-styles.style";
 import { Global } from "@emotion/react";
 import { Provider } from "react-redux";
 import { store } from "./utils";
+import "./App.css";
 
 const App = () => {
   const [theme, toggleTheme] = useTheme(); // Update the destructuring assignment
