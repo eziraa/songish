@@ -80,3 +80,26 @@ export const ContactBody = styled.div`
   display: flex;
   align-items: center;
 `;
+
+
+
+export const ContactList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;
+
+export const ContactItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+`;

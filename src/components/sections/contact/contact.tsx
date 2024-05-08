@@ -1,3 +1,4 @@
+import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa";
 import {
   DescriptionText,
   FormContainer,
@@ -9,7 +10,13 @@ import {
   Form,
 } from "../../utils/form_field_elements.style";
 import { Description } from "../about/components.style";
-import { ContactBody, ContactContainer, Title } from "./components.style";
+import {
+  ContactBody,
+  ContactContainer,
+  ContactItem,
+  ContactList,
+  Title,
+} from "./components.style";
 
 const ContactPage = () => {
   return (
@@ -22,6 +29,32 @@ const ContactPage = () => {
             free to drop me a message using the form below. I'd love to hear
             from you!
           </DescriptionText>
+          <ContactList>
+            <ContactItem style={{ color: "#f66140" }}>
+              <a href="mailto:ezirayallew@gmail.com">
+                <FaEnvelope size={24} />
+                Email
+              </a>
+            </ContactItem>
+            <ContactItem style={{ color: "#0765b1" }}>
+              <a href="https://t.me/eza_na_wi">
+                <FaTelegram size={24} />
+                Telegram
+              </a>
+            </ContactItem>
+            <ContactItem style={{ color: "#099cfd" }}>
+              <a href="https://www.linkedin.com/in/ezira-yallew-1a25292b7/">
+                <FaLinkedin size={24} />
+                LinkedIn
+              </a>
+            </ContactItem>
+            <ContactItem>
+              <a href="https://github.com/eziraa">
+                <FaGithub size={24} />
+                GitHub
+              </a>
+            </ContactItem>
+          </ContactList>
         </Description>
         <FormContainer>
           <Form>
