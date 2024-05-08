@@ -1,5 +1,9 @@
 import { Spinner, SpinnerContainer } from "./components.style";
 
-const LoadingSpinner = () => <SpinnerContainer></SpinnerContainer>;
+const LoadingSpinner = () => (
+  <SpinnerContainer>
+    <Spinner></Spinner>
+  </SpinnerContainer>
+);
 
 export default LoadingSpinner;
