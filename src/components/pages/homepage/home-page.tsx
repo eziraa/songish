@@ -69,7 +69,13 @@ const HomePage = () => {
           </Header>
           <LeftMenu smoothScroll={handleSmoothScroll} />
           <Main>
-            <div id="content" style={{ marginBottom: "100px" }}></div>
+            <div
+              id="content"
+              style={{
+                position: "absolute",
+                top: "-25vh",
+              }}
+            ></div>
             <PlaylistCard />
             {user.minorTask === SELECT_PLAYLIST_TO_ADD_SONG &&
               !playlists.loading && (
