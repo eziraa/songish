@@ -30,12 +30,18 @@ export const DescriptionText = styled.p<ThemeProps>`
   font-size: 18px;
   color: ${({ theme }) => theme.textPrimary};
   line-height: 1.6;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  text-align: start;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 20vw;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-align: start;
 `;
 
 export const FormGroup = styled.div`
@@ -63,7 +69,7 @@ export const Button = styled.button<ThemeProps>`
   background-color: ${({ theme }) => theme.formButtonColor};
   border: none;
   border-radius: 5px;
-  color: ${({ theme }) => theme.textPrimary};
+  color: white;
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
