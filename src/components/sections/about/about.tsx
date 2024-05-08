@@ -20,12 +20,12 @@ const AboutPage = () => {
         <Title>About me</Title>
       </TitleBackGround>
       <DescriptionContainer>
-        <TitleSmall>What is it? `</TitleSmall>
+        <Image
+          style={{ borderRadius: "50%" }}
+          src="src/assets/images/ezira.jpg"
+        />
         <Description>
-          <Image
-            style={{ borderRadius: "50%" }}
-            src="src/assets/images/ezira.jpg"
-          />
+          <TitleSmall>Who? </TitleSmall>
           <Paragraph>
             Hello! I'm a 4th year Software Engineering student at Bahir Dar
             University. I'm currently exploring full-stack development and have
