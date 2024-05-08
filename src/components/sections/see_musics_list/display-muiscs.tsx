@@ -47,10 +47,12 @@ import {
   SEE_ALL_SONGS,
   SEE_MY_SONGS,
   SEE_PLAYLIST_SONGS,
+  SELECT_PLAYLIST_TO_ADD_SONG,
   UPDATE_SONG,
 } from "../../../config/constants/user-current-task";
 import {
   addSongToPlaylistRequested,
+  loadPlaylistsRequested,
   removeSongFromPlaylistRequested,
 } from "../../../store/playlist/playlistSlice";
 import { ClipLoader } from "react-spinners";
@@ -58,7 +60,6 @@ import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { CgPlayListAdd, CgPlayListRemove } from "react-icons/cg";
 import { PlayListBtn } from "../see_playlist/components.style";
-import { TimeCreated } from "../favorite_songs/components.style";
 import { timeAgo } from "../../utils/time_ago";
 
 interface PopUPProps {
@@ -112,6 +113,12 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
         song_id: song.id,
       })
     );
+  };
+  const addSongToPlaylist = (song: SongResponse) => {
+    dispatch(setCurrentSongForAction(song));
+    dispatch(setMinorTask(SELECT_PLAYLIST_TO_ADD_SONG));
+    dispatch(loadPlaylistsRequested(user.user.id));
+    setPopUpIndex(-1);
   };
 
   if (
@@ -295,6 +302,10 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                           <UpdateButton onClick={() => onUpdate(song)}>
                             <MdModeEditOutline size={20} />
                             Edit
+                          </UpdateButton>
+                          <UpdateButton onClick={() => addSongToPlaylist(song)}>
+                            <CgPlayListAdd size={20} />
+                            Add
                           </UpdateButton>
                         </PopUpContainer>
                       )}
