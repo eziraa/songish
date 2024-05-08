@@ -10,6 +10,7 @@ export const ContactContainer = styled.div`
   align-items: center;
   gap: 4rem;
   width: 80%;
+  margin-bottom: 20vh;
 `;
 
 export const Title = styled.h2<ThemeProps>`

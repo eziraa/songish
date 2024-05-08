@@ -64,11 +64,17 @@ const HomePage = () => {
           }}
         >
           <Header>
-            <SearchComponent />
+            {user.user.id !== "" && <SearchComponent />}
             <NavBar smoothScroll={handleSmoothScroll} />
           </Header>
-          <LeftMenu smoothScroll={handleSmoothScroll} />
-          <Main>
+          {user.user.id !== "" && (
+            <LeftMenu smoothScroll={handleSmoothScroll} />
+          )}
+          <Main
+            style={{
+              left: user.user.id === "" ? "10vw" : "15vw",
+            }}
+          >
             <div
               id="content"
               style={{

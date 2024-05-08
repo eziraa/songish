@@ -12,9 +12,9 @@ export const Main = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
-  padding: 0 1rem;
   left: 15vw;
   top: 12vh;
+  right: 0;
   width: 80%;
   gap: 2rem;
   height: auto;

@@ -9,10 +9,15 @@ export const FooterContainer = styled.div<ThemeProps>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-left: -10rem;
+  margin-left: -9.7rem;
   margin-bottom: -2rem;
   width: 100vw;
   padding: 1rem 5rem;
+  position: absolute;
+  bottom: 0;
+  align-items: center;
+  right: 0;
+  left: 0;
   background-color: ${({ theme }) => theme.backgroundSecondary};
 `;
 
