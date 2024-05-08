@@ -26,6 +26,7 @@ import { PlayListBtn } from "../see_playlist/components.style";
 import { GiSpeaker } from "react-icons/gi";
 import { MdFavorite } from "react-icons/md";
 import { timeAgo } from "../../utils/time_ago";
+import { UnderlinedTitle } from "../../utils/titles";
 
 export const FavoriteSongs = () => {
   const user = useAppSelector((state) => state.user);
@@ -78,7 +79,7 @@ export const FavoriteSongs = () => {
   }
   return (
     <FavoriteContainer>
-      <H0>Your favorite songs</H0>
+      <UnderlinedTitle>Your favorite songs</UnderlinedTitle>
       <SliderBody>
         {hasPrev && <BackIcon onClick={() => prevSlide()} />}
         <SlidesContainer>
