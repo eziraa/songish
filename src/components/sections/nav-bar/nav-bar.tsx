@@ -17,6 +17,7 @@ const NavBar = ({ smoothScroll }: NavBarProps) => {
         { name: "Login", id: "log_in" },
         { name: "Sign up", id: "sign_up" },
       ].map((nav, index) => {
+        if (user.user.id !== "" && index === 2) return null;
         return (
           <UpperNavBarItem
             key={index}
