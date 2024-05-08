@@ -1,5 +1,9 @@
-import styled from "styled-components";
-import { FooterContainer, FooterText, FooterLink } from "./components.style";
+import {
+  FooterContainer,
+  FooterText,
+  FooterLink,
+  CopyRight,
+} from "./components.style";
 import {
   ThemeContext,
   ThemeContextType,
@@ -19,11 +23,10 @@ const Footer = () => {
         through every beat of life's journey. Keep grooving and never stop
         listening!
       </FooterText>
-      <FooterText theme={theme}>
-        © {new Date().getFullYear()} EzAddis. All rights reserved. | Designed by
-        {"Ezira Tigab "}
-        <FooterLink href="">Ezira Tigab</FooterLink>
-      </FooterText>
+      <CopyRight theme={theme}>
+        © {new Date().getFullYear()} EzAddis All rights reserved. | Designed by
+        <FooterLink href=""> Ezira Tigab</FooterLink>
+      </CopyRight>
     </FooterContainer>
   );
 };
