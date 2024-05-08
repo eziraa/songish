@@ -33,6 +33,10 @@ export const TitleBackGround = styled.div<ThemeProps>`
 export const DescriptionContainer = styled.div`
   margin: 2rem;
   padding-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rem;
 `;
 export const Description = styled.div<ThemeProps>`
   font-size: 18px;
@@ -41,16 +45,20 @@ export const Description = styled.div<ThemeProps>`
   margin: 2rem;
   padding: 1rem;
   display: flex;
-  gap: 4rem;
-  flex-direction: row;
-  align-items: center;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: start;
 `;
 
 export const Paragraph = styled.p<ThemeProps>`
   font-size: 18px;
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.textSecondary};
   line-height: 1.6;
   width: 30vw;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  text-align: start;
+  letter-spacing: 1px;
 `;
 
 export const FeatureList = styled.ul`
@@ -69,6 +77,7 @@ export const FeatureItem = styled.li<ThemeProps>`
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   margin: 1.5rem;
   width: 25vw;
 `;
@@ -83,8 +92,24 @@ export const FeatureItemBody = styled.div`
 `;
 export const TitleSmall = styled.h2<ThemeProps>`
   font-size: 2rem;
-  color: ${({ theme }) => theme.textPrimary};
+  /* color: ${({ theme }) => theme.textPrimary}; */
+  color: ${({ theme }) => theme.titleColorPrimary};
   font-weight: 700;
+  width: fit-content;
+  position: relative;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    bottom: -10%;
+    left: 0;
+    background-image: linear-gradient(
+      to right,
+      ${({ theme }) => theme.formButtonColor},
+      ${({ theme }) => theme.backgroundPrimary}
+    );
+  }
 `;
 
 export const Image = styled.img`
