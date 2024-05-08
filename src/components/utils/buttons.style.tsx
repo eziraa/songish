@@ -9,7 +9,9 @@ export const OutLinedButton = styled.button<ThemeProps>`
   font-size: 1rem;
   font-weight: 600;
   font-family: monospace;
-
+  display: flex;
+  align-items: center;
+  gap: 5px;
   &:hover {
     background-color: ${({ theme }) => theme.outLinedBtnColor};
     border: 2px solid ${({ theme }) => theme.outLinedBtnColor};
