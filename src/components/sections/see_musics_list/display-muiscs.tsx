@@ -114,10 +114,10 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
       })
     );
   };
-  const addSongToPlaylist = (song: SongResponse) => {
-    dispatch(setCurrentSongForAction(song));
-    dispatch(setMinorTask(SELECT_PLAYLIST_TO_ADD_SONG));
-    dispatch(loadPlaylistsRequested(user.user.id));
+  const addSongToPlaylist = async (song: SongResponse) => {
+    await dispatch(loadPlaylistsRequested(user.user.id));
+    await dispatch(setCurrentSongForAction(song));
+    await dispatch(setMinorTask(SELECT_PLAYLIST_TO_ADD_SONG));
     setPopUpIndex(-1);
   };
 
