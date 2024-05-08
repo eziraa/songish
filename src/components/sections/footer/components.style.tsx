@@ -13,7 +13,9 @@ export const FooterContainer = styled.div<ThemeProps>`
   margin-bottom: -2rem;
   width: 100.1vw;
   padding: 1rem 5rem;
+  padding-top: 3rem;
   position: absolute;
+  height: 25vh;
   bottom: 0;
   align-items: center;
   background-color: ${({ theme }) => theme.backgroundSecondary};

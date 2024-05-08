@@ -27,12 +27,12 @@ const NotificationSlice = createSlice({
       state.desc = action.payload.desc;
       state.duration = action.payload.duration;
     },
-    hideNotification: (state, action: PayloadAction<NotificationState>) => {
-      state.color = action.payload.color;
-      state.status = action.payload.status;
-      state.title = action.payload.title;
-      state.desc = action.payload.desc;
-      state.duration = action.payload.duration;
+    hideNotification: (state) => {
+      state.status = false;
+      state.color = "";
+      state.title = "";
+      state.desc = "";
+      state.duration = 0;
     },
   },
 });

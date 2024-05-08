@@ -3,11 +3,12 @@ import { IoAlbumsSharp, IoHomeSharp } from "react-icons/io5";
 import { CgPlayListAdd } from "react-icons/cg";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineReplay10, MdFavorite } from "react-icons/md";
-import { RiPlayListFill } from "react-icons/ri";
+import { RiLogoutCircleLine, RiPlayListFill } from "react-icons/ri";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
   loadMyFavoriteSongsRequested,
   loadMySongsRequested,
+  logout,
   setMajorTask,
   setMinorTask,
 } from "../../../store/user/userSlice";
@@ -102,12 +103,8 @@ const LeftMenu = ({ smoothScroll }: MenuBarProps) => {
           <CgPlayListAdd size={20} />
           Add Playlist
         </MenuBarItem>
-        <MenuBarItem
-          style={{
-            color: "var(--color-primary-blue)",
-          }}
-        >
-          <CgPlayListAdd size={20} />
+        <MenuBarItem onClick={() => dispatcher(logout())}>
+          <RiLogoutCircleLine size={20} />
           Logout
         </MenuBarItem>
       </MenuBar>

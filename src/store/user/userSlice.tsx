@@ -50,6 +50,7 @@ const UserSlice = createSlice({
     setMajorTask: (state, actions: PayloadAction<string | undefined>) => {
       state.majorTask = actions.payload;
     },
+
     addFavoriteSongRequested: (
       state,
       action: PayloadAction<AddFavoriteSongsParams>
@@ -101,6 +102,7 @@ const UserSlice = createSlice({
       state.loading = false;
       state.user.my_songs = action.payload;
     },
+    logout: () => InitialUserState,
   },
 });
 
@@ -118,6 +120,7 @@ export const {
   removeSongFromMyFavoriteDone,
   loadMySongsRequested,
   loadMySongsDone,
+  logout,
 } = UserSlice.actions;
 export default UserSlice.reducer;
 

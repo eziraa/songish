@@ -32,13 +32,15 @@ function* SignUp(action: PayloadAction<SignUpParameters>) {
       })
     );
   } catch (e) {
-    setNotification({
-      color: "green",
-      status: true,
-      title: "User sign up in",
-      desc: "Cannot register you",
-      duration: 3,
-    });
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "User sign up in",
+        desc: "Cannot register you",
+        duration: 3,
+      })
+    );
   }
 }
 export function* watchSignup() {
@@ -116,15 +118,17 @@ function* loadMyFavoriteSongs(action: PayloadAction<GetMyFavoriteParams>) {
       UserAPI.getMyFavoriteSongs,
       action.payload
     );
-    setNotification({
-      color: "red",
-      status: true,
-      title: "Loading your favorite songs",
-      desc: "Your favorite songs loaded successfully",
-      duration: 3,
-    });
 
     yield put(loadMyFavoriteSongsDone(songs));
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Loading your favorite songs",
+        desc: "Your favorite songs loaded successfully",
+        duration: 3,
+      })
+    );
   } catch (error) {
     yield put(
       setNotification({
@@ -185,15 +189,17 @@ function* loadMySongs(action: PayloadAction<GetMyFavoriteParams>) {
       UserAPI.getMySongs,
       action.payload
     );
-    setNotification({
-      color: "red",
-      status: true,
-      title: "Loading your  songs",
-      desc: "Your  songs loaded successfully",
-      duration: 3,
-    });
 
     yield put(loadMySongsDone(songs));
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Loading your  songs",
+        desc: "Your  songs loaded successfully",
+        duration: 3,
+      })
+    );
   } catch (error) {
     yield put(
       setNotification({
