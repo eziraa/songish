@@ -32,6 +32,7 @@ import { CgPlayListAdd } from "react-icons/cg";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TimeCreated } from "../favorite_songs/components.style";
 import { timeAgo } from "../../utils/time_ago";
+import { UnderlinedTitle } from "../../utils/titles";
 
 export const PlaylistCard = () => {
   const playlists = useAppSelector((state) => state.playlists);
@@ -92,7 +93,7 @@ export const PlaylistCard = () => {
 
   return (
     <PlaylistContainer>
-      <H0>Your PlayList</H0>
+      <UnderlinedTitle>Your PlayList</UnderlinedTitle>
       <SliderBody>
         {hasPrev && <BackIcon onClick={() => prevSlide()} />}
         <SlidesContainer>
