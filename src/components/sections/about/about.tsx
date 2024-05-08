@@ -1,9 +1,9 @@
+import { UnderlinedTitle } from "../../utils/titles";
 import {
   AboutContainer,
   TitleBackGround,
   Title,
   DescriptionContainer,
-  TitleSmall,
   Description,
   Paragraph,
   FeatureList,
@@ -25,7 +25,7 @@ const AboutPage = () => {
           src="src/assets/images/ezira.jpg"
         />
         <Description>
-          <TitleSmall>Who? </TitleSmall>
+          <UnderlinedTitle>Who? </UnderlinedTitle>
           <Paragraph>
             Hello! I'm a 4th year Software Engineering student at Bahir Dar
             University. I'm currently exploring full-stack development and have
@@ -36,7 +36,7 @@ const AboutPage = () => {
       <FeatureList>
         <FeatureItemBody>
           <FeatureItem>
-            <TitleSmall>Skills</TitleSmall>
+            <UnderlinedTitle>Skills</UnderlinedTitle>
             <Paragraph>
               I have experience with a variety of programming languages
               including C++, JavaScript, Java, and Python. I'm also familiar
@@ -50,7 +50,7 @@ const AboutPage = () => {
           <ImageSong></ImageSong>
 
           <FeatureItem>
-            <TitleSmall>About the app</TitleSmall>
+            <UnderlinedTitle>About the app</UnderlinedTitle>
             <Paragraph>
               This song app is a testament to my learning journey. It's built
               using React for the frontend, Django for the backend, and Styled

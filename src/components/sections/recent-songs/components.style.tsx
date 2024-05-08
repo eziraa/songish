@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../../styles/theme-interface";
 import { GiMusicalNotes } from "react-icons/gi";
-import { H0 } from "../../utils/heading.style";
+import { UnderlinedTitle } from "../../utils/titles";
 
 export const RecentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
   gap: 0.5rem;
-  padding: 10px;
+  padding: 3rem;
   width: 100%;
 `;
 
@@ -32,7 +32,7 @@ export const SongsIcon = styled(GiMusicalNotes)`
   color: ${({ theme }) => theme.textSecondary};
 `;
 
-export const IconisedTitle = styled(H0)`
+export const IconisedTitle = styled(UnderlinedTitle)`
   display: flex;
   align-items: center;
   gap: 0.5rem;

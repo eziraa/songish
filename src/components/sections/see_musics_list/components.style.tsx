@@ -7,6 +7,12 @@ import { ThemeProps } from "../../../styles/theme-interface";
 import { styled } from "styled-components";
 import { Title } from "../recent-songs/components.style";
 import { BiPause } from "react-icons/bi";
+export const SongDisplayer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
 
 export const SongContainer = styled.div<ThemeProps>`
   display: flex;

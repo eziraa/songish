@@ -12,13 +12,13 @@ import {
   SongAlbum,
   SongArtist,
   SongContainer,
+  SongDisplayer,
   SongDuration,
   SongHeader,
   SongInfo,
   SongInfoContainer,
   SongMetaData,
   SongTitle,
-  SongsListTitle,
   SongsNotFound,
   UpdateButton,
   VerticalDots,
@@ -61,6 +61,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { CgPlayListAdd, CgPlayListRemove } from "react-icons/cg";
 import { PlayListBtn } from "../see_playlist/components.style";
 import { timeAgo } from "../../utils/time_ago";
+import { UnderlinedTitle } from "../../utils/titles";
 
 interface PopUPProps {
   popUpIndex: number;
@@ -137,8 +138,8 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
     return <LoadingSpinner />;
   }
   return (
-    <div>
-      <SongsListTitle>
+    <SongDisplayer>
+      <UnderlinedTitle>
         {user.majorTask == SEE_ALL_SONGS && "All songs "}{" "}
         {user.majorTask == SEE_PLAYLIST_SONGS && "All songs from this playlist"}{" "}
         {[
@@ -147,7 +148,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
           SEARCH_SONG_FROM_YOUR_SONGS,
         ].includes(user.majorTask ?? "") && " Songs Based on your query"}{" "}
         {user.majorTask == SEE_MY_SONGS && "All songs you uploaded"}{" "}
-      </SongsListTitle>
+      </UnderlinedTitle>
       <ScrollBar
         style={{
           position: "relative",
@@ -317,7 +318,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
           ))
         )}
       </ScrollBar>
-    </div>
+    </SongDisplayer>
   );
 }
 
