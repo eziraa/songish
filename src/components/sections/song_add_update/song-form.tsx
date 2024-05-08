@@ -23,6 +23,7 @@ import {
 } from "../../utils/form_field_elements.style";
 import { FormError } from "../sign_up/components.style";
 import SongsAPI from "../../../services/songAPI";
+import { UnderlinedTitle } from "../../utils/titles";
 
 const SongForm = () => {
   const user = useAppSelector((state) => state.user);
@@ -64,11 +65,11 @@ const SongForm = () => {
     <Modal>
       <AddSongContainer>
         <Description>
-          <Title>
+          <UnderlinedTitle>
             {user.minorTask === UPLOAD_SONG
               ? "Add Yours"
               : "Update Yours musics"}
-          </Title>
+          </UnderlinedTitle>
           <DescriptionText>
             {user.minorTask === UPLOAD_SONG
               ? "Add your  local music and listen it on cool website"
