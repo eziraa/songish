@@ -14,6 +14,7 @@ import {
 import { CgPlayListAdd } from "react-icons/cg";
 import { MdPlaylistAddCheck } from "react-icons/md";
 import { addSongToPlaylistRequested } from "../../../store/playlist/playlistSlice";
+import { CREATE_PLAYLIST } from "../../../config/constants/user-current-task";
 interface ModalProps {
   children: React.ReactNode;
   length: number;
@@ -143,6 +144,7 @@ const PlaylistCard = ({ playlist }: { playlist: PlaylistResponse }) => {
 };
 
 const Playlists = ({ playlists }: { playlists: PlaylistResponse[] }) => {
+  const dispatcher = useAppDispatch();
   return (
     <Modal length={playlists.length}>
       {playlists.map((playlist) => (
@@ -153,7 +155,13 @@ const Playlists = ({ playlists }: { playlists: PlaylistResponse[] }) => {
           <PlaylistName> Create New Playlist</PlaylistName>
         </Card>
         <CgPlayListAdd size={60} />
-        <Overlay className="overlay">
+        <Overlay
+          className="overlay"
+          onClick={(e) => {
+            e.preventDefault();
+            dispatcher(setMinorTask(CREATE_PLAYLIST));
+          }}
+        >
           Create New Playlist
           <CgPlayListAdd size={40} />
         </Overlay>
