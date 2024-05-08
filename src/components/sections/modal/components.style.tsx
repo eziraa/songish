@@ -29,7 +29,9 @@ export const ModalContent = styled.div`
   border-radius: 5px;
   z-index: 400;
   width: fit-content;
+  display: flex;
   position: relative;
+  flex-wrap: wrap;
   animation: ${beVisible} 0.5s ease-in-out;
 `;
 export const CloseButton = styled(CgClose)`
