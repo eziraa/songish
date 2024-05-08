@@ -26,7 +26,7 @@ const Modal = ({ children, length }: ModalProps) => {
       <ModalContent
         onClick={(e) => e.stopPropagation()}
         style={{
-          width: Math.ceil(Math.sqrt(length)) * 270 + "px",
+          width: Math.ceil(Math.sqrt(length === 0 ? 1 : length)) * 270 + "px",
         }}
       >
         <CloseButton onClick={() => dispatch(setMinorTask(undefined))} />
