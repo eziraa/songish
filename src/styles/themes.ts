@@ -23,6 +23,7 @@ export type Theme = {
   cardBackgroundColorPrimary: string;
   cardBackgroundColorSecondary: string;
   imageBackground: string;
+  footerTextColor: string;
 };
 
 export const lightTheme: Theme = {
@@ -35,7 +36,7 @@ export const lightTheme: Theme = {
   titleColorPrimary: '#483077',
   toggleBorder: '#FFF',
   headerColor: '#FFFFFF',
-  aboutBackground: '#068d7b',
+  aboutBackground: '#15EBCE',
   backgroundSecondaryHover: '#C2C0C2',
   formButtonColor: '#04376E',
   formBtnTextColor: '#FEFEFE',
@@ -50,6 +51,7 @@ export const lightTheme: Theme = {
   cardBackgroundColorPrimary: `#7D7DB3`,
   cardBackgroundColorSecondary: '#845858 ',
   imageBackground: '#D4D1D1B6',
+  footerTextColor: '#564F4F',
 }
 
 
@@ -60,10 +62,10 @@ export const darkTheme:Theme = {
   text: '#F4F4F5',
   textPrimary: '#ffffff',
   textSecondary: '#DDDDE4',
-  titleColorPrimary: '#483077',
+  titleColorPrimary: '#885AE4',
   toggleBorder: '#6B8096',
   headerColor: '#363537',
-  aboutBackground: '#068d7b',
+  aboutBackground: '#076F61',
   backgroundSecondaryHover: '#183855',
   formButtonColor: '#72787F',
   inputFieldColor: '#ccc',
@@ -78,5 +80,6 @@ export const darkTheme:Theme = {
   cardBackgroundColorPrimary: `#242492`,
   cardBackgroundColorSecondary: '#561e1e ',
   imageBackground: '#000000CC',
+  footerTextColor: '#C9B8B8',
 };
 
