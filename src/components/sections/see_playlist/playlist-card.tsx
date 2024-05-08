@@ -30,6 +30,8 @@ import { api } from "../../../services/api";
 import { BsMusicNoteList } from "react-icons/bs";
 import { CgPlayListAdd } from "react-icons/cg";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { TimeCreated } from "../favorite_songs/components.style";
+import { timeAgo } from "../../utils/time_ago";
 
 export const PlaylistCard = () => {
   const playlists = useAppSelector((state) => state.playlists);
@@ -188,6 +190,10 @@ export const PlaylistCard = () => {
                         </PlaylistInfo>
                         <PlaylistIcon />
                       </CardSideBack>
+                      <TimeCreated>
+                        {" "}
+                        {timeAgo(playlist.created_at)}{" "}
+                      </TimeCreated>
                     </Slide>
                   </div>
                 </Card>
