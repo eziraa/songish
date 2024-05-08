@@ -21,12 +21,20 @@ import {
 } from "../../../config/constants/user-current-task";
 import { loadSongsRequested } from "../../../store/song/songSlice";
 import { loadPlaylistsRequested } from "../../../store/playlist/playlistSlice";
+import { useContext, useState } from "react";
+import {
+  ThemeContext,
+  ThemeContextType,
+} from "../../../contexts/theme_context";
 interface MenuBarProps {
   smoothScroll: (id: string) => void;
 }
 const LeftMenu = ({ smoothScroll }: MenuBarProps) => {
   const dispatcher = useAppDispatch();
   const user = useAppSelector((state) => state.user);
+  const { theme } = useContext<ThemeContextType>(ThemeContext);
+
+  const [currMenuBar, setCurrentMenuBar] = useState(-1);
   return (
     <Menu>
       <MenuBar>
@@ -40,9 +48,17 @@ const LeftMenu = ({ smoothScroll }: MenuBarProps) => {
         ].map((item, index) => {
           return (
             <MenuBarItem
+              style={
+                index === currMenuBar
+                  ? {
+                      backgroundColor: theme.aboutBackground,
+                    }
+                  : {}
+              }
               onClick={(e) => {
                 e.preventDefault();
                 smoothScroll("content");
+                setCurrentMenuBar(index);
                 index == 1 && dispatcher(setMinorTask(UPLOAD_SONG));
                 if (index == 2) {
                   dispatcher(setMajorTask(SEE_ALL_SONGS));
