@@ -41,7 +41,9 @@ export const Description = styled.div<ThemeProps>`
   margin: 2rem;
   padding: 1rem;
   display: flex;
+  gap: 4rem;
   flex-direction: row;
+  align-items: center;
 `;
 
 export const Paragraph = styled.p<ThemeProps>`
@@ -64,18 +66,16 @@ export const FeatureItem = styled.li<ThemeProps>`
   margin-bottom: 10px;
   font-size: 16px;
   color: ${({ theme }) => theme.textPrimary};
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  margin: 2rem;
+  margin: 1.5rem;
   width: 25vw;
-  gap: 0.5rem;
 `;
 
 export const FeatureItemBody = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 1rem;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -91,4 +91,16 @@ export const Image = styled.img`
   height: 14rem;
   object-fit: cover;
   float: left;
+`;
+
+export const ImageSong = styled.div<ThemeProps>`
+  background-image: linear-gradient(
+      ${({ theme }) => theme.imageBackground},
+      ${({ theme }) => theme.imageBackground}
+    ),
+    url(src/assets/images/25.jpg);
+  background-size: cover;
+  height: 16rem;
+  width: 20rem;
+  margin-left: 2rem;
 `;
