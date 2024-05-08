@@ -16,6 +16,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { signUpSchema } from "../../../schema/user-auth/auth-schema";
 import { signUpRequest } from "../../../store/user/userSlice";
+import { UnderlinedTitle } from "../../utils/titles";
 
 const SignUpPage = () => {
   const user = useAppSelector((state) => state.user);
@@ -42,7 +43,7 @@ const SignUpPage = () => {
     <Modal>
       <SignUpContainer>
         <Description>
-          <Title>Join Us!</Title>
+          <UnderlinedTitle>Join Us!</UnderlinedTitle>
           <DescriptionText>
             Welcome to MyMusic! Sign up now to explore our vast collection of
             music and connect with other music enthusiasts from around the

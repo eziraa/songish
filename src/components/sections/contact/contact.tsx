@@ -1,3 +1,7 @@
+import { useState, useRef } from "react";
+
+import emailjs from "emailjs-com";
+
 import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa";
 import {
   DescriptionText,
@@ -17,8 +21,31 @@ import {
   ContactList,
   Title,
 } from "./components.style";
+import { Spinner } from "../spinner/components.style";
 
 const ContactPage = () => {
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const sendEmail = (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    emailjs
+      .sendForm(
+        "service_tfrx1er",
+        "template_rhoznur",
+        e.target,
+        "k3GlkvUNSNjbu-6bp"
+      )
+      .then(
+        (result) => {
+          setLoading(false);
+          formRef.current?.reset();
+        },
+        (error) => {
+          setLoading(false);
+        }
+      );
+  };
   return (
     <ContactContainer id="contact">
       <Title>Contact Us</Title>
@@ -57,20 +84,32 @@ const ContactPage = () => {
           </ContactList>
         </Description>
         <FormContainer>
-          <Form>
+          <Form ref={formRef} onSubmit={sendEmail}>
             <FormGroup>
               <Label htmlFor="name">Your Name</Label>
-              <Input type="text" id="name" />
+              <Input type="text" id="name" name="name" required />
             </FormGroup>
             <FormGroup>
               <Label htmlFor="email">Your Email</Label>
-              <Input type="email" id="email" />
+              <Input type="email" id="from_email" name="from_email" required />
             </FormGroup>
             <FormGroup>
               <Label htmlFor="message">Your Message</Label>
-              <TextArea id="message" rows="6" />
+              <TextArea id="message" name="message" rows="6" required />
             </FormGroup>
-            <Button type="submit">Send Message</Button>
+            <Button type="submit">
+              {loading ? (
+                <Spinner
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    display: "inline-block",
+                  }}
+                />
+              ) : (
+                "Send Message"
+              )}
+            </Button>
           </Form>
         </FormContainer>
       </ContactBody>

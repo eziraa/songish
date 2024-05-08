@@ -13,6 +13,7 @@ import {
 import { loginSchema } from "../../../schema/user-auth/auth-schema";
 import { loginRequest } from "../../../store/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
+import { UnderlinedTitle } from "../../utils/titles";
 
 const LoginPage = () => {
   const user = useAppSelector((state) => state.user);
@@ -29,19 +30,13 @@ const LoginPage = () => {
     },
   });
 
-  // useEffect(() => {
-  //   if (user.user) {
-  //     console.log("Logged in");
-  //     route("/home/");
-  //   }
-  // }, [user.user]);
   if (user.minorTask !== LOGIN) return;
 
   return (
     <Modal>
       <LoginPageContainer>
         <LoginFormContainer>
-          <Title style={{ color: "black" }}>Login</Title>
+          <UnderlinedTitle style={{ color: "black" }}>Login</UnderlinedTitle>
           <Form onSubmit={formHandler.handleSubmit}>
             <FormGroup>
               <Label htmlFor="email">Email</Label>
