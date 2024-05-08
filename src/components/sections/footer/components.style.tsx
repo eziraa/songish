@@ -11,13 +11,11 @@ export const FooterContainer = styled.div<ThemeProps>`
   gap: 1rem;
   margin-left: -9.7rem;
   margin-bottom: -2rem;
-  width: 100vw;
+  width: 100.1vw;
   padding: 1rem 5rem;
   position: absolute;
   bottom: 0;
   align-items: center;
-  right: 0;
-  left: 0;
   background-color: ${({ theme }) => theme.backgroundSecondary};
 `;
 

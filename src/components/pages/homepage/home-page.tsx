@@ -71,9 +71,13 @@ const HomePage = () => {
             <LeftMenu smoothScroll={handleSmoothScroll} />
           )}
           <Main
-            style={{
-              left: user.user.id === "" ? "10vw" : "15vw",
-            }}
+            style={
+              user.user.id === ""
+                ? {
+                    left: "9.7vw",
+                  }
+                : {}
+            }
           >
             <div
               id="content"
