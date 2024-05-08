@@ -20,6 +20,9 @@ export type Theme = {
   songsListItemBGHoverColor: string;
   playerBackgroundColorPrimary: string;
   playerBackgroundColorSecondary: string;
+  cardBackgroundColorPrimary: string;
+  cardBackgroundColorSecondary: string;
+  imageBackground: string;
 };
 
 export const lightTheme: Theme = {
@@ -44,7 +47,9 @@ export const lightTheme: Theme = {
   songsListItemBGHoverColor: '#8098B2DE ',
   playerBackgroundColorPrimary: '#020D15',
   playerBackgroundColorSecondary: '#FFFFFF77',
-
+  cardBackgroundColorPrimary: `#7D7DB3`,
+  cardBackgroundColorSecondary: '#845858 ',
+  imageBackground: '#D4D1D1B6',
 }
 
 
@@ -70,7 +75,8 @@ export const darkTheme:Theme = {
   songsListItemBGHoverColor: '#284b74de ',
   playerBackgroundColorPrimary: '#00000090',
   playerBackgroundColorSecondary: '#0000005A',
-
-
+  cardBackgroundColorPrimary: `#242492`,
+  cardBackgroundColorSecondary: '#561e1e ',
+  imageBackground: '#000000CC',
 };
 
