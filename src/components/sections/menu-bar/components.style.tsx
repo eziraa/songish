@@ -10,7 +10,7 @@ export const Menu = styled.div<ThemeProps>`
   height: 100%;
   background-color: ${({ theme }) => theme.backgroundSecondary};
   color: ${({ theme }) => theme.text};
-  padding: 2rem;
+  padding: 1rem;
   position: fixed;
   z-index: 10;
 `;
@@ -29,7 +29,7 @@ export const MenuBarItem = styled.div<ThemeProps>`
   padding: 12px 24px;
   font-size: 0.9rem;
   font-weight: bold;
-  max-width: 10rem;
+  min-width: 12rem;
   border: 2px solid transparent;
   cursor: pointer;
   border-radius: 3px;
@@ -37,4 +37,8 @@ export const MenuBarItem = styled.div<ThemeProps>`
   &:hover {
     background-color: ${({ theme }) => theme.backgroundSecondaryHover};
   }
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  text-align: start;
+  letter-spacing: 1px;
 `;
