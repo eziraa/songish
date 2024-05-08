@@ -11,6 +11,7 @@ export const SongDisplayer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding-top: 2rem;
 `;
 
 
