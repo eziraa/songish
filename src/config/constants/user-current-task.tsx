@@ -14,6 +14,7 @@ export const SEE_MY_FAVORITE_SONGS = "see_my_favorite_songs";
 export const SEE_YOUR_PLAYLIST = "see_your_playlist";
 export const SEE_PLAYLIST_SONGS = "see_playlist_songs";
 export const ADD_SONG_TO_PLAYLIST = "add_song_to_playlist";
+export const SELECT_PLAYLIST_TO_ADD_SONG = "select_playlist_to_add_song";
 export const REMOVE_SONG_FROM_PLAYLIST = "remove_song_from_playlist";
 export const SEARCH_SONG_FROM_PLAYLIST = "search_song_from_playlist";
 export const PLAY_MUSIC = "play_music";
