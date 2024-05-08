@@ -1,5 +1,6 @@
 import { CgClose } from "react-icons/cg";
 import styled, { keyframes } from "styled-components";
+import { ThemeProps } from "../../../styles/theme-interface";
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -23,8 +24,8 @@ export const beVisible = keyframes`
     transform: translateY(0)
   }
 `;
-export const ModalContent = styled.div`
-  background-color: #09949a;
+export const ModalContent = styled.div<ThemeProps>`
+  background-color: ${({ theme }) => theme.backgroundPrimary};
   padding: 20px;
   border-radius: 5px;
   z-index: 400;
@@ -34,7 +35,7 @@ export const ModalContent = styled.div`
   flex-wrap: wrap;
   animation: ${beVisible} 0.5s ease-in-out;
 `;
-export const CloseButton = styled(CgClose)`
+export const CloseButton = styled(CgClose)<ThemeProps>`
   position: absolute;
   top: 10px;
   right: 10px;
@@ -42,7 +43,7 @@ export const CloseButton = styled(CgClose)`
   border: none;
   font-size: 30px;
   padding: 3px 5px;
-  color: #fff;
+  color: ${({ theme }) => theme.textPrimary};
   cursor: pointer;
   &:hover {
     background-color: red;
