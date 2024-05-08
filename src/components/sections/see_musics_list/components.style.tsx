@@ -130,8 +130,8 @@ export const VerticalDots = styled(FaEllipsisVertical)`
 export const PopUpContainer = styled.div<ThemeProps>`
   position: absolute;
   top: 0%;
-  left: -8rem;
-  width: 150px;
+  right: 0;
+  width: 200px;
   background-color: ${({ theme }) => theme.backgroundSecondaryHover};
   border: 1px solid ${({ theme }) => theme.backgroundSecondary};
   padding: 10px;
@@ -150,11 +150,14 @@ export const DeleteButton = styled(Button)`
   gap: 5px;
   border: 3px solid red;
   transition: all 0.5s;
-
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  text-align: start;
   &:hover {
     background-color: red;
     color: #b7b2b2;
   }
+  font-size: 14px;
 `;
 
 export const UpdateButton = styled(Button)`
@@ -164,6 +167,10 @@ export const UpdateButton = styled(Button)`
   align-items: center;
   gap: 5px;
   transition: all 0.5s;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  text-align: start;
+  font-size: 14px;
   &:hover {
     background-color: #d38106;
     color: #c7bebe;

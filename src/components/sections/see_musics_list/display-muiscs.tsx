@@ -278,40 +278,42 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                   }}
                 >
                   <SongDuration>{formatTime(song.duration || 0)} </SongDuration>
-                  {user.user.id === song.customer && (
-                    <div
-                      style={{
-                        position: "relative",
+                  <div
+                    style={{
+                      position: "relative",
+                    }}
+                  >
+                    <VerticalDots
+                      onClick={() => {
+                        setPopUpIndex(index);
                       }}
-                    >
-                      <VerticalDots
-                        onClick={() => {
-                          setPopUpIndex(index);
-                        }}
-                      />
+                    />
 
-                      {index === popUpIndex && (
-                        <PopUpContainer className="pop">
-                          <CloseButton
-                            style={{ top: "0", right: "0", color: "black" }}
-                            onClick={() => setPopUpIndex(-1)}
-                          />
-                          <DeleteButton onClick={() => onDelete(song)}>
-                            <RiDeleteBin6Fill size={20} />
-                            Delete
-                          </DeleteButton>
-                          <UpdateButton onClick={() => onUpdate(song)}>
-                            <MdModeEditOutline size={20} />
-                            Edit
-                          </UpdateButton>
-                          <UpdateButton onClick={() => addSongToPlaylist(song)}>
-                            <CgPlayListAdd size={20} />
-                            Add
-                          </UpdateButton>
-                        </PopUpContainer>
-                      )}
-                    </div>
-                  )}
+                    {index === popUpIndex && (
+                      <PopUpContainer className="pop">
+                        <CloseButton
+                          style={{ top: "0", right: "0", color: "black" }}
+                          onClick={() => setPopUpIndex(-1)}
+                        />
+                        {user.user.id === song.customer && (
+                          <>
+                            <DeleteButton onClick={() => onDelete(song)}>
+                              <RiDeleteBin6Fill size={16} />
+                              Delete
+                            </DeleteButton>
+                            <UpdateButton onClick={() => onUpdate(song)}>
+                              <MdModeEditOutline size={16} />
+                              Edit
+                            </UpdateButton>
+                          </>
+                        )}
+                        <UpdateButton onClick={() => addSongToPlaylist(song)}>
+                          <CgPlayListAdd size={16} />
+                          Add to playlist
+                        </UpdateButton>
+                      </PopUpContainer>
+                    )}
+                  </div>
                 </div>
               </SongActions>
             </SongContainer>
