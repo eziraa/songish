@@ -9,7 +9,7 @@ import { ScrollBar } from "../../utils/scrollbar.style";
 import SignUpPage from "../../sections/sign_up/sign_up";
 import SearchComponent from "../../sections/search/search";
 import ContactPage from "../../sections/contact/contact";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LoginPage from "../../sections/login/login";
 import Notification from "../../sections/mini-notification/mini-notification";
 import SongForm from "../../sections/song_add_update/song-form";
@@ -19,12 +19,15 @@ import { useAppSelector } from "../../../utils/customHook";
 import PlaylistForm from "../../sections/add_playlist/add_playlist";
 import { PlaylistCard } from "../../sections/see_playlist/playlist-card";
 import { FavoriteSongs } from "../../sections/favorite_songs/favorite";
+import Playlists from "../../sections/see_playlist/playlist";
+import { SELECT_PLAYLIST_TO_ADD_SONG } from "../../../config/constants/user-current-task";
 
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
   const songs = useAppSelector((state) => state.songs);
+  const playlists = useAppSelector((state) => state.playlists);
+  const user = useAppSelector((state) => state.user);
   const [popUpIndex, setPopUpIndex] = useState(-1);
-
   const handleSmoothScroll = (nav: string) => {
     homeRef.current?.querySelector(`#${nav}`)?.scrollIntoView({
       behavior: "smooth",
@@ -68,6 +71,9 @@ const HomePage = () => {
           <Main>
             <div id="content" style={{ marginBottom: "100px" }}></div>
             <PlaylistCard />
+            {user.minorTask === SELECT_PLAYLIST_TO_ADD_SONG && (
+              <Playlists playlists={playlists.playlists} />
+            )}
             <MusicTable popUpIndex={popUpIndex} setPopUpIndex={setPopUpIndex} />
             <FavoriteSongs />
             <RecentSection />
