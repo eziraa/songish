@@ -24,12 +24,12 @@ import {
 import { FormError } from "../sign_up/components.style";
 import SongsAPI from "../../../services/songAPI";
 import { UnderlinedTitle } from "../../utils/titles";
+import { SmallSpinner } from "../spinner/spinner";
 
 const SongForm = () => {
   const user = useAppSelector((state) => state.user);
   const songs = useAppSelector((state) => state.songs);
   const dispatch = useAppDispatch();
-
 
   const formHandler = useFormik({
     initialValues: {
@@ -157,9 +157,14 @@ const SongForm = () => {
                 )}
               </FormError>{" "}
             </FormGroup>
-            <Button type="submit">
-              {" "}
-              {user.minorTask === UPLOAD_SONG ? "Add" : "Update"}{" "}
+            <Button type="submit" disabled={user.loading}>
+              {songs.loading ? (
+                <SmallSpinner />
+              ) : user.minorTask === UPLOAD_SONG ? (
+                "Add"
+              ) : (
+                "Update"
+              )}
             </Button>
           </Form>
         </FormContainer>

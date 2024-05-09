@@ -16,6 +16,7 @@ import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { signUpSchema } from "../../../schema/user-auth/auth-schema";
 import { signUpRequest } from "../../../store/user/userSlice";
 import { UnderlinedTitle } from "../../utils/titles";
+import { SmallSpinner } from "../spinner/spinner";
 
 const SignUpPage = () => {
   const user = useAppSelector((state) => state.user);
@@ -132,7 +133,9 @@ const SignUpPage = () => {
               </FormError>{" "}
             </FormGroup>
 
-            <Button type="submit"> submit</Button>
+            <Button type="submit" disabled={user.loading}>
+              {user.loading ? <SmallSpinner /> : "Submit"}
+            </Button>
           </Form>
         </FormContainer>
       </SignUpContainer>
