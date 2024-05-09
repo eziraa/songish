@@ -20,6 +20,7 @@ const login = async ({ email, password }: LoginParameters) => {
   const user = await axios
     .post<UserResponse>(api + "/song/user/login", { email, password })
     .then((res) => res.data);
+  alert(user.email);
   return user;
 };
 const addFavoriteSongs = async (params: AddFavoriteSongsParams) => {
