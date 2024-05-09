@@ -18,15 +18,15 @@ function* LoadSongs() {
       SongsAPI.loadSongs
     );
 
-    yield put(
-      setNotification({
-        color: "green",
-        status: true,
-        title: "Loading Song",
-        desc: "The songs successfully loaded",
-        duration: 3,
-      })
-    );
+    // yield put(
+    //   setNotification({
+    //     color: "green",
+    //     status: true,
+    //     title: "Loading Song",
+    //     desc: "The songs are successfully loaded",
+    //     duration: 3,
+    //   })
+    // );
     yield put(loadSongsDone(songs));
   } catch (error) {
     yield put(
@@ -34,7 +34,7 @@ function* LoadSongs() {
         color: "red",
         status: true,
         title: "Loading Song",
-        desc: "Can not load the songs from the database",
+        desc: "Can not load  songs ",
         duration: 3,
       })
     );
@@ -57,7 +57,7 @@ function* AddSong(action: PayloadAction<AddSongParams>) {
         color: "green",
         status: true,
         title: "Adding Song",
-        desc: "The song successfully added",
+        desc: "The song  added successfully",
         duration: 3,
       })
     );
@@ -67,7 +67,7 @@ function* AddSong(action: PayloadAction<AddSongParams>) {
       color: "red",
       status: true,
       title: "Adding Song",
-      desc: "The song was not added successfully",
+      desc: "The song was not added ",
       duration: 3,
     });
   }
@@ -99,7 +99,7 @@ function* EditSong(action: PayloadAction<EditSongParams>) {
       color: "red",
       status: true,
       title: "Updating Song",
-      desc: "The song was not  successfully updated ",
+      desc: "Can not update the song ",
       duration: 3,
     });
   }

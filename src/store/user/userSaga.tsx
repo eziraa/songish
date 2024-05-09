@@ -29,8 +29,8 @@ function* SignUp(action: PayloadAction<SignUpParameters>) {
       setNotification({
         color: "green",
         status: true,
-        title: "User sign up in",
-        desc: "You are successfully sign up in",
+        title: "User sign up ",
+        desc: "You are successfully sign up ",
         duration: 3,
       })
     );
@@ -39,7 +39,7 @@ function* SignUp(action: PayloadAction<SignUpParameters>) {
       setNotification({
         color: "red",
         status: true,
-        title: "User sign up in",
+        title: "User sign up ",
         desc: "Cannot register you",
         duration: 3,
       })
@@ -60,8 +60,8 @@ function* Login(action: PayloadAction<LoginParameters>) {
       setNotification({
         color: "green",
         status: true,
-        title: "User login up in",
-        desc: "You are successfully logged up in",
+        title: "User login in",
+        desc: "You are successfully logged  in",
         duration: 3,
       })
     );
@@ -93,7 +93,7 @@ function* addFavoriteSong(action: PayloadAction<AddFavoriteSongsParams>) {
         color: "green",
         status: true,
         title: "Adding favorite song",
-        desc: "The song successfully added to your favorite list",
+        desc: "The song added to favorites successfully ",
         duration: 3,
       })
     );
@@ -104,7 +104,7 @@ function* addFavoriteSong(action: PayloadAction<AddFavoriteSongsParams>) {
         color: "red",
         status: true,
         title: "Adding favorite songs",
-        desc: "Cannot add this song to the favorite",
+        desc: "Cannot add the song favorites",
         duration: 3,
       })
     );
@@ -123,15 +123,15 @@ function* loadMyFavoriteSongs(action: PayloadAction<GetMyFavoriteParams>) {
     );
 
     yield put(loadMyFavoriteSongsDone(songs));
-    yield put(
-      setNotification({
-        color: "green",
-        status: true,
-        title: "Loading your favorite songs",
-        desc: "Your favorite songs loaded successfully",
-        duration: 3,
-      })
-    );
+    // yield put(
+    //   setNotification({
+    //     color: "green",
+    //     status: true,
+    //     title: "Loading your favorite songs",
+    //     desc: "Your favorite songs loaded successfully",
+    //     duration: 3,
+    //   })
+    // );
   } catch (error) {
     yield put(
       setNotification({
@@ -160,8 +160,8 @@ function* removeSongFromMyFavorite(
       setNotification({
         color: "green",
         status: true,
-        title: "Removing song from my you favorite",
-        desc: "The song successfully  removed  from your favorite",
+        title: "Removing song from favorites",
+        desc: "The song  is  removed  from  favorites",
         duration: 3,
       })
     );

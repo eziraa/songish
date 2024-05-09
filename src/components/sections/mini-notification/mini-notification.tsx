@@ -2,23 +2,22 @@
 import { CgClose } from "react-icons/cg";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
+  MiniNotification,
   NotificationContent,
   NotificationHeader,
-  notificationStyle,
 } from "./components.style";
-import { RiCheckDoubleLine } from "react-icons/ri";
 import { hideNotification } from "../../../store/notification/notificationSlice";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { MdOutlineCancel } from "react-icons/md";
 
 const Notification = () => {
   const notification = useAppSelector((state) => state.notifications);
   const dispatch = useAppDispatch();
   return (
     notification.status && (
-      <div
-        css={notificationStyle()}
+      <MiniNotification
         style={{
-          backgroundColor:
-            notification.color === "green" ? "#0ab976" : "#e05d5d",
+          color: notification.color === "green" ? "#02FFC0" : "#FF361B",
         }}
       >
         <NotificationHeader>
@@ -29,12 +28,16 @@ const Notification = () => {
           />
         </NotificationHeader>
         <NotificationContent>
-          <RiCheckDoubleLine size={44} color="white" />
-          <p style={{ fontSize: "20px" }}>{notification.desc}</p>
+          {notification.color === "red" ? (
+            <MdOutlineCancel size={24} color="#FF361B" />
+          ) : (
+            <FaRegCheckCircle size={24} color="#02FFC0" />
+          )}
+          <p style={{ fontSize: "16px" }}>{notification.desc}</p>
         </NotificationContent>
-      </div>
+      </MiniNotification>
     )
   );
-  return;
+  // return;
 };
 export default Notification;

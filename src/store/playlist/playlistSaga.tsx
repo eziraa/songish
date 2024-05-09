@@ -121,7 +121,7 @@ function* addSongToPlaylist(action: PayloadAction<AddSongToPlaylistParams>) {
         color: "green",
         status: true,
         title: "Adding song to Playlist",
-        desc: "The song successfully added to the playlist",
+        desc: "The song successfully added ",
         duration: 3,
       })
     );
@@ -133,7 +133,7 @@ function* addSongToPlaylist(action: PayloadAction<AddSongToPlaylistParams>) {
         color: "red",
         status: true,
         title: "Adding  song to Playlist",
-        desc: "Cannot add song to Playlist",
+        desc: "Can not add song to Playlist",
         duration: 3,
       })
     );
@@ -154,7 +154,7 @@ function* LoadPlaylistSongs(action: PayloadAction<GetPlaylistSongsParams>) {
         color: "green",
         status: true,
         title: "Loading Playlist songs",
-        desc: "The playlist songs successfully loaded",
+        desc: "Playlist songs successfully loaded",
         duration: 3,
       })
     );
@@ -187,8 +187,8 @@ function* removeSongFromPlaylist(
       setNotification({
         color: "green",
         status: true,
-        title: "Removing song from Playlist",
-        desc: "The song successfully  removed  from playlist",
+        title: "Removing playlist song  ",
+        desc: "Song successfully  removed ",
         duration: 3,
       })
     );
@@ -198,8 +198,8 @@ function* removeSongFromPlaylist(
       setNotification({
         color: "red",
         status: true,
-        title: "Removing  song from Playlist",
-        desc: "Cannot remove song from Playlist",
+        title: "Removing Playlist  song ",
+        desc: "Cannot remove song ",
         duration: 3,
       })
     );

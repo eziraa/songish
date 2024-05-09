@@ -24,6 +24,7 @@ export type Theme = {
   cardBackgroundColorSecondary: string;
   imageBackground: string;
   footerTextColor: string;
+  notificationBackground: string;
 };
 
 export const lightTheme: Theme = {
@@ -52,6 +53,7 @@ export const lightTheme: Theme = {
   cardBackgroundColorSecondary: '#845858 ',
   imageBackground: '#D4D1D1B6',
   footerTextColor: '#564F4F',
+  notificationBackground: '#303F81'
 }
 
 
@@ -81,5 +83,6 @@ export const darkTheme:Theme = {
   cardBackgroundColorSecondary: '#561e1e ',
   imageBackground: '#000000CC',
   footerTextColor: '#C9B8B8',
+  notificationBackground: '#3249AF'
 };
 
