@@ -66,7 +66,7 @@ const SongForm = () => {
           <UnderlinedTitle>
             {user.minorTask === UPLOAD_SONG
               ? "Add Yours"
-              : "Update Yours musics"}
+              : "Update Your musics"}
           </UnderlinedTitle>
           <DescriptionText>
             {user.minorTask === UPLOAD_SONG
@@ -158,7 +158,7 @@ const SongForm = () => {
               </FormError>{" "}
             </FormGroup>
             <Button type="submit" disabled={user.loading}>
-              {songs.loading ? (
+              {songs.adding ? (
                 <SmallSpinner />
               ) : user.minorTask === UPLOAD_SONG ? (
                 "Add"

@@ -294,7 +294,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                           style={{ top: "0", right: "0", color: "black" }}
                           onClick={() => setPopUpIndex(-1)}
                         />
-                        {user.user.id === song.customer && (
+                        {
                           <>
                             <DeleteButton onClick={() => onDelete(song)}>
                               <RiDeleteBin6Fill size={16} />
@@ -305,7 +305,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                               Edit
                             </UpdateButton>
                           </>
-                        )}
+                        }
                         <UpdateButton onClick={() => addSongToPlaylist(song)}>
                           <CgPlayListAdd size={16} />
                           Add to playlist
