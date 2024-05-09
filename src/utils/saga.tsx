@@ -19,6 +19,7 @@ import {
   watchLoadMyFavoriteSongs,
   watchLoadMySongs,
   watchLogin,
+  watchLogoutUser,
   watchRemoveSongFromMyFavorite,
   watchSignup,
 } from "../store/user/userSaga";
@@ -26,6 +27,7 @@ import {
 export function* rootSaga() {
   yield all([
     watchLogin(),
+    watchLogoutUser(),
     watchSignup(),
     watchAddFavoriteSong(),
     watchLoadMyFavoriteSongs(),

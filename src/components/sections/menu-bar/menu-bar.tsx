@@ -8,7 +8,9 @@ import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
   loadMyFavoriteSongsRequested,
   loadMySongsRequested,
+  loginRequest,
   logout,
+  logoutRequested,
   setMajorTask,
   setMinorTask,
 } from "../../../store/user/userSlice";
@@ -27,6 +29,7 @@ import {
   ThemeContext,
   ThemeContextType,
 } from "../../../contexts/theme_context";
+import { SmallSpinner } from "../spinner/spinner";
 interface MenuBarProps {
   smoothScroll: (id: string) => void;
 }
@@ -103,9 +106,15 @@ const LeftMenu = ({ smoothScroll }: MenuBarProps) => {
           <CgPlayListAdd size={20} />
           Add Playlist
         </MenuBarItem>
-        <MenuBarItem onClick={() => dispatcher(logout())}>
-          <RiLogoutCircleLine size={20} />
-          Logout
+        <MenuBarItem onClick={() => dispatcher(logoutRequested())}>
+          {user.isLogout ? (
+            <SmallSpinner />
+          ) : (
+            <>
+              <RiLogoutCircleLine size={20} />
+              Logout
+            </>
+          )}
         </MenuBarItem>
       </MenuBar>
     </Menu>

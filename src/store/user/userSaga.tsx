@@ -13,8 +13,11 @@ import {
   loadMyFavoriteSongsDone,
   loadMySongsDone,
   loginDone,
+  logoutDone,
   removeSongFromMyFavoriteDone,
 } from "./userSlice";
+import { exitPlaylist } from "../playlist/playlistSlice";
+import { exitSong } from "../song/songSlice";
 function* SignUp(action: PayloadAction<SignUpParameters>) {
   try {
     let user: SagaReturnType<typeof UserAPI.signUp> = yield call(
@@ -215,4 +218,35 @@ function* loadMySongs(action: PayloadAction<GetMyFavoriteParams>) {
 
 export function* watchLoadMySongs() {
   yield takeEvery("user/loadMySongsRequested", loadMySongs);
+}
+
+function* logoutUser() {
+  try {
+    yield put(exitPlaylist());
+    yield put(exitSong());
+    yield put(logoutDone());
+    yield put(
+      setNotification({
+        color: "green",
+        status: true,
+        title: "Logout",
+        desc: "You are successfully logged out",
+        duration: 3,
+      })
+    );
+  } catch (error) {
+    yield put(
+      setNotification({
+        color: "red",
+        status: true,
+        title: "Logout",
+        desc: "Cannot logout",
+        duration: 3,
+      })
+    );
+  }
+}
+
+export function* watchLogoutUser() {
+  yield takeEvery("user/logoutRequested", logoutUser);
 }

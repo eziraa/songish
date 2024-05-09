@@ -9,4 +9,5 @@ export interface UserStateType {
   favorite_songs: SongResponse[];
   majorTask: string | undefined;
   minorTask?: string | undefined;
+  isLogout: boolean;
 }

@@ -77,6 +77,9 @@ const SongSlice = createSlice({
     setQuerySet: (state, actions: PayloadAction<SongResponse[]>) => {
       state.query_set = actions.payload;
     },
+    exitSong: (state) => {
+      state = InitialSongState;
+    },
   },
 });
 
@@ -93,5 +96,6 @@ export const {
   setCurrentSongToPlay,
   setQuerySet,
   changeSong,
+  exitSong,
 } = SongSlice.actions;
 export default SongSlice.reducer;

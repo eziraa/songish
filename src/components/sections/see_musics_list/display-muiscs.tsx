@@ -78,7 +78,8 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
   useEffect(() => {
     if (user.majorTask === SEE_ALL_SONGS) {
       setSongList(songs.songs);
-      dispatch(loadMyFavoriteSongsRequested({ user_id: user.user.id }));
+     user.user.id !== "" &&
+       dispatch(loadMyFavoriteSongsRequested({ user_id: user.user.id }));
     } else if (user.majorTask === ADD_SONG_TO_PLAYLIST)
       setSongList(songs.songs);
     else if (user.majorTask === SEE_PLAYLIST_SONGS)

@@ -26,6 +26,7 @@ const InitialUserState: UserStateType = {
   favorite_songs: [],
   minorTask: undefined,
   majorTask: undefined,
+  isLogout: false,
 };
 
 const UserSlice = createSlice({
@@ -99,8 +100,18 @@ const UserSlice = createSlice({
       state.loading = false;
       state.user.my_songs = action.payload;
     },
-    logout: (state) => {
+    logoutRequested: (state) => {
+      state.isLogout = true;
+    },
+    logoutDone: (state) => {
+      state.loading = false;
       state.user = defaultUserResponse;
+      state.isLogin = false;
+      state.isOnAction = false;
+      state.favorite_songs = [];
+      state.minorTask = undefined;
+      state.majorTask = undefined;
+      state.isLogout = false;
     },
   },
 });
@@ -119,7 +130,8 @@ export const {
   removeSongFromMyFavoriteDone,
   loadMySongsRequested,
   loadMySongsDone,
-  logout,
+  logoutRequested,
+  logoutDone,
 } = UserSlice.actions;
 export default UserSlice.reducer;
 
