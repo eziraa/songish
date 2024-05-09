@@ -24,14 +24,14 @@ const SongSlice = createSlice({
   name: "song",
   initialState: InitialSongState,
   reducers: {
-    addSongRequested: (state, action: PayloadAction<AddSongParams>) => {
+    addSongRequested: (state, _: PayloadAction<AddSongParams>) => {
       state.loading = true;
     },
     addSongDone(state, action: PayloadAction<SongResponse>) {
       state.songs.push(action.payload);
       state.loading = false;
     },
-    editSongRequest: (state, action: PayloadAction<EditSongParams>) => {
+    editSongRequest: (state, _: PayloadAction<EditSongParams>) => {
       state.loading = true;
     },
     loadSongsRequested: (state) => {
@@ -48,10 +48,10 @@ const SongSlice = createSlice({
         song.id === action.payload.id ? action.payload : song
       );
     },
-    deleteSongRequest: (state, action: PayloadAction<number>) => {
+    deleteSongRequest: (state, _: PayloadAction<number>) => {
       state.deleting = true;
     },
-    deleteSongDone: (state, action: PayloadAction<SongResponse>) => {
+    deleteSongDone: (state, _: PayloadAction<SongResponse>) => {
       state.deleting = false;
       state.songs = state.songs.filter(
         (song) => song.id != state.current_song_for_action?.id

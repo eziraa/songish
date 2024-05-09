@@ -8,7 +8,6 @@ import {
   Form,
   Input,
   Label,
-  Title,
 } from "../../utils/form_field_elements.style";
 import { loginSchema } from "../../../schema/user-auth/auth-schema";
 import { loginRequest } from "../../../store/user/userSlice";
@@ -25,7 +24,7 @@ const LoginPage = () => {
       password: "",
     },
     validationSchema: loginSchema,
-    onSubmit: async (values, actions) => {
+    onSubmit: async (values, _) => {
       dispatch(loginRequest(values));
     },
   });

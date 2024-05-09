@@ -21,20 +21,20 @@ const PlaylistSlice = createSlice({
   name: "playlist",
   initialState: initialPlaylistState,
   reducers: {
-    addPlaylistRequested: (state, action: PayloadAction<AddPlaylistParams>) => {
+    addPlaylistRequested: (state, _: PayloadAction<AddPlaylistParams>) => {
       state.loading = true;
     },
     addPlaylistDone(state, action: PayloadAction<PlaylistResponse>) {
       state.playlists.push(action.payload);
       state.loading = false;
     },
-    loadPlaylistsRequested: (state, actions: PayloadAction<string>) => {
+    loadPlaylistsRequested: (state, _: PayloadAction<string>) => {
       state.loading = true;
       state.playlists = [];
     },
     loadPlaylistSongsRequested: (
       state,
-      action: PayloadAction<GetPlaylistSongsParams>
+      _: PayloadAction<GetPlaylistSongsParams>
     ) => {
       state.loading = true;
       state.songs = [];
@@ -49,7 +49,7 @@ const PlaylistSlice = createSlice({
     },
     addSongToPlaylistRequested: (
       state,
-      action: PayloadAction<AddSongToPlaylistParams>
+      _: PayloadAction<AddSongToPlaylistParams>
     ) => {
       state.adding = true;
       state.songs = [];
@@ -66,21 +66,18 @@ const PlaylistSlice = createSlice({
     },
     removeSongFromPlaylistRequested: (
       state,
-      action: PayloadAction<AddSongToPlaylistParams>
+      _: PayloadAction<AddSongToPlaylistParams>
     ) => {
       state.deleting = true;
     },
 
-    removeSongFromPlaylistDone: (
-      state,
-      action: PayloadAction<SongResponse[]>
-    ) => {
+    removeSongFromPlaylistDone: (state, _: PayloadAction<SongResponse[]>) => {
       state.deleting = false;
     },
-    deletePlaylistRequest: (state, action: PayloadAction<number>) => {
+    deletePlaylistRequest: (state, _: PayloadAction<number>) => {
       state.deleting = true;
     },
-    deletePlaylistDone: (state, action: PayloadAction<PlaylistResponse>) => {
+    deletePlaylistDone: (state, _: PayloadAction<PlaylistResponse>) => {
       state.deleting = false;
       state.playlists = state.playlists.filter(
         (playlist) => playlist.id != state.currentPlaylist?.id

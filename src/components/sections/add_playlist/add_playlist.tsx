@@ -10,7 +10,6 @@ import {
   FormGroup,
   Input,
   Label,
-  Title,
 } from "../../utils/form_field_elements.style";
 import Modal from "../modal/modal";
 import { AddPlaylistContainer } from "./components.style";
@@ -31,7 +30,7 @@ const PlaylistForm = () => {
   const formHandler = useFormik({
     initialValues,
     validationSchema: CreatingPlaylistSchema,
-    onSubmit: (values, actions) => {
+    onSubmit: (values, _) => {
       dispatch(addPlaylistRequested({ ...values, customer_id: user.user.id }));
     },
   });

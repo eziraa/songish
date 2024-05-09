@@ -11,7 +11,7 @@ import {
 } from "../../../config/constants/user-current-task";
 import Modal from "../modal/modal";
 import { AddSongContainer } from "./components.style";
-import { Description, Title } from "../about/components.style";
+import { Description } from "../about/components.style";
 import {
   Button,
   DescriptionText,

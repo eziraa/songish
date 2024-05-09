@@ -27,9 +27,21 @@ const AboutPage = () => {
         <Description>
           <UnderlinedTitle>Who? </UnderlinedTitle>
           <Paragraph>
-            Hello! I'm a 4th year Software Engineering student at Bahir Dar
-            University. I'm currently exploring full-stack development and have
-            a keen interest in creating dynamic and user-friendly applications.
+            Hello! I'm{" "}
+            <span
+              style={{
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+                WebkitTextFillColor: "transparent",
+                backgroundImage: "linear-gradient(to right, #893458, #9956ff)",
+              }}
+            >
+              Ezira Tigab
+            </span>{" "}
+            I'm a 4th year Software Engineering student at Bahir Dar University.
+            I'm currently exploring full-stack development and have a keen
+            interest in creating dynamic and user-friendly applications.
           </Paragraph>
         </Description>
       </DescriptionContainer>

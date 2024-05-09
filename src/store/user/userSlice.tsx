@@ -32,7 +32,7 @@ const UserSlice = createSlice({
   name: "user",
   initialState: InitialUserState,
   reducers: {
-    loginRequest: (state, action: PayloadAction<LoginParameters>) => {
+    loginRequest: (state, _: PayloadAction<LoginParameters>) => {
       state.loading = true;
     },
     loginDone: (state, action: PayloadAction<UserResponse>) => {
@@ -41,7 +41,7 @@ const UserSlice = createSlice({
       state.minorTask = undefined;
       state.isLogin = true;
     },
-    signUpRequest: (state, action: PayloadAction<SignUpParameters>) => {
+    signUpRequest: (state, _: PayloadAction<SignUpParameters>) => {
       state.loading = true;
     },
     setMinorTask: (state, actions: PayloadAction<string | undefined>) => {
@@ -53,7 +53,7 @@ const UserSlice = createSlice({
 
     addFavoriteSongRequested: (
       state,
-      action: PayloadAction<AddFavoriteSongsParams>
+      _: PayloadAction<AddFavoriteSongsParams>
     ) => {
       state.isOnAction = true;
     },
@@ -65,7 +65,7 @@ const UserSlice = createSlice({
 
     loadMyFavoriteSongsRequested: (
       state,
-      action: PayloadAction<GetMyFavoriteParams>
+      _: PayloadAction<GetMyFavoriteParams>
     ) => {
       state.loading = true;
       state.favorite_songs = [];
@@ -76,7 +76,7 @@ const UserSlice = createSlice({
     },
     removeSongFromMyFavoriteRequested: (
       state,
-      action: PayloadAction<AddFavoriteSongsParams>
+      _: PayloadAction<AddFavoriteSongsParams>
     ) => {
       state.isOnAction = true;
     },
@@ -91,10 +91,7 @@ const UserSlice = createSlice({
       state.isOnAction = false;
       state.minorTask = undefined;
     },
-    loadMySongsRequested: (
-      state,
-      action: PayloadAction<GetMyFavoriteParams>
-    ) => {
+    loadMySongsRequested: (state, _: PayloadAction<GetMyFavoriteParams>) => {
       state.loading = true;
       state.user.my_songs = [];
     },
@@ -102,7 +99,9 @@ const UserSlice = createSlice({
       state.loading = false;
       state.user.my_songs = action.payload;
     },
-    logout: () => InitialUserState,
+    logout: (state) => {
+      state.user = defaultUserResponse;
+    },
   },
 });
 

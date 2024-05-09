@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
 import { ThemeProps } from "../../../styles/theme-interface";
-import { Form } from "formik";
 
 export const SearchContainer = styled.div<ThemeProps>`
   display: flex;

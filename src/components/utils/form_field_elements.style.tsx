@@ -1,16 +1,5 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { ThemeProps } from "../../styles/theme-interface";
-
-const skew40Deg = keyframes`
-  from {
-    opacity: 0.6;
-    transform: skew(40deg);
-  }
-  to {
-    opacity: 1;
-    transform: skew(0deg);
-  }
-`;
 
 export const Description = styled.div`
   width: 40%;
@@ -85,4 +74,5 @@ export const TextArea = styled.textarea<ThemeProps>`
   border-radius: 5px;
   width: 100%;
   font-size: 16px;
+  height: 150px;
 `;

@@ -11,7 +11,6 @@ import {
   FormGroup,
   Input,
   Label,
-  Title,
 } from "../../utils/form_field_elements.style";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { signUpSchema } from "../../../schema/user-auth/auth-schema";
@@ -32,7 +31,7 @@ const SignUpPage = () => {
       confirm_password: "",
     },
     validationSchema: signUpSchema,
-    onSubmit: (values, actions) => {
+    onSubmit: (values, _) => {
       dispatch(signUpRequest(values));
     },
   });

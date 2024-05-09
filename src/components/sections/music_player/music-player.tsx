@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { api } from "../../../services/api";
 import {
   changeSong,
   setCurrentSongToPlay,
@@ -66,6 +65,7 @@ export default function PlayerComponent() {
   const [isPlaying, setIsPlaying] = useState(!songs.current_song.paused);
 
   useEffect(() => {
+    setCurrentTime(currentTime);
     songs.current_song.pause();
     setIsPlaying(false);
     if (trackIndex >= 0 && trackIndex < songs.playing_music_list.length)

@@ -37,23 +37,23 @@ const ContactPage = () => {
         "k3GlkvUNSNjbu-6bp"
       )
       .then(
-        (result) => {
+        (_) => {
           setLoading(false);
           formRef.current?.reset();
         },
-        (error) => {
+        (_) => {
           setLoading(false);
         }
       );
   };
   return (
     <ContactContainer id="contact">
-      <Title>Contact Us</Title>
+      <Title>Contact Me</Title>
       <ContactBody>
         <Description>
           <DescriptionText>
             Have any questions, suggestions, or just want to say hello? Feel
-            free to drop me a message using the form below. I'd love to hear
+            free to drop me a message using contacts below. I'd love to hear
             from you!
           </DescriptionText>
           <ContactList>
@@ -95,7 +95,7 @@ const ContactPage = () => {
             </FormGroup>
             <FormGroup>
               <Label htmlFor="message">Your Message</Label>
-              <TextArea id="message" name="message" rows="6" required />
+              <TextArea id="message" name="message" required />
             </FormGroup>
             <Button type="submit">
               {loading ? (
