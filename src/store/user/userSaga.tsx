@@ -222,6 +222,7 @@ export function* watchLoadMySongs() {
 
 function* logoutUser() {
   try {
+    setTimeout(() => {}, 2000);
     yield put(exitPlaylist());
     yield put(exitSong());
     yield put(logoutDone());

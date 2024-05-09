@@ -8,8 +8,6 @@ import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
   loadMyFavoriteSongsRequested,
   loadMySongsRequested,
-  loginRequest,
-  logout,
   logoutRequested,
   setMajorTask,
   setMinorTask,
