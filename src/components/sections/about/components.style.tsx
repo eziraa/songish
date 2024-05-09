@@ -107,7 +107,7 @@ export const ImageSong = styled.div<ThemeProps>`
       ${({ theme }) => theme.imageBackground},
       ${({ theme }) => theme.imageBackground}
     ),
-    url(src/assets/images/25.jpg);
+    url(assets/images/25.jpg);
   background-size: cover;
   height: 16rem;
   width: 20rem;

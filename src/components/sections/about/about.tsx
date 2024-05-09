@@ -20,10 +20,7 @@ const AboutPage = () => {
         <Title>About me</Title>
       </TitleBackGround>
       <DescriptionContainer>
-        <Image
-          style={{ borderRadius: "50%" }}
-          src="src/assets/images/ezira.jpg"
-        />
+        <Image style={{ borderRadius: "50%" }} src="assets/images/ezira.jpg" />
         <Description>
           <UnderlinedTitle>Who? </UnderlinedTitle>
           <Paragraph>
@@ -56,7 +53,7 @@ const AboutPage = () => {
               CSS, Styled Components, React, and Django.
             </Paragraph>
           </FeatureItem>
-          <Image src="src/assets/images/languages.webp" />
+          <Image src="assets/images/languages.webp" />
         </FeatureItemBody>
         <FeatureItemBody>
           <ImageSong></ImageSong>
