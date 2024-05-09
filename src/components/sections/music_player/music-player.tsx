@@ -13,7 +13,6 @@ import {
   TrackContainer,
   Loader,
   Stroke,
-  TrackArt,
   TrackName,
   TrackArtist,
   SliderContainer,
