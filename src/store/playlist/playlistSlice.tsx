@@ -7,7 +7,6 @@ import {
 } from "../../typo/playlist/parameters";
 import { PlaylistResponse } from "../../typo/playlist/response";
 import { SongResponse } from "../../typo/songs/response";
-import { exitSong } from "../song/songSlice";
 
 const initialPlaylistState: PlaylistStateType = {
   deleting: false,
@@ -91,7 +90,14 @@ const PlaylistSlice = createSlice({
       state.currentPlaylist = undefined;
     },
     exitPlaylist: (state) => {
-      state = initialPlaylistState;
+      state.currentPlaylist = undefined;
+      state.songs = [];
+      state.query_set = [];
+      state.adding = false;
+      state.removing = false;
+      state.deleting = false;
+      state.loading = false;
+      state.query_set = [];
     },
   },
 });
