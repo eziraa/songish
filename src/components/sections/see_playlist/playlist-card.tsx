@@ -19,7 +19,7 @@ import {
   SEE_PLAYLIST_SONGS,
   SEE_YOUR_PLAYLIST,
 } from "../../../config/constants/user-current-task";
-import LoadingSpinner from "../spinner/spinner";
+import LoadingSpinner, { SmallSpinner } from "../spinner/spinner";
 import { setMajorTask } from "../../../store/user/userSlice";
 import {
   deletePlaylistRequest,
@@ -183,8 +183,14 @@ export const PlaylistCard = () => {
                                 );
                               }}
                             >
-                              <RiDeleteBin6Line />
-                              Delete
+                              {playlists.deleting ? (
+                                <SmallSpinner />
+                              ) : (
+                                <>
+                                  <RiDeleteBin6Line />
+                                  Delete
+                                </>
+                              )}
                             </DeleteBtn>
                           </BtnContainer>
                         </PlaylistInfo>

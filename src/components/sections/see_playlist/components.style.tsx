@@ -67,6 +67,7 @@ export const DeleteBtn = styled(OutLinedButton)`
   &:hover {
     background-color: red;
   }
+  min-width: 110px;
 `;
 
 export const Paragraph = styled.p`

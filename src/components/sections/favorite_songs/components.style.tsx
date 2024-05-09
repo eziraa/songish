@@ -44,6 +44,7 @@ export const DeleteButton = styled.button<ThemeProps>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 110px;
   &:hover {
     background-color: red;
     color: ${({ theme }) => theme.formBtnTextColor};
