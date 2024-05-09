@@ -6,8 +6,8 @@ import {
   SignUpParameters,
 } from "../typo/user/parameters";
 import { UserResponse } from "../typo/user/response";
-import { api } from "../config/api/api";
 import { SongResponse } from "../typo/songs/response";
+import { api } from "./api";
 
 const signUp = async (values: SignUpParameters) => {
   const user = await axios
