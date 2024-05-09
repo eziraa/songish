@@ -160,7 +160,10 @@ export default function PlayerComponent() {
         />
         <Details>
           <PlayingNow>
-            PLAYING {trackIndex + 1}/{songs.playing_music_list.length}{" "}
+            PLAYING{" "}
+            {songs.current_song_to_play &&
+              songs.playing_music_list.indexOf(songs.current_song_to_play) + 1}
+            /{songs.playing_music_list.length}{" "}
           </PlayingNow>
           <TrackContainer>
             {true ? (
