@@ -68,9 +68,12 @@ export default function PlayerComponent() {
     setCurrentTime(currentTime);
     songs.current_song.pause();
     setIsPlaying(false);
-    if (trackIndex >= 0 && trackIndex < songs.playing_music_list.length)
+    if (trackIndex >= 0 && trackIndex < songs.playing_music_list.length) {
       changeSong(songs.playing_music_list[trackIndex]);
-  }, [trackIndex]);
+      songs.current_song.play();
+      setIsPlaying(true);
+    }
+  }, [trackIndex, songs.current_song]);
 
   useEffect(() => {
     const updateTimer = setInterval(setUpdate, 1000);
@@ -161,27 +164,27 @@ export default function PlayerComponent() {
             PLAYING {trackIndex + 1}/{songs.playing_music_list.length}{" "}
           </PlayingNow>
           <TrackContainer>
-            {isPlaying ? (
+            {true ? (
               <>
                 <Loader>
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
-                  <Stroke />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
+                  <Stroke isplaying={isPlaying} />
                 </Loader>
               </>
             ) : (
-              <TrackArt />
+              <></>
             )}
           </TrackContainer>
           <TrackName> {songs.current_song_to_play?.title} </TrackName>

@@ -249,7 +249,6 @@ export const LoaderStrokeStyles = css`
   width: 10px;
   border-radius: 50px;
   margin: 0 5px;
-  animation: ${Animate} 1.4s linear infinite;
 `;
 export const Loader = styled.div`
   height: 70px;
@@ -257,9 +256,14 @@ export const Loader = styled.div`
   justify-content: center;
   align-items: center;
 `;
+interface PlayingProps {
+  isplaying: boolean;
+}
 
-export const Stroke = styled.div`
+export const Stroke = styled.div<PlayingProps>`
   ${LoaderStrokeStyles};
+  animation: ${Animate} 1.4s linear
+    ${({ isplaying }) => isplaying && "infinite"};
   &:nth-child(1) {
     animation-delay: 0s;
   }
