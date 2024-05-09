@@ -47,7 +47,6 @@ export const RecentSection = () => {
     } else {
       setNoPrev(true);
     }
-    console.log(prevIndex, nextIndex);
   };
   const nextSlide = () => {
     if (nextIndex + 2 < songs.songs.length) {
@@ -83,49 +82,57 @@ export const RecentSection = () => {
       <SliderBody>
         {!noPrev && <BackIcon onClick={() => prevSlide()} />}
         <SlidesContainer>
-          {songs.songs.map((music, index) => {
-            if (true) {
-              return (
-                <div key={index} style={{ transform: "translateX(34vw)" }}>
-                  <Slide
-                    key={index}
-                    style={{
-                      transform: "translateX(" + -nextIndex * 37 + "vw)",
-                      transition: "transform 2s ease-out",
-                      backgroundImage:
-                        "linear-gradient(to right, #561e1ed5, #24249267)",
-                    }}
-                  >
-                    <AboutMusic>
-                      <H0 color="white"> {music.title} </H0>
-                      <Paragraph style={{ width: "20vw" }}>
-                        Echoes of Now: Latest Tracks to Enchant Your Ears 🎵
-                      </Paragraph>
-                      <PlayListBtn
-                        style={{
-                          color: "white",
-                          fontSize: "24px",
-                        }}
-                        onClick={() => {
-                          dispatch(
-                            setCurrentSongToPlay({
-                              song_list: songs.songs,
-                              song: music,
-                            })
-                          );
-                        }}
-                      >
-                        <GiSpeaker />
-                        Listen now
-                      </PlayListBtn>
-                    </AboutMusic>
-                    <SongsIcon />
-                    <TimeCreated>{timeAgo(music.created_at)}</TimeCreated>
-                  </Slide>
-                </div>
-              );
-            }
-          })}
+          {[...songs.songs]
+            .sort(
+              (a, b) =>
+                new Date(b.created_at).getTime() -
+                new Date(a.created_at).getTime()
+            )
+            .slice(0, songs.songs.length < 10 ? songs.songs.length : 10)
+            .map((music, index) => {
+              if (true) {
+                return (
+                  <div key={index} style={{ transform: "translateX(34vw)" }}>
+                    <Slide
+                      key={index}
+                      style={{
+                        transform: "translateX(" + -nextIndex * 37 + "vw)",
+                        transition: "transform 2s ease-out",
+                        backgroundImage:
+                          "linear-gradient(to right, #561e1ed5, #24249267)",
+                      }}
+                    >
+                      <AboutMusic>
+                        <H0 color="white"> {music.title} </H0>
+                        <Paragraph style={{ width: "20vw" }}>
+                          Echoes of Now: Latest Tracks to Enchant Your Ears 🎵
+                        </Paragraph>
+                        <PlayListBtn
+                          style={{
+                            color: "white",
+                            fontSize: "24px",
+                          }}
+                          onClick={() => {
+                            songs.current_song.pause();
+                            dispatch(
+                              setCurrentSongToPlay({
+                                song_list: songs.songs,
+                                song: music,
+                              })
+                            );
+                          }}
+                        >
+                          <GiSpeaker />
+                          Listen now
+                        </PlayListBtn>
+                      </AboutMusic>
+                      <SongsIcon />
+                      <TimeCreated>{timeAgo(music.created_at)}</TimeCreated>
+                    </Slide>
+                  </div>
+                );
+              }
+            })}
         </SlidesContainer>
         {!noNext && <ForwardIcon onClick={() => nextSlide()} />}
       </SliderBody>

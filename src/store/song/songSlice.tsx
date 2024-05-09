@@ -84,7 +84,6 @@ const SongSlice = createSlice({
       state.current_song_for_action = undefined;
       state.query_set = [];
       state.loading = false;
-      state.songs = [];
       state.deleting = false;
     },
   },
