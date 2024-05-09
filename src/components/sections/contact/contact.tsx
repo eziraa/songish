@@ -21,7 +21,7 @@ import {
   ContactList,
   Title,
 } from "./components.style";
-import { Spinner } from "../spinner/components.style";
+import { SmallSpinner } from "../spinner/spinner";
 
 const ContactPage = () => {
   const [loading, setLoading] = useState(false);
@@ -98,17 +98,7 @@ const ContactPage = () => {
               <TextArea id="message" name="message" required />
             </FormGroup>
             <Button type="submit">
-              {loading ? (
-                <Spinner
-                  style={{
-                    width: "30px",
-                    height: "30px",
-                    display: "inline-block",
-                  }}
-                />
-              ) : (
-                "Send Message"
-              )}
+              {loading ? <SmallSpinner /> : "Send Message"}
             </Button>
           </Form>
         </FormContainer>

@@ -57,6 +57,7 @@ export const PlayListBtn = styled(OutLinedButton)`
   color: ${({ theme }) => theme.textPrimary};
   border: 2px solid #f80bb1;
   font-size: 16px;
+  min-width: 80px;
 `;
 
 export const DeleteBtn = styled(OutLinedButton)`

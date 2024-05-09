@@ -11,10 +11,13 @@ export const SpinnerContainer = styled.div`
   height: 100vh;
   width: 100vw;
 `;
-export const Spinner = styled.div`
-  border: 16px solid #f3f3f3;
+interface SpinnerProps {
+  length: number | undefined;
+}
+export const Spinner = styled.div<SpinnerProps>`
+  border: ${({ length }) => length ?? 16}px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: ${({ length }) => length ?? 16}px solid #3498db;
   width: 120px;
   height: 120px;
   animation: ${spin} 2s linear infinite;

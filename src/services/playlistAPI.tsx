@@ -42,7 +42,7 @@ const deletePlaylist = async (playlist_id: number) => {
 
 const addSongToPlayList = async (params: AddSongToPlaylistParams) => {
   const songs = await axios
-    .post<SongResponse[]>(
+    .post<SongResponse>(
       api +
         "/song/playlist/" +
         params.playlist_id +
@@ -63,7 +63,7 @@ const getPlaylistSongs = async (params: GetPlaylistSongsParams) => {
 };
 const removeSongFromPlayList = async (params: AddSongToPlaylistParams) => {
   const songs = await axios
-    .delete<SongResponse[]>(
+    .delete<SongResponse>(
       api +
         "/song/playlist/" +
         params.playlist_id +

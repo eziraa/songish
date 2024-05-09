@@ -68,7 +68,7 @@ function* LoadPlaylists(action: PayloadAction<string>) {
         color: "red",
         status: true,
         title: "Loading Playlist",
-        desc: "Can not load the playlists from the database",
+        desc: "Can not load the playlists",
         duration: 3,
       })
     );
@@ -109,7 +109,6 @@ function* DeletePlaylist(action: PayloadAction<number>) {
 export function* watchDeletePlaylist() {
   yield takeEvery("playlist/deletePlaylistRequest", DeletePlaylist);
 }
-
 
 function* addSongToPlaylist(action: PayloadAction<AddSongToPlaylistParams>) {
   try {
@@ -164,8 +163,8 @@ function* LoadPlaylistSongs(action: PayloadAction<GetPlaylistSongsParams>) {
       setNotification({
         color: "red",
         status: true,
-        title: "Loading Playlist",
-        desc: "Can not load the playlists from the database",
+        title: "Loading Playlist songs",
+        desc: "Can not load the playlists song",
         duration: 3,
       })
     );

@@ -12,6 +12,7 @@ const initialPlaylistState: PlaylistStateType = {
   deleting: false,
   loading: false,
   adding: false,
+  removing: false,
   playlists: [],
   query_set: [],
   songs: [],
@@ -22,11 +23,11 @@ const PlaylistSlice = createSlice({
   initialState: initialPlaylistState,
   reducers: {
     addPlaylistRequested: (state, _: PayloadAction<AddPlaylistParams>) => {
-      state.loading = true;
+      state.adding = true;
     },
     addPlaylistDone(state, action: PayloadAction<PlaylistResponse>) {
       state.playlists.push(action.payload);
-      state.loading = false;
+      state.adding = false;
     },
     loadPlaylistsRequested: (state, _: PayloadAction<string>) => {
       state.loading = true;
@@ -54,9 +55,9 @@ const PlaylistSlice = createSlice({
       state.adding = true;
       state.songs = [];
     },
-    addSongToPlaylistDone: (state, action: PayloadAction<SongResponse[]>) => {
+    addSongToPlaylistDone: (state, action: PayloadAction<SongResponse>) => {
       state.adding = false;
-      state.songs = action.payload;
+      state.songs.push(action.payload);
     },
     setCurrentPlaylist: (
       state,
@@ -68,11 +69,15 @@ const PlaylistSlice = createSlice({
       state,
       _: PayloadAction<AddSongToPlaylistParams>
     ) => {
-      state.deleting = true;
+      state.removing = true;
     },
 
-    removeSongFromPlaylistDone: (state, _: PayloadAction<SongResponse[]>) => {
-      state.deleting = false;
+    removeSongFromPlaylistDone: (
+      state,
+      action: PayloadAction<SongResponse>
+    ) => {
+      state.removing = false;
+      state.songs = state.songs.filter((song) => song.id !== action.payload.id);
     },
     deletePlaylistRequest: (state, _: PayloadAction<number>) => {
       state.deleting = true;

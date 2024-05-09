@@ -13,6 +13,7 @@ import { loginSchema } from "../../../schema/user-auth/auth-schema";
 import { loginRequest } from "../../../store/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { UnderlinedTitle } from "../../utils/titles";
+import { SmallSpinner } from "../spinner/spinner";
 
 const LoginPage = () => {
   const user = useAppSelector((state) => state.user);
@@ -59,7 +60,10 @@ const LoginPage = () => {
                 value={formHandler.values["password"]}
               />
             </FormGroup>
-            <Button type="submit">Login</Button>
+            <Button type="submit">
+              {" "}
+              {user.loading ? <SmallSpinner /> : "Login"}{" "}
+            </Button>
           </Form>
         </LoginFormContainer>
       </LoginPageContainer>

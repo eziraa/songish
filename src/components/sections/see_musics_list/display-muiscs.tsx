@@ -24,7 +24,7 @@ import {
   VerticalDots,
 } from "./components.style";
 import { SongResponse } from "../../../typo/songs/response";
-import LoadingSpinner from "../spinner/spinner";
+import LoadingSpinner, { SmallSpinner } from "../spinner/spinner";
 import { ScrollBar } from "../../utils/scrollbar.style";
 import {
   deleteSongRequest,
@@ -52,10 +52,10 @@ import {
 } from "../../../config/constants/user-current-task";
 import {
   addSongToPlaylistRequested,
+  loadPlaylistSongsRequested,
   loadPlaylistsRequested,
   removeSongFromPlaylistRequested,
 } from "../../../store/playlist/playlistSlice";
-import { ClipLoader } from "react-spinners";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { CgPlayListAdd, CgPlayListRemove } from "react-icons/cg";
@@ -93,7 +93,6 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
     user.user,
     songs.query_set,
     playlists.songs,
-
     user.majorTask,
   ]);
 
@@ -213,13 +212,10 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                       setActionItemIndex(index);
                       onSelect(song);
                     }}
+                    disabled={playlists.adding}
                   >
                     {playlists.adding && index == actionItemIndex ? (
-                      <ClipLoader
-                        color="#4A90E2"
-                        loading={playlists.adding}
-                        size={20}
-                      />
+                      <SmallSpinner />
                     ) : (
                       <>
                         <CgPlayListAdd size={18} />
@@ -228,23 +224,26 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                     )}
                   </PlayListBtn>
                 ) : null}
-                {user.majorTask === SEE_PLAYLIST_SONGS && (
-                  <CgPlayListRemove
-                    style={{ color: "#B41515", fontSize: "24px" }}
-                    onClick={async () => {
-                      await dispatch(
-                        removeSongFromPlaylistRequested({
-                          playlist_id: playlists.currentPlaylist?.id || "",
-                          song_id: song.id,
-                        })
-                      );
-                      setSongList(
-                        song_list.filter((item) => item.id !== song.id)
-                      );
-                    }}
-                  />
-                )}
-                {user.favorite_songs.some((item) => song.id === item.id) ? (
+                {user.majorTask === SEE_PLAYLIST_SONGS &&
+                  (playlists.removing && index === actionItemIndex ? (
+                    <SmallSpinner />
+                  ) : (
+                    <CgPlayListRemove
+                      style={{ color: "#B41515", fontSize: "24px" }}
+                      onClick={async () => {
+                        setActionItemIndex(index);
+                        await dispatch(
+                          removeSongFromPlaylistRequested({
+                            playlist_id: playlists.currentPlaylist?.id || "",
+                            song_id: song.id,
+                          })
+                        );
+                      }}
+                    />
+                  ))}
+                {user.isOnAction && index === actionItemIndex ? (
+                  <SmallSpinner />
+                ) : user.favorite_songs.some((item) => song.id === item.id) ? (
                   <FavoritedIcon
                     onClick={() => {
                       setActionItemIndex(index);

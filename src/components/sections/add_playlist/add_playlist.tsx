@@ -17,9 +17,11 @@ import { addPlaylistRequested } from "../../../store/playlist/playlistSlice";
 import { CREATE_PLAYLIST } from "../../../config/constants/user-current-task";
 import { FormError } from "../sign_up/components.style";
 import { UnderlinedTitle } from "../../utils/titles";
+import { SmallSpinner } from "../spinner/spinner";
 
 const PlaylistForm = () => {
   const user = useAppSelector((state) => state.user);
+  const playlist = useAppSelector((state) => state.playlists);
   const dispatch = useAppDispatch();
   const initialValues = {
     name: "",
@@ -92,7 +94,13 @@ const PlaylistForm = () => {
             </FormGroup>
             <Button type="submit">
               {" "}
-              {user.minorTask === CREATE_PLAYLIST ? "Add" : "Update"}{" "}
+              {playlist.adding ? (
+                <SmallSpinner />
+              ) : user.minorTask === CREATE_PLAYLIST ? (
+                "Add"
+              ) : (
+                "Update"
+              )}{" "}
             </Button>
           </Form>
         </FormContainer>
