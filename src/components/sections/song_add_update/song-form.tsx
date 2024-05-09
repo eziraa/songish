@@ -30,7 +30,6 @@ const SongForm = () => {
   const songs = useAppSelector((state) => state.songs);
   const dispatch = useAppDispatch();
 
-  let isSubmitting = false;
 
   const formHandler = useFormik({
     initialValues: {
@@ -44,7 +43,6 @@ const SongForm = () => {
     },
     validationSchema: AddingSongSchema,
     onSubmit: (values) => {
-      isSubmitting = true;
       if (user.minorTask === UPLOAD_SONG) {
         dispatch(addSongRequested({ ...values, customer_id: user.user.id }));
       } else if (user.minorTask === UPDATE_SONG) {
