@@ -84,13 +84,12 @@ export const PlaylistCard = () => {
     return <LoadingSpinner />;
   }
 
-  if (!playlists.playlists)
+  if (playlists.playlists.length === 0)
     return (
       <>
         <H0>No Playlists Found</H0>
       </>
     );
-
   return (
     <PlaylistContainer>
       <UnderlinedTitle>Your PlayList</UnderlinedTitle>

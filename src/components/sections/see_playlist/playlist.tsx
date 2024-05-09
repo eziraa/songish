@@ -3,7 +3,7 @@ import { PlaylistResponse } from "../../../typo/playlist/response";
 import { timeAgo } from "../../utils/time_ago";
 import { ThemeProps } from "../../../styles/theme-interface";
 import { PlaylistIcon } from "./components.style";
-import React from "react";
+import React, { useState } from "react";
 import { setMinorTask } from "../../../store/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import {
@@ -15,6 +15,7 @@ import { CgPlayListAdd } from "react-icons/cg";
 import { MdPlaylistAddCheck } from "react-icons/md";
 import { addSongToPlaylistRequested } from "../../../store/playlist/playlistSlice";
 import { CREATE_PLAYLIST } from "../../../config/constants/user-current-task";
+import { SmallSpinner } from "../spinner/spinner";
 interface ModalProps {
   children: React.ReactNode;
   length: number;
@@ -117,6 +118,8 @@ export const PlaylistContainer = styled.div`
 const PlaylistCard = ({ playlist }: { playlist: PlaylistResponse }) => {
   const dispatcher = useAppDispatch();
   const songs = useAppSelector((state) => state.songs);
+  const playlists = useAppSelector((state) => state.playlists);
+  const [playlistId, setPlaylistId] = useState("-1");
   return (
     <CardContainer>
       <Card>
@@ -127,17 +130,23 @@ const PlaylistCard = ({ playlist }: { playlist: PlaylistResponse }) => {
       <Overlay
         className="overlay"
         onClick={() => {
+          setPlaylistId(playlist.id);
           dispatcher(
             addSongToPlaylistRequested({
               playlist_id: playlist.id,
               song_id: songs.current_song_for_action?.id || "",
             })
           );
-          dispatcher(setMinorTask(undefined));
         }}
       >
-        Add to this playlist
-        <MdPlaylistAddCheck size={40} />
+        {playlists.adding && playlist.id == playlistId ? (
+          <SmallSpinner />
+        ) : (
+          <>
+            Add to this playlist
+            <MdPlaylistAddCheck size={40} />
+          </>
+        )}
       </Overlay>
     </CardContainer>
   );

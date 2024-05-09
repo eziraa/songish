@@ -126,6 +126,7 @@ function* addSongToPlaylist(action: PayloadAction<AddSongToPlaylistParams>) {
       })
     );
     yield put(addSongToPlaylistDone(songs));
+    yield put(setMinorTask(undefined));
   } catch (error) {
     yield put(
       setNotification({

@@ -52,7 +52,6 @@ import {
 } from "../../../config/constants/user-current-task";
 import {
   addSongToPlaylistRequested,
-  loadPlaylistSongsRequested,
   loadPlaylistsRequested,
   removeSongFromPlaylistRequested,
 } from "../../../store/playlist/playlistSlice";
@@ -133,7 +132,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
     ].includes(user.majorTask || "")
   )
     return;
-  if (songs.loading) {
+  if (songs.loading || user.loading || playlists.loading) {
     return <LoadingSpinner />;
   }
   return (
