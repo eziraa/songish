@@ -19,12 +19,13 @@ import {
   FormContainer,
   FormGroup,
   Input,
-  Label,
 } from "../../utils/form_field_elements.style";
 import { FormError } from "../sign_up/components.style";
 import SongsAPI from "../../../services/songAPI";
 import { UnderlinedTitle } from "../../utils/titles";
 import { SmallSpinner } from "../spinner/spinner";
+import { InputField } from "../../utils/animate-input-field";
+import { ModalTitle } from "../login/components.style";
 
 const SongForm = () => {
   const user = useAppSelector((state) => state.user);
@@ -62,11 +63,11 @@ const SongForm = () => {
     <Modal>
       <AddSongContainer>
         <Description>
-          <UnderlinedTitle>
+          <ModalTitle>
             {user.minorTask === UPLOAD_SONG
               ? "Add Yours"
               : "Update Your musics"}
-          </UnderlinedTitle>
+          </ModalTitle>
           <DescriptionText>
             {user.minorTask === UPLOAD_SONG
               ? "Add your  local music and listen it on cool website"
@@ -76,14 +77,18 @@ const SongForm = () => {
         <FormContainer>
           <Form onSubmit={formHandler.handleSubmit}>
             <FormGroup>
-              <Label htmlFor="title">Title </Label>
-              <Input
-                type="text"
-                id="title"
-                name="title"
-                onChange={formHandler.handleChange}
-                value={formHandler.values["title"]}
-              />
+              <InputField>
+                <input
+                  required
+                  placeholder=""
+                  type="text"
+                  id="title"
+                  name="title"
+                  onChange={formHandler.handleChange}
+                  value={formHandler.values["title"]}
+                />
+                <label htmlFor="title">Title</label>
+              </InputField>
               <FormError>
                 {formHandler.touched.title && formHandler.errors.title ? (
                   <div>{formHandler.errors.title}</div>
@@ -91,14 +96,18 @@ const SongForm = () => {
               </FormError>{" "}
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="artist">Artist</Label>
-              <Input
-                type="text"
-                id="artist"
-                name="artist"
-                onChange={formHandler.handleChange}
-                value={formHandler.values.artist}
-              />
+              <InputField>
+                <input
+                  required
+                  placeholder=""
+                  type="text"
+                  id="artist"
+                  name="artist"
+                  onChange={formHandler.handleChange}
+                  value={formHandler.values.artist}
+                />
+                <label htmlFor="artist">Artist</label>
+              </InputField>
               <FormError>
                 {formHandler.touched.artist && formHandler.errors.artist ? (
                   <div>{formHandler.errors.artist}</div>
@@ -106,14 +115,18 @@ const SongForm = () => {
               </FormError>{" "}
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="album">Album (Optional)</Label>
-              <Input
-                type="text"
-                id="album"
-                name="album"
-                onChange={formHandler.handleChange}
-                value={formHandler.values.album}
-              />
+              <InputField>
+                <input
+                  required
+                  placeholder=""
+                  type="text"
+                  id="album"
+                  name="album"
+                  onChange={formHandler.handleChange}
+                  value={formHandler.values.album}
+                />
+                <label htmlFor="album">Album (Optional)</label>
+              </InputField>
             </FormGroup>
             <Input
               type="hidden"
@@ -122,34 +135,42 @@ const SongForm = () => {
               value={formHandler.values.duration}
             />
             <FormGroup>
-              <Label htmlFor="age">Release date (Optional) </Label>
-              <Input
-                type="date"
-                id="release_date"
-                name="release_date"
-                onChange={formHandler.handleChange}
-                value={formHandler.values.release_date}
-              />
+              <InputField>
+                <input
+                  required
+                  placeholder=""
+                  type="date"
+                  id="release_date"
+                  name="release_date"
+                  onChange={formHandler.handleChange}
+                  value={formHandler.values.release_date}
+                />
+                <label htmlFor="age">Release date (Optional) </label>
+              </InputField>
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="song_file">Audio</Label>
-              <Input
-                type="file"
-                id="song_file"
-                name="song_file"
-                onChange={async (event) => {
-                  formHandler.setFieldValue(
-                    "song_file",
-                    event.currentTarget.files && event.currentTarget.files[0]
-                  );
-                  formHandler.setFieldValue(
-                    "duration",
-                    event.target.files &&
-                      (await SongsAPI.getAudioDuration(event.target.files[0]))
-                  );
-                }}
-              />
+              <InputField>
+                <input
+                  required
+                  placeholder=""
+                  type="file"
+                  id="song_file"
+                  name="song_file"
+                  onChange={async (event) => {
+                    formHandler.setFieldValue(
+                      "song_file",
+                      event.currentTarget.files && event.currentTarget.files[0]
+                    );
+                    formHandler.setFieldValue(
+                      "duration",
+                      event.target.files &&
+                        (await SongsAPI.getAudioDuration(event.target.files[0]))
+                    );
+                  }}
+                />
+                <label htmlFor="song_file">Audio</label>
+              </InputField>
               <FormError>
                 {formHandler.touched.song_file && (
                   <>{formHandler.errors.song_file}</>
