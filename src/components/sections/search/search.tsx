@@ -10,9 +10,9 @@ import { setQuerySet } from "../../../store/song/songSlice";
 import { setMajorTask } from "../../../store/user/userSlice";
 import { SongResponse } from "../../../typo/songs/response";
 import { useAppSelector, useAppDispatch } from "../../../utils/customHook";
-import { Label } from "../../utils/form_field_elements.style";
 import { SearchIcon } from "../../utils/icons/button-like-icon";
 import {
+  Label,
   SearchContainer,
   SearchField,
   SearchForm,

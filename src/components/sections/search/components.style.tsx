@@ -42,6 +42,12 @@ export const SearchField = styled.input<ThemeProps>`
   }
 `;
 
+export const Label = styled.label<ThemeProps>`
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: ${({ theme }) => theme.textPrimary};
+`;
+
 export const Select = styled.select<ThemeProps>`
   padding: 10px;
   border: none;
