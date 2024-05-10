@@ -22,7 +22,6 @@ import {
 } from "../../utils/form_field_elements.style";
 import { FormError } from "../sign_up/components.style";
 import SongsAPI from "../../../services/songAPI";
-import { UnderlinedTitle } from "../../utils/titles";
 import { SmallSpinner } from "../spinner/spinner";
 import { InputField } from "../../utils/animate-input-field";
 import { ModalTitle } from "../login/components.style";

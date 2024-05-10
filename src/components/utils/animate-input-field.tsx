@@ -41,6 +41,17 @@ export const InputField = styled.div`
     transition: all 0.5s;
     outline: none;
   }
+  input[type="file"],
+  input[type="date"] {
+    color: #05c4a4da;
+  }
+
+  input[type="file"] ~ label {
+    transform: translateY(-30px);
+  }
+  input[type="date"] ~ label {
+    transform: translateY(-25px);
+  }
 `;
 
 const InputConatiner = styled.div`
