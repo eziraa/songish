@@ -37,11 +37,13 @@ export const TitleBackGround = styled.div<ThemeProps>`
 `;
 export const DescriptionContainer = styled.div`
   margin: 2rem;
-  padding-top: 1rem;
+  padding: 1rem;
+  padding-left: 3rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 4rem;
+  gap: 6rem;
+  width: 80%;
 `;
 export const Description = styled.div<ThemeProps>`
   font-size: 18px;
