@@ -86,6 +86,6 @@ export const darkTheme:Theme = {
   imageBackground: '#000000CC',
   footerTextColor: '#C9B8B8',
   notificationBackground: '#3249AF',
-  modalBackgroundColor: '#49618B'
+  modalBackgroundColor: '#344B74'
 };
 

@@ -29,7 +29,15 @@ const Welcome = () => {
             Get Started <HiArrowSmallRight />
           </StartButton>
         </LeftSection>
-        <Paragraph>
+        <Paragraph
+          style={{
+            fontFamily: "Tangerine",
+            fontSize: "4.2rem",
+            lineHeight: "4rem",
+            letterSpacing: "0.05rem",
+            textAlign: "center",
+          }}
+        >
           Immerse yourself in a world of sound with our vast library of tracks
           from artists all around the globe. Whether you're looking for the
           latest hits, classical symphonies, or obscure indie tracks, you'll
