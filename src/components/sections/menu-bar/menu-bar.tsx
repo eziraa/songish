@@ -58,8 +58,9 @@ const LeftMenu = ({ smoothScroll }: MenuBarProps) => {
                   : {}
               }
               onClick={(e) => {
-                e.preventDefault();
-                smoothScroll("content");
+                const element = document.getElementById("content");
+                element?.scrollIntoView({ behavior: "smooth" });
+                // window.scrollTo({ top: 0, behavior: "smooth" }); // add this line
                 setCurrentMenuBar(index);
                 index == 1 && dispatcher(setMinorTask(UPLOAD_SONG));
                 if (index == 2) {

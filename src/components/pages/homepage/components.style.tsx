@@ -17,4 +17,5 @@ export const Main = styled.div`
   right: 0;
   width: 80%;
   gap: 2rem;
+  padding-top: 5vh;
 `;

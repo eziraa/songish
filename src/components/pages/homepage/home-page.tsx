@@ -83,8 +83,10 @@ const HomePage = () => {
             <div
               id="content"
               style={{
-                position: "absolute",
-                top: "-25vh",
+                position: "relative",
+                border: "2px solid red",
+                height: "5vh",
+                top: "-10vh",
               }}
             ></div>
             <PlaylistCard />
