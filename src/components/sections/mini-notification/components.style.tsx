@@ -25,8 +25,7 @@ export const NotificationHeader = styled.div`
 `;
 export const NotificationContent = styled.div`
   display: flex;
-  justify-content: space-between;
   text-align: start;
   align-items: center;
-  gap: 2.4rem;
+  gap: 1.4rem;
 `;

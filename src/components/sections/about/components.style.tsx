@@ -17,7 +17,7 @@ export const Title = styled.h1<ThemeProps>`
   text-align: center;
   font-weight: 700;
   transform: skew(60deg);
-  margin-bottom: 5rem;
+  margin-bottom: 10.4rem;
   width: 19.5vw;
   padding: 1.6rem 0;
   margin-left: -16rem;
