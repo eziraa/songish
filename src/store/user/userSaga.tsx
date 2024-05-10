@@ -61,7 +61,7 @@ function* Login(action: PayloadAction<LoginParameters>) {
         color: "green",
         status: true,
         title: "User login in",
-        desc: "You are successfully logged  in",
+        desc: "You are  logged  in successfully",
         duration: 3,
       })
     );
@@ -123,15 +123,6 @@ function* loadMyFavoriteSongs(action: PayloadAction<GetMyFavoriteParams>) {
     );
 
     yield put(loadMyFavoriteSongsDone(songs));
-    // yield put(
-    //   setNotification({
-    //     color: "green",
-    //     status: true,
-    //     title: "Loading your favorite songs",
-    //     desc: "Your favorite songs loaded successfully",
-    //     duration: 3,
-    //   })
-    // );
   } catch (error) {
     yield put(
       setNotification({
