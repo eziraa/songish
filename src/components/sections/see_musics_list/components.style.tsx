@@ -136,6 +136,8 @@ export const PopUpContainer = styled.div<ThemeProps>`
   background-color: ${({ theme }) => theme.backgroundSecondaryHover};
   border: 1px solid ${({ theme }) => theme.backgroundSecondary};
   padding: 10px;
+  padding-right: 1.5rem;
+  padding-top: 1.5rem;
   z-index: 89999;
   display: flex;
   flex-direction: column;
@@ -154,9 +156,10 @@ export const DeleteButton = styled(Button)`
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   text-align: start;
+  color: ${({ theme }) => theme.textPrimary};
   &:hover {
     background-color: red;
-    color: #b7b2b2;
+    color: #ffffff;
   }
   font-size: 14px;
 `;
@@ -171,10 +174,11 @@ export const UpdateButton = styled(Button)`
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   text-align: start;
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 14px;
   &:hover {
     background-color: #d38106;
-    color: #c7bebe;
+    color: #ffffff;
   }
 `;
 

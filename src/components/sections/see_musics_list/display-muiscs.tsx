@@ -153,6 +153,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
           position: "relative",
           width: "70vw",
           maxHeight: "60vh",
+          paddingBottom: "22vh",
         }}
       >
         {song_list.length === 0 ? (
@@ -291,10 +292,10 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                     {index === popUpIndex && (
                       <PopUpContainer className="pop">
                         <CloseButton
-                          style={{ top: "0", right: "0", color: "black" }}
+                          style={{ top: "4px", right: "4px" }}
                           onClick={() => setPopUpIndex(-1)}
                         />
-                        {
+                        {user.user.id === song.customer && (
                           <>
                             <DeleteButton onClick={() => onDelete(song)}>
                               <RiDeleteBin6Fill size={16} />
@@ -305,7 +306,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                               Edit
                             </UpdateButton>
                           </>
-                        }
+                        )}
                         <UpdateButton onClick={() => addSongToPlaylist(song)}>
                           <CgPlayListAdd size={16} />
                           Add to playlist

@@ -44,6 +44,7 @@ export const CloseButton = styled(CgClose)<ThemeProps>`
   font-size: 30px;
   padding: 3px 5px;
   cursor: pointer;
+  color: ${({ theme }) => theme.textPrimary};
   &:hover {
     background-color: red;
   }
