@@ -9,13 +9,10 @@ import {
   DescriptionText,
   Form,
   FormGroup,
-  Input,
-  Label,
 } from "../../utils/form_field_elements.style";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { signUpSchema } from "../../../schema/user-auth/auth-schema";
 import { signUpRequest } from "../../../store/user/userSlice";
-import { UnderlinedTitle } from "../../utils/titles";
 import { SmallSpinner } from "../spinner/spinner";
 import { InputField } from "../../utils/animate-input-field";
 import { ModalTitle } from "../login/components.style";
