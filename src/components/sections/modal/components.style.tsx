@@ -25,7 +25,7 @@ export const beVisible = keyframes`
   }
 `;
 export const ModalContent = styled.div<ThemeProps>`
-  background-color: white;
+  background-color: #9f9fab;
   padding: 2rem;
   border-radius: 0.5rem;
   z-index: 400;
