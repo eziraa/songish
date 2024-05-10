@@ -1,5 +1,9 @@
 import { useFormik } from "formik";
-import { LoginPageContainer, LoginFormContainer } from "./components.style";
+import {
+  LoginPageContainer,
+  LoginFormContainer,
+  ModalTitle,
+} from "./components.style";
 import { LOGIN } from "../../../config/constants/user-current-task";
 import Modal from "../modal/modal";
 import {
@@ -14,6 +18,7 @@ import { loginRequest } from "../../../store/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
 import { UnderlinedTitle } from "../../utils/titles";
 import { SmallSpinner } from "../spinner/spinner";
+import { InputField } from "../../utils/animate-input-field";
 
 const LoginPage = () => {
   const user = useAppSelector((state) => state.user);
@@ -36,32 +41,37 @@ const LoginPage = () => {
     <Modal>
       <LoginPageContainer>
         <LoginFormContainer>
-          <UnderlinedTitle style={{ color: "#14BEAA" }}>Login</UnderlinedTitle>
+          <ModalTitle> User Login</ModalTitle>
           <Form onSubmit={formHandler.handleSubmit}>
             <FormGroup>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="email"
-                id="emails"
-                placeholder="Enter your email"
-                name="email"
-                onChange={formHandler.handleChange}
-                value={formHandler.values["email"]}
-              />
+              <InputField>
+                <input
+                  required
+                  type="email"
+                  placeholder=""
+                  id="emails"
+                  name="email"
+                  onChange={formHandler.handleChange}
+                  value={formHandler.values["email"]}
+                />
+                <label>Username</label>
+              </InputField>
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="password">Password</Label>
-              <Input
-                type="password"
-                id="passwords"
-                placeholder="Enter your password"
-                name="password"
-                onChange={formHandler.handleChange}
-                value={formHandler.values["password"]}
-              />
+              <InputField>
+                <input
+                  required
+                  type="password"
+                  id="passwords"
+                  name="password"
+                  placeholder=""
+                  onChange={formHandler.handleChange}
+                  value={formHandler.values["password"]}
+                />
+                <label>Password</label>
+              </InputField>
             </FormGroup>
             <Button type="submit">
-              {" "}
               {user.loading ? <SmallSpinner /> : "Login"}{" "}
             </Button>
           </Form>
