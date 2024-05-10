@@ -5,10 +5,9 @@ export const ContactContainer = styled.div`
   margin: 0 auto;
   padding: 5rem;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   gap: 6.4rem;
-  width: 80%;
+  width: 100%;
   padding-top: 20vh;
   margin-bottom: 20vh;
   @media screen and (max-width: 1000px) {
@@ -17,11 +16,11 @@ export const ContactContainer = styled.div`
 `;
 
 export const Title = styled.h2<ThemeProps>`
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 700;
-  width: 20vw;
+  width: 13vw;
+  text-align: start;
   margin-left: 10rem;
-  text-align: center;
   color: transparent;
   position: relative;
   background-clip: text;
@@ -33,7 +32,7 @@ export const Title = styled.h2<ThemeProps>`
   );
   &::after {
     content: "";
-    width: 100%;
+    width: 30%;
     height: 10%;
     position: absolute;
     bottom: -5%;
@@ -60,9 +59,11 @@ export const Title = styled.h2<ThemeProps>`
 `;
 export const ContactBody = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: start;
+  justify-content: center;
   width: 80vw;
+  gap: 3rem;
+  flex-direction: column;
 `;
 
 export const ContactList = styled.ul`

@@ -17,7 +17,7 @@ export const Title = styled.h2<ThemeProps>`
 
 export const DescriptionText = styled.p<ThemeProps>`
   font-size: 1.8rem;
-  color: ${({ theme }) => theme.textPrimary};
+  color: black;
   line-height: 1.6;
   font-family: "Roboto", sans-serif;
   font-weight: 300;

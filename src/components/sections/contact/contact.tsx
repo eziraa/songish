@@ -8,7 +8,6 @@ import {
   FormContainer,
   FormGroup,
   Label,
-  Input,
   TextArea,
   Button,
   Form,
@@ -22,6 +21,7 @@ import {
   Title,
 } from "./components.style";
 import { SmallSpinner } from "../spinner/spinner";
+import { InputField } from "../../utils/animate-input-field";
 
 const ContactPage = () => {
   const [loading, setLoading] = useState(false);
@@ -48,10 +48,14 @@ const ContactPage = () => {
   };
   return (
     <ContactContainer id="contact">
-      <Title>Contact Me</Title>
       <ContactBody>
+        <Title>Contact Me</Title>
         <Description>
-          <DescriptionText>
+          <DescriptionText
+            style={{
+              color: "#638a87d3",
+            }}
+          >
             Have any questions, suggestions, or just want to say hello? Feel
             free to drop me a message using contacts below. I'd love to hear
             from you!
@@ -83,26 +87,73 @@ const ContactPage = () => {
             </ContactItem>
           </ContactList>
         </Description>
-        <FormContainer>
-          <Form ref={formRef} onSubmit={sendEmail}>
-            <FormGroup>
-              <Label htmlFor="name">Your Name</Label>
-              <Input type="text" id="name" name="name" required />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="email">Your Email</Label>
-              <Input type="email" id="from_email" name="from_email" required />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="message">Your Message</Label>
-              <TextArea id="message" name="message" required />
-            </FormGroup>
-            <Button type="submit">
-              {loading ? <SmallSpinner /> : "Send Message"}
-            </Button>
-          </Form>
-        </FormContainer>
       </ContactBody>
+      <FormContainer
+        style={{
+          width: "50vw",
+          backgroundColor: "#0c0c0e1e",
+          padding: "2rem",
+          borderRadius: "10px",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Form style={{ width: "80%" }} ref={formRef} onSubmit={sendEmail}>
+          <FormGroup>
+            <InputField>
+              <input
+                required
+                placeholder=""
+                type="text"
+                id="name"
+                name="name"
+                style={{
+                  backgroundColor: "transparent",
+                  color: "white",
+                }}
+              />
+              <label htmlFor="name">Your Nam</label>
+            </InputField>
+          </FormGroup>
+          <FormGroup>
+            <InputField>
+              <input
+                required
+                placeholder=""
+                type="email"
+                id="from_email"
+                name="from_email"
+                style={{
+                  backgroundColor: "transparent",
+                  color: "white",
+                }}
+              />
+              <label htmlFor="from_email">Your Email</label>
+            </InputField>
+          </FormGroup>
+          <FormGroup>
+            <InputField>
+              <Label htmlFor="message">Your Message</Label>
+            </InputField>
+            <TextArea
+              style={{
+                backgroundColor: "transparent",
+                color: "white",
+                border: "1px solid #09DFADEF",
+              }}
+              id="message"
+              name="message"
+              required
+            />
+          </FormGroup>
+          <Button type="submit">
+            {loading ? <SmallSpinner /> : "Send Message"}
+          </Button>
+        </Form>
+      </FormContainer>
     </ContactContainer>
   );
 };

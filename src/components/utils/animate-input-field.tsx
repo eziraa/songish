@@ -6,6 +6,7 @@ export const InputField = styled.div`
   width: 100%;
   position: relative;
   input {
+    padding-left: 0.8rem;
     width: 100%;
     height: 100%;
     font-size: 1.7rem;
@@ -40,6 +41,7 @@ export const InputField = styled.div`
     font-size: 1.6rem;
     transition: all 0.5s;
     outline: none;
+    padding-left: 0.8rem;
   }
   input[type="file"],
   input[type="date"] {
