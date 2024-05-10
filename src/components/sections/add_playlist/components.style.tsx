@@ -16,8 +16,8 @@ export const AddPlaylistContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 60vw;
-  padding: 1.6rem;
+  width: 45vw;
+  padding: 3rem;
   padding-top: 5rem;
   animation: ${beVisible} 1.5s;
 `;

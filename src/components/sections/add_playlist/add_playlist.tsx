@@ -8,16 +8,15 @@ import {
   Form,
   FormContainer,
   FormGroup,
-  Input,
-  Label,
 } from "../../utils/form_field_elements.style";
 import Modal from "../modal/modal";
 import { AddPlaylistContainer } from "./components.style";
 import { addPlaylistRequested } from "../../../store/playlist/playlistSlice";
 import { CREATE_PLAYLIST } from "../../../config/constants/user-current-task";
 import { FormError } from "../sign_up/components.style";
-import { UnderlinedTitle } from "../../utils/titles";
 import { SmallSpinner } from "../spinner/spinner";
+import { InputField } from "../../utils/animate-input-field";
+import { ModalTitle } from "../login/components.style";
 
 const PlaylistForm = () => {
   const user = useAppSelector((state) => state.user);
@@ -42,7 +41,7 @@ const PlaylistForm = () => {
     <Modal>
       <AddPlaylistContainer>
         <Description>
-          <UnderlinedTitle>{"Create Your Playlist"}</UnderlinedTitle>
+          <ModalTitle>Create Yours </ModalTitle>
           <DescriptionText>
             Create your own playlist and add songs to it
           </DescriptionText>
@@ -50,14 +49,18 @@ const PlaylistForm = () => {
         <FormContainer>
           <Form onSubmit={formHandler.handleSubmit}>
             <FormGroup>
-              <Label htmlFor="name">Playlist Name </Label>
-              <Input
-                type="text"
-                id="name"
-                name="name"
-                onChange={formHandler.handleChange}
-                value={formHandler.values.name}
-              />
+              <InputField>
+                <input
+                  required
+                  placeholder=""
+                  type="text"
+                  id="name"
+                  name="name"
+                  onChange={formHandler.handleChange}
+                  value={formHandler.values.name}
+                />
+                <label htmlFor="name">Playlist Name </label>
+              </InputField>
               <FormError>
                 {formHandler.touched.name && formHandler.errors.name ? (
                   <div>{formHandler.errors.name}</div>
@@ -65,29 +68,37 @@ const PlaylistForm = () => {
               </FormError>{" "}
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="description">Description</Label>
-              <Input
-                type="text"
-                id="description"
-                name="description"
-                onChange={formHandler.handleChange}
-                value={formHandler.values.description}
-              />
+              <InputField>
+                <input
+                  required
+                  placeholder=""
+                  type="text"
+                  id="description"
+                  name="description"
+                  onChange={formHandler.handleChange}
+                  value={formHandler.values.description}
+                />
+                <label htmlFor="description">Description(Optional)</label>
+              </InputField>
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="image">Upload Image</Label>
-              <Input
-                type="file"
-                id="image"
-                name="image"
-                onChange={async (event) => {
-                  formHandler.setFieldValue(
-                    "image",
-                    event.currentTarget.files && event.currentTarget.files[0]
-                  );
-                }}
-              />
+              <InputField>
+                <input
+                  required
+                  placeholder=""
+                  type="file"
+                  id="image"
+                  name="image"
+                  onChange={async (event) => {
+                    formHandler.setFieldValue(
+                      "image",
+                      event.currentTarget.files && event.currentTarget.files[0]
+                    );
+                  }}
+                />
+                <label htmlFor="image">Upload Image</label>
+              </InputField>
               <FormError>
                 {formHandler.touched.image && <>{formHandler.errors.image}</>}
               </FormError>{" "}
