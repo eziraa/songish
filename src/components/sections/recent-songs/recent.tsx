@@ -22,6 +22,7 @@ import { TimeCreated } from "../favorite_songs/components.style";
 
 export const RecentSection = () => {
   const songs = useAppSelector((state) => state.songs);
+  const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [prevIndex, setPrevIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
@@ -30,7 +31,7 @@ export const RecentSection = () => {
 
   useEffect(() => {
     dispatch(loadSongsRequested());
-  }, []);
+  }, [user.isLogin]);
 
   useEffect(() => {
     handleNextPrev();
