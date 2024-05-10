@@ -31,7 +31,7 @@ import { SmallSpinner } from "../spinner/spinner";
 interface MenuBarProps {
   smoothScroll: (id: string) => void;
 }
-const LeftMenu = ({ smoothScroll }: MenuBarProps) => {
+const LeftMenu = ({}: MenuBarProps) => {
   const dispatcher = useAppDispatch();
   const user = useAppSelector((state) => state.user);
   const { theme } = useContext<ThemeContextType>(ThemeContext);
@@ -57,7 +57,7 @@ const LeftMenu = ({ smoothScroll }: MenuBarProps) => {
                     }
                   : {}
               }
-              onClick={(e) => {
+              onClick={() => {
                 const element = document.getElementById("content");
                 element?.scrollIntoView({ behavior: "smooth" });
                 setCurrentMenuBar(index);
