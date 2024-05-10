@@ -6,17 +6,10 @@ import {
 } from "./components.style";
 import { LOGIN } from "../../../config/constants/user-current-task";
 import Modal from "../modal/modal";
-import {
-  FormGroup,
-  Button,
-  Form,
-  Input,
-  Label,
-} from "../../utils/form_field_elements.style";
+import { FormGroup, Button, Form } from "../../utils/form_field_elements.style";
 import { loginSchema } from "../../../schema/user-auth/auth-schema";
 import { loginRequest } from "../../../store/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../../utils/customHook";
-import { UnderlinedTitle } from "../../utils/titles";
 import { SmallSpinner } from "../spinner/spinner";
 import { InputField } from "../../utils/animate-input-field";
 
