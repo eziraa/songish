@@ -7,6 +7,7 @@ export const Menu = styled.div<ThemeProps>`
   gap: 10px;
   width: 15vw;
   left: 0;
+  top: 12vh;
   height: 100%;
   background-color: ${({ theme }) => theme.backgroundSecondary};
   color: ${({ theme }) => theme.text};

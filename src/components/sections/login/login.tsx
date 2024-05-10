@@ -36,7 +36,7 @@ const LoginPage = () => {
     <Modal>
       <LoginPageContainer>
         <LoginFormContainer>
-          <UnderlinedTitle style={{ color: "black" }}>Login</UnderlinedTitle>
+          <UnderlinedTitle style={{ color: "#14BEAA" }}>Login</UnderlinedTitle>
           <Form onSubmit={formHandler.handleSubmit}>
             <FormGroup>
               <Label htmlFor="email">Email</Label>

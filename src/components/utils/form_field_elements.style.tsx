@@ -29,9 +29,11 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 20vw;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   text-align: start;
+  padding: 0.5rem 0;
+  font-family: "Robotto", sans-serif;
+  color: ${({ theme }) => theme.backgroundPrimary};
 `;
 
 export const FormGroup = styled.div`
@@ -43,7 +45,7 @@ export const FormGroup = styled.div`
 export const Label = styled.label<ThemeProps>`
   font-size: 18px;
   margin-bottom: 5px;
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.backgroundPrimary};
 `;
 
 export const Input = styled.input<ThemeProps>`
@@ -58,14 +60,14 @@ export const Button = styled.button<ThemeProps>`
   padding: 12px 20px;
   background-color: ${({ theme }) => theme.formButtonColor};
   border: none;
+  background-color: #14beaa;
   border-radius: 5px;
-  color: white;
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #06afb5;
   }
 `;
 export const TextArea = styled.textarea<ThemeProps>`

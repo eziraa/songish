@@ -25,6 +25,7 @@ export type Theme = {
   imageBackground: string;
   footerTextColor: string;
   notificationBackground: string;
+  modalBackgroundColor: string;
 };
 
 export const lightTheme: Theme = {
@@ -39,7 +40,7 @@ export const lightTheme: Theme = {
   headerColor: '#FFFFFF',
   aboutBackground: '#15EBCE',
   backgroundSecondaryHover: '#C2C0C2',
-  formButtonColor: '#04376E',
+  formButtonColor: '#046E55',
   formBtnTextColor: '#FEFEFE',
   inputFieldColor: '#ccc',
   outLinedBtnColor: '#FF01B7',
@@ -53,7 +54,8 @@ export const lightTheme: Theme = {
   cardBackgroundColorSecondary: '#845858 ',
   imageBackground: '#D4D1D1B6',
   footerTextColor: '#564F4F',
-  notificationBackground: '#303F81'
+  notificationBackground: '#303F81',
+  modalBackgroundColor: '#FEFEFE'
 }
 
 
@@ -69,7 +71,7 @@ export const darkTheme:Theme = {
   headerColor: '#363537',
   aboutBackground: '#076F61',
   backgroundSecondaryHover: '#183855',
-  formButtonColor: '#72787F',
+  formButtonColor: '#07b8a0',
   inputFieldColor: '#ccc',
   formBtnTextColor: '#18263E',
   outLinedBtnColor: '#FF01B7',
@@ -83,6 +85,7 @@ export const darkTheme:Theme = {
   cardBackgroundColorSecondary: '#561e1e ',
   imageBackground: '#000000CC',
   footerTextColor: '#C9B8B8',
-  notificationBackground: '#3249AF'
+  notificationBackground: '#3249AF',
+  modalBackgroundColor: '#49618B'
 };
 

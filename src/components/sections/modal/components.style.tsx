@@ -25,7 +25,7 @@ export const beVisible = keyframes`
   }
 `;
 export const ModalContent = styled.div<ThemeProps>`
-  background-color: ${({ theme }) => theme.backgroundPrimary};
+  background-color: white;
   padding: 20px;
   border-radius: 5px;
   z-index: 400;
@@ -43,7 +43,6 @@ export const CloseButton = styled(CgClose)<ThemeProps>`
   border: none;
   font-size: 30px;
   padding: 3px 5px;
-  color: ${({ theme }) => theme.textPrimary};
   cursor: pointer;
   &:hover {
     background-color: red;

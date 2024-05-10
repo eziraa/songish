@@ -21,6 +21,7 @@ import { PlaylistCard } from "../../sections/see_playlist/playlist-card";
 import { FavoriteSongs } from "../../sections/favorite_songs/favorite";
 import Playlists from "../../sections/see_playlist/playlist";
 import { SELECT_PLAYLIST_TO_ADD_SONG } from "../../../config/constants/user-current-task";
+import Welcome from "../../sections/welcome/welcome";
 
 const HomePage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -93,6 +94,7 @@ const HomePage = () => {
               )}
             <MusicTable popUpIndex={popUpIndex} setPopUpIndex={setPopUpIndex} />
             <FavoriteSongs />
+            <Welcome />
             <RecentSection />
             <AboutPage />
             <ContactPage />

@@ -37,7 +37,6 @@ const SongForm = () => {
       artist: songs.current_song_for_action?.artist || "",
       album: songs.current_song_for_action?.album || "",
       release_date: songs.current_song_for_action?.release_date || "",
-      customer_id: user.user.id,
       duration: songs.current_song_for_action?.duration || 0,
       song_file: songs.current_song_for_action?.song_file || undefined,
     },

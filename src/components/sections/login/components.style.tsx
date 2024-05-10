@@ -4,7 +4,6 @@ export const LoginPageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
   flex-direction: column;
   gap: 1rem;
   margin: 2rem;
@@ -13,7 +12,6 @@ export const LoginPageContainer = styled.div`
 
 export const LoginFormContainer = styled.div`
   width: 400px;
-  background-color: #fff;
   border-radius: 10px;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
