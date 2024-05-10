@@ -33,7 +33,7 @@ export const TitleBackGround = styled.div<ThemeProps>`
   width: 20vw;
   margin: 1.6rem;
   padding: 0.8rem 0;
-  height: 0.8rem;
+  height: 1rem;
 `;
 export const DescriptionContainer = styled.div`
   margin: 3rem;

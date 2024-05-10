@@ -6,8 +6,7 @@ export const GlobalStyles = css`
     margin: 0;
     box-sizing: border-box;
     font-family: monospace;
-    transition: all 0.5s linear;
-    font-size: 1.6rem;
+    transition: background-color 0.5s linear, color 0.5s linear;
   }
   :root {
     font-size: 10px;
