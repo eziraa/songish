@@ -94,7 +94,7 @@ const HomePage = () => {
               )}
             <MusicTable popUpIndex={popUpIndex} setPopUpIndex={setPopUpIndex} />
             <FavoriteSongs />
-            <Welcome />
+            {user.user.id === "" && <Welcome />}
             <RecentSection />
             <AboutPage />
             <ContactPage />
