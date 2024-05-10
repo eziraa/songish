@@ -61,6 +61,7 @@ export const Input = styled.input<ThemeProps>`
 `;
 
 export const Button = styled.button<ThemeProps>`
+  margin-top: 2rem;
   padding: 1.2rem 2rem;
   background-color: ${({ theme }) => theme.formButtonColor};
   border: none;
@@ -72,6 +73,7 @@ export const Button = styled.button<ThemeProps>`
 
   &:hover {
     background-color: #06afb5;
+    color: white;
   }
 `;
 export const TextArea = styled.textarea<ThemeProps>`
