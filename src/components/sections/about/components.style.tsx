@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { ThemeProps } from "../../../styles/theme-interface";
 
 export const AboutContainer = styled.div`
-  padding-top: 12rem;
   display: flex;
+  padding-top: 25vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;

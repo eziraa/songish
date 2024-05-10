@@ -7,18 +7,25 @@ export const ContactContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 6.4rem;
   width: 80%;
+  padding-top: 20vh;
   margin-bottom: 20vh;
+  @media screen and (max-width: 1000px) {
+    width: 90%;
+  }
 `;
 
 export const Title = styled.h2<ThemeProps>`
   font-size: 5rem;
   font-weight: 700;
+  width: 20vw;
+  margin-left: 10rem;
+  text-align: center;
   color: transparent;
   position: relative;
   background-clip: text;
+  position: relative;
   background-image: linear-gradient(
     to right,
     ${({ theme }) => theme.textPrimary},
@@ -27,59 +34,35 @@ export const Title = styled.h2<ThemeProps>`
   &::after {
     content: "";
     width: 100%;
-    height: 30%;
+    height: 10%;
     position: absolute;
-    bottom: -10%;
-    left: 0;
-    background-image: linear-gradient(
-      to right,
-      ${({ theme }) => theme.backgroundPrimary},
-      ${({ theme }) => theme.backgroundPrimary}
-    );
-    clip-path: polygon(
-      0 0,
-      10% 100%,
-      20% 0,
-      30% 100%,
-      40% 0,
-      50% 100%,
-      60% 0,
-      70% 100%,
-      80% 0,
-      90% 100%,
-      100% 0
-    );
-  }
-  &::before {
-    content: "";
-    width: 100%;
-    height: 30%;
-    position: absolute;
-    bottom: -20%;
+    bottom: -5%;
     left: 0;
     background-image: linear-gradient(
       to right,
       ${({ theme }) => theme.textPrimary},
       #09949a
     );
-    clip-path: polygon(
-      0 0,
-      10% 100%,
-      20% 0,
-      30% 100%,
-      40% 0,
-      50% 100%,
-      60% 0,
-      70% 100%,
-      80% 0,
-      90% 100%,
-      100% 0
+  }
+  &::before {
+    content: "";
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    top: -5%;
+    left: 0;
+    background-image: linear-gradient(
+      to right,
+      ${({ theme }) => theme.textPrimary},
+      #09949a
     );
   }
 `;
 export const ContactBody = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 80vw;
 `;
 
 export const ContactList = styled.ul`

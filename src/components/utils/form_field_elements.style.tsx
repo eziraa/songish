@@ -17,12 +17,14 @@ export const Title = styled.h2<ThemeProps>`
 
 export const DescriptionText = styled.p<ThemeProps>`
   font-size: 1.8rem;
-  color: #0c1321;
+  color: ${({ theme }) => theme.textPrimary};
   line-height: 1.6;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   text-align: start;
   padding-top: 2rem;
+  max-width: 30vw;
+  letter-spacing: 1px;
 `;
 
 export const Form = styled.form`
