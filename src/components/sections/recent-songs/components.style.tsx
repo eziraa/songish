@@ -7,8 +7,8 @@ export const RecentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 0.5rem;
-  padding: 3rem;
+  gap: 0.8rem;
+  padding: 5rem;
   width: 100%;
 `;
 
@@ -22,18 +22,18 @@ export const AboutMusic = styled.div<ThemeProps>`
 `;
 
 export const Title = styled.h2<ThemeProps>`
-  font-size: 2rem;
+  font-size: 3.2rem;
   font-weight: bold;
   color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const SongsIcon = styled(GiMusicalNotes)`
-  font-size: 150px;
+  font-size: 15rem;
   color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const IconisedTitle = styled(UnderlinedTitle)`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
 `;

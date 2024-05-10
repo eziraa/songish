@@ -23,7 +23,7 @@ const Notification = () => {
         <NotificationHeader>
           <h4>{notification.title}</h4>
           <CgClose
-            style={{ fontSize: "24px", cursor: "pointer" }}
+            style={{ fontSize: "16px", cursor: "pointer" }}
             onClick={() => dispatch(hideNotification())}
           />
         </NotificationHeader>
@@ -33,7 +33,7 @@ const Notification = () => {
           ) : (
             <FaRegCheckCircle size={24} color="#02FFC0" />
           )}
-          <p style={{ fontSize: "16px" }}>{notification.desc}</p>
+          <p style={{ fontSize: "1rem" }}>{notification.desc}</p>
         </NotificationContent>
       </MiniNotification>
     )

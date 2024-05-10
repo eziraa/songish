@@ -6,12 +6,12 @@ const LoadingSpinner = () => (
   </SpinnerContainer>
 );
 export const SmallSpinner = () => (
-  <div style={{ width: "20px", height: "20px", margin: "auto" }}>
+  <div style={{ width: "2rem", height: "2rem", margin: "auto" }}>
     <Spinner
       length={5}
       style={{
-        width: "20px",
-        height: "20px",
+        width: "2rem",
+        height: "2rem",
         display: "inline-block",
         margin: "auto",
       }}

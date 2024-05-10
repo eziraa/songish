@@ -4,14 +4,14 @@ import { ThemeProps } from "../../../styles/theme-interface";
 export const Menu = styled.div<ThemeProps>`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
   width: 15vw;
   left: 0;
   top: 12vh;
   height: 100%;
   background-color: ${({ theme }) => theme.backgroundSecondary};
   color: ${({ theme }) => theme.text};
-  padding: 1rem;
+  padding: 1.6rem;
   position: fixed;
   z-index: 10;
 `;
@@ -26,14 +26,14 @@ export const MenuBarItem = styled.div<ThemeProps>`
   background-color: transparent;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 24px;
-  font-size: 0.9rem;
+  gap: 1rem;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  min-width: 12rem;
-  border: 2px solid transparent;
+  min-width: 20rem;
+  border: 0.2rem solid transparent;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 0.3rem;
   font-family: monospace;
   &:hover {
     background-color: ${({ theme }) => theme.backgroundSecondaryHover};

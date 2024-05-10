@@ -3,18 +3,18 @@ import { ThemeProps } from "../../../styles/theme-interface";
 
 export const ContactContainer = styled.div`
   margin: 0 auto;
-  padding: 50px;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 4rem;
+  gap: 6.4rem;
   width: 80%;
   margin-bottom: 20vh;
 `;
 
 export const Title = styled.h2<ThemeProps>`
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 700;
   color: transparent;
   position: relative;
@@ -82,25 +82,23 @@ export const ContactBody = styled.div`
   align-items: center;
 `;
 
-
-
 export const ContactList = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 1rem;
 `;
 
 export const ContactItem = styled.li`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.5rem;
 
   a {
     color: inherit;
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.4rem;
   }
 `;

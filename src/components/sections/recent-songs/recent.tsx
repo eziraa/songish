@@ -110,7 +110,7 @@ export const RecentSection = () => {
                         <PlayListBtn
                           style={{
                             color: "white",
-                            fontSize: "24px",
+                            fontSize: "2.4rem",
                           }}
                           onClick={() => {
                             songs.current_song.pause();

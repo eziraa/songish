@@ -6,10 +6,10 @@ export const PlaylistContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 0.5rem;
-  padding: 10px;
+  gap: 0.8rem;
+  padding: 1rem;
   width: 100%;
-  padding: 2rem;
+  padding: 3.2rem;
 `;
 
 export const AboutPlaylist = styled.div`
@@ -17,15 +17,15 @@ export const AboutPlaylist = styled.div`
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 1rem;
+  gap: 1.6rem;
   color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const BtnContainer = styled.div`
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -41,37 +41,37 @@ export const PlaylistInfo = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: start;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
   font-family: "Poppins", sans-serif;
   z-index: 2;
   height: 100%;
-  border-radius: 1rem 0;
+  border-radius: 1.6rem 0;
 `;
 export const PlaylistIcon = styled(CgPlayList)`
-  font-size: 150px;
+  font-size: 15rem;
   color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const PlayListBtn = styled(OutLinedButton)`
   color: ${({ theme }) => theme.textPrimary};
   border: 2px solid #f80bb1;
-  font-size: 16px;
-  min-width: 80px;
+  font-size: 1.6rem;
+  min-width: 8rem;
 `;
 
 export const DeleteBtn = styled(OutLinedButton)`
   color: ${({ theme }) => theme.textSecondary};
   border: 2px solid #c42020;
-  font-size: 16px;
+  font-size: 1.6rem;
   &:hover {
     background-color: red;
   }
-  min-width: 110px;
+  min-width: 11rem;
 `;
 
 export const Paragraph = styled.p`
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 1.6;
   width: 30vw;
   color: transparent;

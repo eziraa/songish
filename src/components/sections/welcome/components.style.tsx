@@ -9,13 +9,13 @@ export const WelcomeSection = styled.section`
   height: 80vh;
   font-family: "Robotto", sans-serif;
   text-align: center;
-  padding: 2rem;
+  padding: 3.2rem;
   justify-content: space-around;
 `;
 
 export const Title = styled.h1`
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 4rem;
+  margin-bottom: 1.6rem;
   font-weight: 700;
   color: #07b8a0;
   letter-spacing: 1px;
@@ -23,16 +23,16 @@ export const Title = styled.h1`
     content: "";
     display: block;
     width: 15%;
-    height: 4px;
+    height: 0.4rem;
     background-color: #07b8a0;
-    margin: 0.5rem 0;
+    margin: 0.8rem 0;
     transition: all 0.3s ease;
   }
 `;
 
 export const Subtitle = styled.h2<ThemeProps>`
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  font-size: 2.4rem;
+  margin-bottom: 3.2rem;
   font-weight: 400;
   color: transparent;
   background-clip: text;
@@ -46,12 +46,12 @@ export const Subtitle = styled.h2<ThemeProps>`
 `;
 
 export const StartButton = styled.button`
-  padding: 0.8rem 1.6rem;
-  font-size: 1.3rem;
+  padding: 1.3rem 2.1rem;
+  font-size: 2rem;
   color: #fff;
   background-color: #07b8a0;
   border: none;
-  border-radius: 10px;
+  border-radius: 1ren;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
@@ -66,10 +66,10 @@ export const LeftSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  gap: 2rem;
+  gap: 3.2rem;
 `;
 
 export const Body = styled.div`
   display: flex;
-  gap: 6rem;
+  gap: 10rem;
 `;

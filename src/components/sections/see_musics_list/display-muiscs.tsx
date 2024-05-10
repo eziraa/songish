@@ -230,7 +230,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                     <SmallSpinner />
                   ) : (
                     <CgPlayListRemove
-                      style={{ color: "#B41515", fontSize: "24px" }}
+                      style={{ color: "#B41515", fontSize: "2.4rem" }}
                       onClick={async () => {
                         setActionItemIndex(index);
                         await dispatch(

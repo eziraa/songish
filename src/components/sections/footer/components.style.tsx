@@ -8,12 +8,12 @@ export const FooterContainer = styled.div<ThemeProps>`
   z-index: 200;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-left: -9.7rem;
-  margin-bottom: -2rem;
+  gap: 1.6rem;
+  margin-left: -15.5rem;
+  margin-bottom: -5.2rem;
   width: 100.1vw;
-  padding: 1rem 5rem;
-  padding-top: 3rem;
+  padding: 2.16rem 8rem;
+  padding-top: 5rem;
   position: absolute;
   height: 25vh;
   bottom: 0;
@@ -23,7 +23,7 @@ export const FooterContainer = styled.div<ThemeProps>`
 
 export const FooterText = styled.p<ThemeProps>`
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   color: ${({ theme }) => theme.footerTextColor};
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -34,7 +34,7 @@ export const FooterText = styled.p<ThemeProps>`
 `;
 
 export const CopyRight = styled(FooterText)`
-  font-size: 1.2rem;
+  font-size: 1.9rem;
   font-weight: 400;
   color: ${({ theme }) => theme.footerTextColor};
 `;

@@ -10,17 +10,16 @@ import { BiPause } from "react-icons/bi";
 export const SongDisplayer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding-top: 2rem;
+  gap: 3.2rem;
+  padding-top: 3.2rem;
 `;
-
 
 export const SongContainer = styled.div<ThemeProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 70vw;
-  padding: 10px 1rem;
+  padding: 1rem 1.6rem;
   background-color: ${({ theme }) => theme.songTableBackgroundColor};
   justify-content: space-between;
   color: ${({ theme }) => theme.textSecondary};
@@ -43,25 +42,25 @@ export const SongHeader = styled.div`
 export const SongMetaData = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 1.6rem;
   align-items: center;
 `;
 export const SongInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 5px;
+  gap: 0.5rem;
   color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const SongInfo = styled.div<ThemeProps>`
   display: flex;
-  gap: 2rem;
+  gap: 3.2rem;
   color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const SongTitle = styled.h3`
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 400;
   color: ${({ theme }) => theme.textSecondary};
 `;
@@ -72,7 +71,7 @@ export const SongsListTitle = styled(Title)`
 `;
 
 export const SongArtist = styled.p`
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 400;
 `;
 
@@ -80,50 +79,50 @@ export const SongActions = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
   justify-items: start;
   min-width: 7vw;
 `;
 
 export const SongAlbum = styled.p`
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 400;
 `;
 
 export const SongDuration = styled.p`
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 400;
 `;
 
 export const MusicIcon = styled(IoMdMusicalNote)`
-  font-size: 20px;
+  font-size: 2rem;
   color: ${({ theme }) => theme.textSecondary};
 `;
 export const FavoriteIcon = styled(MdFavoriteBorder)`
-  font-size: 20px;
+  font-size: 2rem;
   color: ${({ theme }) => theme.textSecondary};
   cursor: pointer;
 `;
 export const FavoritedIcon = styled(MdFavorite)`
-  font-size: 20px;
+  font-size: 2rem;
   color: #e40ab2;
   cursor: pointer;
 `;
 export const Play = styled(GoPlay)`
-  font-size: 20px;
+  font-size: 2rem;
   position: relative;
   color: ${({ theme }) => theme.textSecondary};
   cursor: pointer;
 `;
 export const Pause = styled(BiPause)`
-  font-size: 20px;
+  font-size: 2rem;
   position: relative;
   color: ${({ theme }) => theme.textSecondary};
   cursor: pointer;
 `;
 
 export const VerticalDots = styled(FaEllipsisVertical)`
-  font-size: 20px;
+  font-size: 2rem;
   color: ${({ theme }) => theme.textSecondary};
   cursor: pointer;
 `;
@@ -132,17 +131,17 @@ export const PopUpContainer = styled.div<ThemeProps>`
   position: absolute;
   top: 0%;
   right: 0;
-  width: 200px;
+  width: 20rem;
   background-color: ${({ theme }) => theme.backgroundSecondaryHover};
   border: 1px solid ${({ theme }) => theme.backgroundSecondary};
-  padding: 10px;
-  padding-right: 1.5rem;
-  padding-top: 1.5rem;
+  padding: 1rem;
+  padding-right: 2.4rem;
+  padding-top: 2.4rem;
   z-index: 89999;
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.textSecondary};
-  gap: 10px;
+  gap: 1rem;
 `;
 
 export const DeleteButton = styled(Button)`
@@ -150,7 +149,7 @@ export const DeleteButton = styled(Button)`
   background-color: transparent;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.5rem;
   border: 3px solid red;
   transition: all 0.5s;
   font-family: "Roboto", sans-serif;
@@ -161,7 +160,7 @@ export const DeleteButton = styled(Button)`
     background-color: red;
     color: #ffffff;
   }
-  font-size: 14px;
+  font-size: 1.4rem;
 `;
 
 export const UpdateButton = styled(Button)`
@@ -169,13 +168,13 @@ export const UpdateButton = styled(Button)`
   border: 3px solid #d38106;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.5rem;
   transition: all 0.5s;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   text-align: start;
   color: ${({ theme }) => theme.textPrimary};
-  font-size: 14px;
+  font-size: 1.4rem;
   &:hover {
     background-color: #d38106;
     color: #ffffff;
@@ -184,7 +183,7 @@ export const UpdateButton = styled(Button)`
 
 export const SongsNotFound = styled.div`
   text-align: center;
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: bold;
   color: ${({ theme }) => theme.textSecondary};
 `;

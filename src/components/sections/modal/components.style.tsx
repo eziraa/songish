@@ -26,8 +26,8 @@ export const beVisible = keyframes`
 `;
 export const ModalContent = styled.div<ThemeProps>`
   background-color: white;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 2rem;
+  border-radius: 0.5rem;
   z-index: 400;
   width: fit-content;
   display: flex;
@@ -37,12 +37,12 @@ export const ModalContent = styled.div<ThemeProps>`
 `;
 export const CloseButton = styled(CgClose)<ThemeProps>`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: none;
-  font-size: 30px;
-  padding: 3px 5px;
+  font-size: 3rem;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
   color: ${({ theme }) => theme.textPrimary};
   &:hover {

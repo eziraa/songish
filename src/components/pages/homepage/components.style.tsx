@@ -4,7 +4,7 @@ import { ThemeProps } from "../../../styles/theme-interface";
 export const Home = styled.div<ThemeProps>`
   background-color: ${({ theme }) => theme.backgroundPrimary};
   min-height: 100vh;
-  border: 2px solid transparent;
+  border: 0.2rem solid transparent;
 `;
 export const Main = styled.div`
   display: flex;
@@ -16,6 +16,6 @@ export const Main = styled.div`
   top: 12vh;
   right: 0;
   width: 80%;
-  gap: 2rem;
+  gap: 3rem;
   padding-top: 5vh;
 `;

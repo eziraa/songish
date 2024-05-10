@@ -3,12 +3,12 @@ import { ThemeProps } from "../../../styles/theme-interface";
 
 export const MiniNotification = styled.div<ThemeProps>`
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 20px;
-  width: 300px;
-  border-radius: 5px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  bottom: 2rem;
+  right: 2rem;
+  padding: 2rem;
+  width: 30rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0rem 1.6rem 0px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -21,12 +21,12 @@ export const NotificationHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.9rem;
 `;
 export const NotificationContent = styled.div`
   display: flex;
   justify-content: space-between;
   text-align: start;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2.4rem;
 `;

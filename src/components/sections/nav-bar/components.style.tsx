@@ -12,14 +12,14 @@ export const UpperNavBar = styled.div<ThemeProps>`
 `;
 
 export const UpperNavBarItem = styled.div<ThemeProps>`
-  padding: 8px 14px;
-  font-size: 1.1rem;
+  padding: 0.8rem 1.4rem;
+  font-size: 1.7rem;
   font-weight: 500;
-  min-width: 7rem;
+  min-width: 11rem;
   flex: 1;
   border: 2px solid transparent;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 0.3rem;
   text-align: center;
   &:hover {
     background-color: ${({ theme }) => theme.backgroundSecondaryHover};

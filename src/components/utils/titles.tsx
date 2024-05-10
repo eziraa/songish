@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ThemeProps } from "../../styles/theme-interface";
 
 export const UnderlinedTitle = styled.h2<ThemeProps>`
-  font-size: 2rem;
+  font-size: 3.2rem;
   color: ${({ theme }) => theme.titleColorPrimary};
   font-weight: 700;
   width: fit-content;

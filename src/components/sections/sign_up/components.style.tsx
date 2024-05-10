@@ -13,8 +13,8 @@ const beVisible = keyframes`
 export const FormError = styled.span({
   display: "block",
   color: "red",
-  fontSize: "0.8rem",
-  marginTop: "5px",
+  fontSize: "1.3rem",
+  marginTop: "0.5rem",
 });
 export const SignUpContainer = styled.div`
   margin: 0 auto;
@@ -22,7 +22,7 @@ export const SignUpContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 60vw;
-  padding: 1rem;
-  padding-top: 50px;
+  padding: 1.6rem;
+  padding-top: 5rem;
   animation: ${beVisible} 1.5s ease-in-out;
 `;

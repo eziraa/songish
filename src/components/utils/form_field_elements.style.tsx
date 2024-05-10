@@ -10,19 +10,19 @@ export const FormContainer = styled.div`
 `;
 
 export const Title = styled.h2<ThemeProps>`
-  font-size: 32px;
-  margin-bottom: 30px;
+  font-size: 3.2rem;
+  margin-bottom: 3rem;
   color: ${({ theme }) => theme.textPrimary};
 `;
 
 export const DescriptionText = styled.p<ThemeProps>`
-  font-size: 18px;
+  font-size: 1.8rem;
   color: #0c1321;
   line-height: 1.6;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   text-align: start;
-  padding-top: 20px;
+  padding-top: 2rem;
 `;
 
 export const Form = styled.form`
@@ -31,37 +31,37 @@ export const Form = styled.form`
   width: 20vw;
   font-weight: 400;
   text-align: start;
-  padding: 0.5rem 0;
+  padding: 0.8rem 0;
   font-family: "Robotto", sans-serif;
   color: #12392c;
 `;
 
 export const FormGroup = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 `;
 
 export const Label = styled.label<ThemeProps>`
-  font-size: 18px;
-  margin-bottom: 5px;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const Input = styled.input<ThemeProps>`
-  padding: 12px;
+  padding: 1.2rem;
   border: 1px solid ${({ theme }) => theme.inputFieldColor};
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
   width: 100%;
 `;
 
 export const Button = styled.button<ThemeProps>`
-  padding: 12px 20px;
+  padding: 1.2rem 2rem;
   background-color: ${({ theme }) => theme.formButtonColor};
   border: none;
   background-color: #0ce6cd;
-  border-radius: 5px;
-  font-size: 18px;
+  border-radius: 0.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
   transition: background-color 0.3s;
 
@@ -70,10 +70,10 @@ export const Button = styled.button<ThemeProps>`
   }
 `;
 export const TextArea = styled.textarea<ThemeProps>`
-  padding: 12px;
+  padding: 1.2rem;
   border: 1px solid ${({ theme }) => theme.inputFieldColor};
-  border-radius: 5px;
+  border-radius: 0.5rem;
   width: 100%;
-  font-size: 16px;
-  height: 150px;
+  font-size: 1.6rem;
+  height: 15rem;
 `;

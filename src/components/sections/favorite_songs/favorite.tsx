@@ -114,7 +114,7 @@ export const FavoriteSongs = () => {
                           <PlayListBtn
                             style={{
                               color: "white",
-                              fontSize: "20px",
+                              fontSize: "2rem",
                             }}
                             onClick={(e) => {
                               e.preventDefault();

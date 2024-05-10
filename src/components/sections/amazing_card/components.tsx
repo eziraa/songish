@@ -15,9 +15,9 @@ export const CardSide = styled.div`
   top: 0;
   left: 0;
   backface-visibility: hidden;
-  border-radius: 3px;
+  border-radius: 0.3rem;
   overflow: hidden;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2.4rem 6.4rem rgba(0, 0, 0, 0.15);
 `;
 
 export const CardSideFront = styled(CardSide)<ThemeProps>`
@@ -26,8 +26,8 @@ export const CardSideFront = styled(CardSide)<ThemeProps>`
   flex-direction: row;
   align-items: flex-start;
   color: ${({ theme }) => theme.textSecondary};
-  padding: 20px;
-  padding-left: 40px;
+  padding: 2rem;
+  padding-left: 4rem;
   height: 100%;
   width: 100%;
 `;
@@ -40,13 +40,13 @@ export const CardSideBack = styled(CardSide)`
   background-image: linear-gradient(to right, #561e1e7d, #24249267);
   display: flex;
   flex-direction: row;
-  padding: 20px;
-  padding-left: 40px;
+  padding: 2rem;
+  padding-left: 4rem;
 `;
 
 export const Card = styled.div`
-  perspective: 150rem;
-  -moz-perspective: 150rem;
+  perspective: 15rem;
+  -moz-perspective: 15rem;
   position: relative;
   position: relative;
   &:hover ${CardSideFront} {
@@ -65,13 +65,13 @@ export const CardPicture = styled(CgPlayList)`
 `;
 
 export const CardHeading = styled.div`
-  font-size: 2.8rem;
+  font-size: 4.5rem;
   font-weight: 300;
   text-transform: uppercase;
   color: ${({ theme }) => theme.textSecondary};
   position: absolute;
-  top: 12rem;
-  right: 2rem;
+  top: 20rem;
+  right: 3rem;
   width: 75%;
   text-align: right;
 `;
@@ -88,7 +88,7 @@ export const CardHeadingSpan = styled.span`
 `;
 
 export const CardDetails = styled.div`
-  padding: 3rem;
+  padding: 5rem;
 
   ul {
     list-style: none;
@@ -97,8 +97,8 @@ export const CardDetails = styled.div`
 
     li {
       text-align: center;
-      font-size: 1.5rem;
-      padding: 1rem;
+      font-size: 2.4rem;
+      padding: 1.6rem;
 
       &:not(:last-child) {
         border-bottom: 0.1px solid rgba(gray, 0.1);
@@ -108,10 +108,10 @@ export const CardDetails = styled.div`
 `;
 
 export const CardHeadingBack = styled.div`
-  font-size: 1.3rem;
+  font-size: 2rem;
 `;
 
 export const CardPrice = styled.div`
-  font-size: 6rem;
-  letter-spacing: -2px;
+  font-size: 10rem;
+  letter-spacing: -0.2rem;
 `;

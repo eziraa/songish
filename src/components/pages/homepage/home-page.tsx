@@ -84,7 +84,7 @@ const HomePage = () => {
               id="content"
               style={{
                 position: "relative",
-                border: "2px solid red",
+                border: "0.2rem solid red",
                 height: "5vh",
                 top: "-10vh",
               }}

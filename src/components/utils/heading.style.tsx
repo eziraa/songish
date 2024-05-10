@@ -2,15 +2,15 @@ import styled from "styled-components";
 import { ThemeProps } from "../../styles/theme-interface";
 
 export const H0 = styled.h1<ThemeProps>`
-  font-size: 1.6rem;
+  font-size: 2.1rem;
   font-family: monospace;
   font-weight: bold;
   color: ${({ theme }) => theme.textPrimary};
-  padding-left: 10px;
+  padding-left: 1rem;
 `;
 
 export const H1 = styled.h1<ThemeProps>`
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   font-family: monospace;
   font-weight: bold;
   color: ${({ theme }) => theme.textPrimary};
@@ -19,7 +19,7 @@ export const H1 = styled.h1<ThemeProps>`
 `;
 
 export const H2 = styled.h2<ThemeProps>`
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-family: monospace;
   font-weight: bold;
   color: ${({ theme }) => theme.outLinedBtnColor};
@@ -27,7 +27,7 @@ export const H2 = styled.h2<ThemeProps>`
 `;
 
 export const H3 = styled.h3<ThemeProps>`
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-family: monospace;
   font-weight: bold;
   color: ${({ theme }) => theme.textPrimary};

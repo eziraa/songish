@@ -10,11 +10,11 @@ export const SearchIcon = styled(FiSearch)<ThemeProps>`
 `;
 
 export const MusicIcon = styled(HiMusicNote)`
-  size: 20px;
+  size: 2rem;
   color: #ef0a9b;
 `;
 
 export const Unfavorite = styled(MdFavorite)`
-  size: 20px;
+  size: 2rem;
   color: #ef0a9b;
 `;

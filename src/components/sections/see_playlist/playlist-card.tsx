@@ -139,11 +139,11 @@ export const PlaylistCard = () => {
                         <PlaylistInfo>
                           <H0
                             style={{
-                              fontSize: "40px",
-                              marginTop: "4rem",
+                              fontSize: "4rem",
+                              marginTop: "6.4rem",
                               display: "flex",
                               alignItems: "center",
-                              gap: ".5rem",
+                              gap: "0.8rem",
                             }}
                           >
                             <BsMusicNoteList />

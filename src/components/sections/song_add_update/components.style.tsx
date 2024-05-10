@@ -17,7 +17,7 @@ export const AddSongContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 60vw;
-  padding: 1rem;
-  padding-top: 50px;
+  padding: 1.6rem;
+  padding-top: 5rem;
   animation: ${beVisible} 1.5s;
 `;

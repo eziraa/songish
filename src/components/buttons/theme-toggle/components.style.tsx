@@ -14,7 +14,7 @@ export const LazyChange = keyframes<ThemeProps>`
 `;
 
 export const ToggleButton = styled.div<ThemeProps>`
-  font-size: 20px;
+  font-size: 2rem;
   color: ${({ theme }) => theme.text};
   transition: all 1.4s linear;
   background-color: transparent;
