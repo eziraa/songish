@@ -1,10 +1,13 @@
-import { HeaderComponent } from "./header.styles";
+import { HeaderComponent, Logo, LogoContainer, Title } from "./header.styles";
 import { ThemeToggleButton } from "../../buttons/theme-toggle/themeToggle";
 import { ReactNode } from "react";
-
 const Header = ({ children }: { children: ReactNode }) => {
   return (
     <HeaderComponent>
+      <LogoContainer>
+        <Logo src="assets/logo.png" />
+        <Title>EzAddis</Title>
+      </LogoContainer>
       {children}
       <ThemeToggleButton />
     </HeaderComponent>
