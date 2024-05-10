@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../styles/theme-interface";
+import { FaCamera } from "react-icons/fa6";
 
 export const Description = styled.div`
   width: 40%;
@@ -28,12 +29,16 @@ export const DescriptionText = styled.p<ThemeProps>`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 20vw;
+  width: 15vw;
   font-weight: 400;
   text-align: start;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
   font-family: "Robotto", sans-serif;
   color: #12392c;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  gap: 0.6rem;
 `;
 
 export const FormGroup = styled.div`
@@ -76,4 +81,59 @@ export const TextArea = styled.textarea<ThemeProps>`
   width: 100%;
   font-size: 1.6rem;
   height: 15rem;
+`;
+
+const NewChannel = styled.div`
+  width: 35rem;
+  position: absolute;
+  border-radius: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $color-primary-white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  color: $color-primary-blue;
+  z-index: 20;
+
+  ${(props) => props.hidden && "display: none;"}
+`;
+
+const Upper = styled.div`
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+`;
+
+const Lower = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const ImageContainer = styled.div`
+  width: 8rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: blue;
+  position: relative;
+`;
+
+const Icon = styled(FaCamera)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const Descriprion = styled.div`
+  font-size: medium;
+`;
+
+const InputElement = styled.input`
+  font-size: medium;
+  border: none;
+  width: 100%;
+  border-bottom: 2px solid white;
 `;
