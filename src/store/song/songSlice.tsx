@@ -36,7 +36,7 @@ const SongSlice = createSlice({
       state.adding = true;
     },
     loadSongsRequested: (state) => {
-      state.loading = false;
+      state.loading = true;
       state.songs = [];
     },
     loadSongsDone: (state, actions: PayloadAction<SongResponse[]>) => {
@@ -44,7 +44,7 @@ const SongSlice = createSlice({
       state.loading = false;
     },
     editSongDone: (state, action: PayloadAction<SongResponse>) => {
-      state.loading = false;
+      state.adding = false;
       state.songs = state.songs.map((song) =>
         song.id === action.payload.id ? action.payload : song
       );
@@ -63,7 +63,6 @@ const SongSlice = createSlice({
       actions: PayloadAction<SongResponse | undefined>
     ) => {
       state.current_song_for_action = actions.payload;
-      state.loading = true;
     },
     setCurrentSongToPlay: (state, actions: PayloadAction<PlayingParams>) => {
       state.current_song_to_play = actions.payload.song;

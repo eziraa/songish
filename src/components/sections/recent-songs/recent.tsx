@@ -30,7 +30,7 @@ export const RecentSection = () => {
 
   useEffect(() => {
     dispatch(loadSongsRequested());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     handleNextPrev();
@@ -76,7 +76,6 @@ export const RecentSection = () => {
   return (
     <RecentContainer>
       <IconisedTitle>
-        {" "}
         <IoTimeOutline /> Recently added
       </IconisedTitle>
       <SliderBody>

@@ -52,11 +52,11 @@ const PlaylistSlice = createSlice({
       state,
       _: PayloadAction<AddSongToPlaylistParams>
     ) => {
-      state.adding = true;
+      state.loading = true;
       state.songs = [];
     },
     addSongToPlaylistDone: (state, action: PayloadAction<SongResponse>) => {
-      state.adding = false;
+      state.loading = false;
       state.songs.push(action.payload);
     },
     setCurrentPlaylist: (

@@ -17,7 +17,7 @@ export const Title = styled.h2<ThemeProps>`
 
 export const DescriptionText = styled.p<ThemeProps>`
   font-size: 18px;
-  color: ${({ theme }) => theme.textPrimary};
+  color: #0c1321;
   line-height: 1.6;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
@@ -33,7 +33,7 @@ export const Form = styled.form`
   text-align: start;
   padding: 0.5rem 0;
   font-family: "Robotto", sans-serif;
-  color: ${({ theme }) => theme.backgroundPrimary};
+  color: #12392c;
 `;
 
 export const FormGroup = styled.div`
@@ -45,7 +45,6 @@ export const FormGroup = styled.div`
 export const Label = styled.label<ThemeProps>`
   font-size: 18px;
   margin-bottom: 5px;
-  color: ${({ theme }) => theme.backgroundPrimary};
 `;
 
 export const Input = styled.input<ThemeProps>`
@@ -60,7 +59,7 @@ export const Button = styled.button<ThemeProps>`
   padding: 12px 20px;
   background-color: ${({ theme }) => theme.formButtonColor};
   border: none;
-  background-color: #14beaa;
+  background-color: #0ce6cd;
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;

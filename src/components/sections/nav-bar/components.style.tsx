@@ -8,12 +8,13 @@ export const UpperNavBar = styled.div<ThemeProps>`
   color: ${({ theme }) => theme.text};
   justify-self: end;
   position: relative;
+  min-width: 30vw;
 `;
 
 export const UpperNavBarItem = styled.div<ThemeProps>`
   padding: 8px 14px;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 500;
   min-width: 7rem;
   flex: 1;
   border: 2px solid transparent;

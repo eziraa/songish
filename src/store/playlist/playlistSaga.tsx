@@ -112,7 +112,6 @@ export function* watchDeletePlaylist() {
 
 function* addSongToPlaylist(action: PayloadAction<AddSongToPlaylistParams>) {
   try {
-    console.table(action.payload);
     const songs: SagaReturnType<typeof PlaylistsAPI.addSongToPlayList> =
       yield call(PlaylistsAPI.addSongToPlayList, action.payload);
 

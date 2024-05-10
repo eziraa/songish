@@ -139,7 +139,7 @@ const PlaylistCard = ({ playlist }: { playlist: PlaylistResponse }) => {
           );
         }}
       >
-        {playlists.adding && playlist.id == playlistId ? (
+        {playlists.loading && playlist.id == playlistId ? (
           <SmallSpinner />
         ) : (
           <>
