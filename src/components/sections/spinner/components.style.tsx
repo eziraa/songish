@@ -17,8 +17,8 @@ interface SpinnerProps {
 export const Spinner = styled.div<SpinnerProps>`
   border: ${({ length }) => length ?? 16}px solid #f3f3f3;
   border-radius: 50%;
-  border-top: ${({ length }) => length ?? 16}px solid #3498db;
+  border-top: ${({ length }) => length ?? 16}px solid transparent;
   width: 120px;
   height: 120px;
-  animation: ${spin} 2s linear infinite;
+  animation: ${spin} 1s ease-in-out infinite;
 `;
