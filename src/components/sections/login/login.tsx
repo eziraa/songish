@@ -39,7 +39,6 @@ const LoginPage = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   type="email"
                   placeholder=""
                   id="emails"
@@ -53,7 +52,6 @@ const LoginPage = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   type="password"
                   id="passwords"
                   name="password"

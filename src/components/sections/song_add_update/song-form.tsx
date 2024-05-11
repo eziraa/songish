@@ -78,7 +78,6 @@ const SongForm = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="text"
                   id="title"
@@ -97,7 +96,6 @@ const SongForm = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="text"
                   id="artist"
@@ -116,7 +114,6 @@ const SongForm = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="text"
                   id="album"
@@ -136,7 +133,6 @@ const SongForm = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="date"
                   id="release_date"
@@ -151,7 +147,6 @@ const SongForm = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="file"
                   id="song_file"

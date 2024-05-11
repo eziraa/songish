@@ -59,7 +59,6 @@ const SignUpPage = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="text"
                   id="fullName"
@@ -78,7 +77,6 @@ const SignUpPage = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="text"
                   id="age"
@@ -97,7 +95,6 @@ const SignUpPage = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   id="email"
                   type="email"
@@ -116,7 +113,6 @@ const SignUpPage = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="password"
                   id="password"
@@ -135,7 +131,6 @@ const SignUpPage = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="password"
                   id="confirm_password"

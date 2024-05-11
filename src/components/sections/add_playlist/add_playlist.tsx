@@ -51,7 +51,6 @@ const PlaylistForm = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="text"
                   id="name"
@@ -70,7 +69,6 @@ const PlaylistForm = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="text"
                   id="description"
@@ -85,7 +83,6 @@ const PlaylistForm = () => {
             <FormGroup>
               <InputField>
                 <input
-                  required
                   placeholder=""
                   type="file"
                   id="image"
