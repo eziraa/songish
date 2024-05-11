@@ -75,6 +75,10 @@ export default function PlayerComponent() {
   }, [trackIndex, songs.current_song]);
 
   useEffect(() => {
+    if (songs.current_song.currentTime == songs.current_song.duration)
+      nextTrack();
+  }, [currentTime]);
+  useEffect(() => {
     const updateTimer = setInterval(setUpdate, 1000);
     return () => clearInterval(updateTimer);
   }, [songs.current_song]);
