@@ -145,8 +145,9 @@ export default function PlayerComponent() {
       <Wrapper style={{ position: "relative" }}>
         <CloseButton
           style={{
-            top: "0px",
-            right: "20px",
+            top: "5px",
+            right: "10px",
+            color: "white",
           }}
           onClick={() => {
             songs.current_song.pause();
