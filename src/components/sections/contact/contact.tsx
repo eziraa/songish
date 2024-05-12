@@ -115,7 +115,7 @@ const ContactPage = () => {
                   color: "white",
                 }}
               />
-              <label htmlFor="name">Your Nam</label>
+              <label htmlFor="name">Your Name</label>
             </InputField>
           </FormGroup>
           <FormGroup>

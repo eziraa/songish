@@ -137,7 +137,6 @@ export const PopUpContainer = styled.div<ThemeProps>`
   padding: 1rem;
   padding-right: 2.5rem;
   padding-top: 2.5rem;
-  z-index: 89999;
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.textSecondary};
