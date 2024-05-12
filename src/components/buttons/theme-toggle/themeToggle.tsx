@@ -7,7 +7,6 @@ import { lightTheme } from "../../../styles/themes";
 import { FaMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
 import { ToggleButton } from "./components.style";
-
 export const ThemeToggleButton = () => {
   const { theme, toggleTheme } = useContext<ThemeContextType>(ThemeContext);
   return (
