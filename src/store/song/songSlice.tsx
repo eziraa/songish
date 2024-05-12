@@ -80,6 +80,8 @@ const SongSlice = createSlice({
       state.query_set = actions.payload;
     },
     exitSong: (state) => {
+      state.current_song.pause();
+      state.current_song = new Audio();
       state.current_song_to_play = undefined;
       state.playing_music_list = [];
       state.current_song_for_action = undefined;
