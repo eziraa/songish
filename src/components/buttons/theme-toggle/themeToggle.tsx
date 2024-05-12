@@ -15,7 +15,6 @@ export const ThemeToggleButton = () => {
         e.stopPropagation();
         toggleTheme();
       }}
-      style={{ border: "2px solid red" }}
     >
       {theme === lightTheme ? <FiSun /> : <FaMoon />}
     </ToggleButton>
