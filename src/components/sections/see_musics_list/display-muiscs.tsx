@@ -290,7 +290,11 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
                     />
 
                     {index === popUpIndex && (
-                      <PopUpContainer className="pop">
+                      <PopUpContainer
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
                         <CloseButton
                           style={{ top: "4px", right: "4px", color: "white" }}
                           onClick={() => setPopUpIndex(-1)}
