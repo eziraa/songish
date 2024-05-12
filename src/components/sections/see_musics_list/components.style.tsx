@@ -7,6 +7,7 @@ import { ThemeProps } from "../../../styles/theme-interface";
 import { styled } from "styled-components";
 import { Title } from "../recent-songs/components.style";
 import { BiPause } from "react-icons/bi";
+import { BtnContainer } from "../see_playlist/components.style";
 export const SongDisplayer = styled.div`
   display: flex;
   flex-direction: column;
@@ -135,13 +136,13 @@ export const PopUpContainer = styled.div<ThemeProps>`
   background-color: ${({ theme }) => theme.backgroundSecondaryHover};
   border: 1px solid ${({ theme }) => theme.backgroundSecondary};
   padding: 1rem;
-  padding-right: 2.4rem;
-  padding-top: 2.4rem;
+  padding-right: 2.5rem;
+  padding-top: 2.5rem;
   z-index: 89999;
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.textSecondary};
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 export const DeleteButton = styled(Button)`
