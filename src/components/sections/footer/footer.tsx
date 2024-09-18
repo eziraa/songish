@@ -32,7 +32,7 @@ const Footer = () => {
         tunes, updates, and musical magic.
       </FooterText>
       <CopyRight theme={theme}>
-        © {new Date().getFullYear()} EzAddis All rights reserved. | Designed by
+        © {new Date().getFullYear()} Songish All rights reserved. | Designed by
         <FooterLink href=""> Ezira Tigab</FooterLink>
       </CopyRight>
     </FooterContainer>
