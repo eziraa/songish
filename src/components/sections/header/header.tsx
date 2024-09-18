@@ -6,7 +6,7 @@ const Header = ({ children }: { children: ReactNode }) => {
     <HeaderComponent>
       <LogoContainer>
         <Logo src="assets/logo.png" />
-        <Title>EzAddis</Title>
+        <Title>Songish</Title>
       </LogoContainer>
       {children}
       <ThemeToggleButton />
