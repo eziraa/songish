@@ -20,6 +20,7 @@ export const SignUpContainer = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+    background-color: ${({ theme }) => theme.backgroundPrimary};
   align-items: center;
   width: 45vw;
   padding: 3rem;
