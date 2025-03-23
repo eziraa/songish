@@ -5,6 +5,7 @@ export const InputField = styled.div`
   height: 4rem;
   width: 100%;
   position: relative;
+  color:black;
   input {
     padding-left: 0.5rem;
     width: 100%;
