@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 export const LoginPageContainer = styled.div`
   display: flex;
   justify-content: center;
-  background-color: ${({ theme }) => theme.backgroundPrimary};
   align-items: center;
   flex-direction: column;
   gap: 1.6rem;
