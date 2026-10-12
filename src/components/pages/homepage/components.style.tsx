@@ -4,7 +4,8 @@ import { ThemeProps } from "../../../styles/theme-interface";
 export const Home = styled.div<ThemeProps>`
   background-color: ${({ theme }) => theme.backgroundPrimary};
   min-height: 100vh;
-  border: 0.2rem solid transparent;
+  width: 100%;
+  overflow-x: hidden;
 `;
 export const Main = styled.div`
   display: flex;
@@ -12,10 +13,17 @@ export const Main = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
-  left: 15vw;
-  top: 12vh;
+  left: 24rem;
+  top: 11rem;
   right: 0;
-  width: 80%;
+  width: calc(100% - 24rem);
+  max-width: 100%;
   gap: 3rem;
-  padding-top: 5vh;
+  padding: 5vh 1.6rem 4rem;
+
+  @media (max-width: 768px) {
+    left: 0;
+    width: 100%;
+    padding: 2.4rem 1.2rem 11rem;
+  }
 `;

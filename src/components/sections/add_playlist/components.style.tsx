@@ -17,7 +17,16 @@ export const AddPlaylistContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 45vw;
+  min-width: 32rem;
   padding: 3rem;
   padding-top: 5rem;
   animation: ${beVisible} 1.5s;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    width: 90vw;
+    min-width: 0;
+    gap: 1.6rem;
+    padding: 2rem;
+  }
 `;

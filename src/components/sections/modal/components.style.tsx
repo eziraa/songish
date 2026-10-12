@@ -11,6 +11,8 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1.6rem;
+  overflow-y: auto;
   z-index: 50001;
 `;
 export const beVisible = keyframes`
@@ -25,10 +27,14 @@ export const beVisible = keyframes`
   }
 `;
 export const ModalContent = styled.div<ThemeProps>`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.modalBackgroundColor};
+  color: ${({ theme }) => theme.textPrimary};
   border-radius: 0.5rem;
   z-index: 400;
   width: fit-content;
+  max-width: 92vw;
+  max-height: 90vh;
+  overflow-y: auto;
   display: flex;
   position: relative;
   flex-wrap: wrap;
@@ -43,8 +49,9 @@ export const CloseButton = styled(CgClose)<ThemeProps>`
   font-size: 3rem;
   padding: 0.3rem 0.5rem;
   cursor: pointer;
-  color: black;
+  color: ${({ theme }) => theme.textPrimary};
   &:hover {
     background-color: red;
+    color: #ffffff;
   }
 `;

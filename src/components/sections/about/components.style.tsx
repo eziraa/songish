@@ -13,15 +13,23 @@ export const AboutContainer = styled.div`
 export const Title = styled.h1<ThemeProps>`
   font-size: 5rem;
   color: ${({ theme }) => theme.titleColorPrimary};
-  margin-bottom: 2rem;
   text-align: center;
   font-weight: 700;
   transform: skew(60deg);
   margin-bottom: 10.4rem;
   width: 19.5vw;
+  min-width: 22rem;
   padding: 1.6rem 0;
   margin-left: -16rem;
   background-color: ${({ theme }) => theme.aboutBackground};
+
+  @media (max-width: 768px) {
+    font-size: 3.2rem;
+    min-width: 0;
+    width: 70vw;
+    margin-left: 0;
+    margin-bottom: 4rem;
+  }
 `;
 export const TitleBackGround = styled.div<ThemeProps>`
   display: flex;
@@ -31,9 +39,16 @@ export const TitleBackGround = styled.div<ThemeProps>`
   transform: skew(-60deg);
   border-radius: 0 2rem;
   width: 20vw;
+  min-width: 24rem;
   margin: 1.6rem;
   padding: 0.8rem 0;
   height: 1rem;
+
+  @media (max-width: 768px) {
+    min-width: 0;
+    width: 76vw;
+    margin: 1.6rem auto;
+  }
 `;
 export const DescriptionContainer = styled.div`
   margin: 3rem;
@@ -41,9 +56,18 @@ export const DescriptionContainer = styled.div`
   padding-left: 3rem;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10rem;
+  gap: 4rem;
   width: 80%;
+
+  @media (max-width: 768px) {
+    margin: 1.6rem 0;
+    padding: 0.8rem;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.6rem;
+  }
 `;
 export const Description = styled.div<ThemeProps>`
   font-size: 1.8rem;
@@ -55,6 +79,13 @@ export const Description = styled.div<ThemeProps>`
   gap: 3rem;
   flex-direction: column;
   align-items: start;
+  width: 100%;
+  max-width: 60rem;
+
+  @media (max-width: 768px) {
+    margin: 1.6rem 0;
+    padding: 0.8rem;
+  }
 `;
 
 export const Paragraph = styled.p<ThemeProps>`
@@ -62,10 +93,17 @@ export const Paragraph = styled.p<ThemeProps>`
   color: ${({ theme }) => theme.textSecondary};
   line-height: 1.6;
   width: 30vw;
+  min-width: 24rem;
+  max-width: 100%;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   text-align: start;
   letter-spacing: 0.1rem;
+
+  @media (max-width: 768px) {
+    min-width: 0;
+    width: 100%;
+  }
 `;
 
 export const FeatureList = styled.ul`
@@ -75,6 +113,12 @@ export const FeatureList = styled.ul`
   gap: 5rem;
   width: 85%;
   padding: 1.6rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    gap: 2.4rem;
+    padding: 0.8rem;
+  }
 `;
 
 export const FeatureItem = styled.li<ThemeProps>`
@@ -87,21 +131,32 @@ export const FeatureItem = styled.li<ThemeProps>`
   gap: 3rem;
   margin: 2.4rem;
   width: 25vw;
+  min-width: 22rem;
+  max-width: 100%;
+
+  @media (max-width: 768px) {
+    margin: 0;
+    margin-bottom: 1.6rem;
+    min-width: 0;
+    width: 100%;
+  }
 `;
 
 export const FeatureItemBody = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10rem;
+  gap: 2rem;
+  margin-bottom: 4rem;
   width: 100%;
 `;
 
 export const Image = styled.img`
   height: 22rem;
+  max-width: 100%;
   object-fit: cover;
-  float: left;
 `;
 
 export const ImageSong = styled.div<ThemeProps>`
@@ -111,7 +166,13 @@ export const ImageSong = styled.div<ThemeProps>`
     ),
     url(assets/images/25.jpg);
   background-size: cover;
+  background-position: center;
   height: 22rem;
   width: 30rem;
+  max-width: 100%;
   margin-left: 3rem;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;

@@ -17,11 +17,13 @@ export const SongDisplayer = styled.div`
 export const SongContainer = styled.div<ThemeProps>`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  width: 70vw;
+  width: 100%;
   padding: 1rem 1.6rem;
   background-color: ${({ theme }) => theme.songTableBackgroundColor};
   justify-content: space-between;
+  gap: 0.8rem;
   color: ${({ theme }) => theme.textSecondary};
   &:nth-of-type(even) {
     background-color: ${({ theme }) => theme.songsListItemBGColor};
@@ -63,6 +65,14 @@ export const SongTitle = styled.h3`
   font-size: 1.4rem;
   font-weight: 400;
   color: ${({ theme }) => theme.textSecondary};
+  max-width: 40vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    max-width: 50vw;
+  }
 `;
 export const SongsListTitle = styled(Title)`
   text-align: left;

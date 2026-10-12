@@ -10,16 +10,29 @@ import styled, { css, keyframes } from "styled-components";
 import { ThemeProps } from "../../../styles/theme-interface";
 
 export const Player = styled.section<ThemeProps>`
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  top: 3rem;
+  top: 11.6rem;
   left: 6rem;
-  z-index: 50000;
+  max-width: calc(100vw - 3.2rem);
+  z-index: 500;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.playerBackgroundColorPrimary};
+
+  @media (max-width: 1024px) {
+    left: 1.6rem;
+  }
+
+  @media (max-width: 768px) {
+    top: auto;
+    bottom: 6.4rem;
+    left: 0.8rem;
+    right: 0.8rem;
+    max-width: calc(100vw - 1.6rem);
+  }
 `;
 
 export const Wrapper = styled.div<ThemeProps>`
@@ -27,7 +40,12 @@ export const Wrapper = styled.div<ThemeProps>`
   padding: 30px;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.playerBackgroundColorSecondary};
+  max-width: 100%;
   z-index: 1000;
+
+  @media (max-width: 768px) {
+    padding: 1.2rem;
+  }
 `;
 
 export const TrackContainer = styled.div`
@@ -80,6 +98,10 @@ export const TrackStyles = css`
   margin: 20px;
   padding: 5px 7px;
   border-radius: 5px;
+
+  @media (max-width: 480px) {
+    margin: 8px;
+  }
 `;
 export const RepeatTrack = styled.div`
   ${TrackStyles}
@@ -107,7 +129,7 @@ export const SliderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 500px;
+  width: min(500px, 100%);
 `;
 
 export const VolumeContainer = styled.div`

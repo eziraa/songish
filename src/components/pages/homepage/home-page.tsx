@@ -75,7 +75,8 @@ const HomePage = () => {
             style={
               user.user.id === ""
                 ? {
-                    left: "9.7vw",
+                    left: 0,
+                    width: "100%",
                   }
                 : {}
             }
@@ -84,8 +85,7 @@ const HomePage = () => {
               id="content"
               style={{
                 position: "relative",
-                border: "0.2rem solid red",
-                height: "5vh",
+                height: 0,
                 top: "-10vh",
               }}
             ></div>

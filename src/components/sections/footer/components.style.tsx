@@ -2,23 +2,21 @@ import styled from "@emotion/styled";
 import { ThemeProps } from "../../../styles/theme-interface";
 
 export const FooterContainer = styled.div<ThemeProps>`
-  background-color: transparent;
   color: ${({ theme }) => theme.textSecondary};
   text-align: center;
-  z-index: 200;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  margin-left: -15.5rem;
-  margin-bottom: -5.2rem;
-  width: 100.1vw;
-  padding: 2.16rem 8rem;
-  padding-top: 5rem;
-  position: absolute;
-  height: 25vh;
-  bottom: 0;
+  width: 100%;
+  margin-top: 4rem;
+  padding: 2.16rem 4rem 2.4rem;
   align-items: center;
   background-color: ${({ theme }) => theme.backgroundSecondary};
+
+  @media (max-width: 768px) {
+    padding: 1.6rem;
+  }
 `;
 
 export const FooterText = styled.p<ThemeProps>`
@@ -29,8 +27,9 @@ export const FooterText = styled.p<ThemeProps>`
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 1px;
-  text-align: start;
-  width: 60%;
+  text-align: center;
+  width: 100%;
+  max-width: 60rem;
 `;
 
 export const CopyRight = styled(FooterText)`

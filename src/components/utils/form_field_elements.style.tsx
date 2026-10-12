@@ -3,10 +3,16 @@ import { ThemeProps } from "../../styles/theme-interface";
 
 export const Description = styled.div`
   width: 40%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const FormContainer = styled.div`
   width: 40%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h2<ThemeProps>`
@@ -17,7 +23,7 @@ export const Title = styled.h2<ThemeProps>`
 
 export const DescriptionText = styled.p<ThemeProps>`
   font-size: 1.8rem;
-  color: black;
+  color: ${({ theme }) => theme.textPrimary};
   line-height: 1.6;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
@@ -25,17 +31,21 @@ export const DescriptionText = styled.p<ThemeProps>`
   padding-top: 2rem;
   max-width: 30vw;
   letter-spacing: 1px;
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
-export const Form = styled.form`
+export const Form = styled.form<ThemeProps>`
   display: flex;
   flex-direction: column;
-  width: 15vw;
+  width: 28rem;
+  max-width: 100%;
   font-weight: 400;
   text-align: start;
   padding: 1rem 0;
-  font-family: "Robotto", sans-serif;
-  color: #12392c;
+  font-family: "Roboto", sans-serif;
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 1.6rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
@@ -64,17 +74,22 @@ export const Input = styled.input<ThemeProps>`
 export const Button = styled.button<ThemeProps>`
   margin-top: 2rem;
   padding: 1.2rem 2rem;
-  background-color: ${({ theme }) => theme.formButtonColor};
-  border: none;
   background-color: #0ce6cd;
+  color: #012822;
+  border: none;
   border-radius: 0.5rem;
   font-size: 1.8rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  min-height: 4.4rem;
 
   &:hover {
     background-color: #06afb5;
     color: white;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `;
 export const TextArea = styled.textarea<ThemeProps>`

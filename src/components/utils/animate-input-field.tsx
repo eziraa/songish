@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import Modal from "../sections/modal/modal";
 
 export const InputField = styled.div`
   height: 4rem;
   width: 100%;
   position: relative;
-  color:black;
+  color: black;
   input {
     padding-left: 0.5rem;
     width: 100%;
@@ -57,25 +56,3 @@ export const InputField = styled.div`
   }
 `;
 
-const InputConatiner = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 40rem;
-  background-color: white;
-  height: 20rem;
-  padding: 3rem;
-  border: 2px solid red;
-`;
-
-export const MyComponent = () => (
-  <Modal>
-    <InputConatiner>
-      <InputField>
-        <input type="text" required />
-        <label>Username</label>
-      </InputField>
-    </InputConatiner>
-  </Modal>
-);

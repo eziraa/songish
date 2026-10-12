@@ -148,6 +148,7 @@ export default function PlayerComponent() {
     <Player id="draggable" draggable="true" onDragStart={handleDragStart}>
       <Wrapper style={{ position: "relative" }}>
         <CloseButton
+          aria-label="Close player"
           style={{
             top: "5px",
             right: "10px",
@@ -204,6 +205,7 @@ export default function PlayerComponent() {
           </CurrentTime>
           <SeekSlider
             type="range"
+            aria-label="Seek"
             min="0"
             max={songs.current_song.duration.toString()}
             value={songs.current_song.currentTime}
@@ -217,13 +219,23 @@ export default function PlayerComponent() {
         <SliderContainer>
           <VolumeContainer>
             <VolumeDownIcon
+              role="button"
+              tabIndex={0}
+              aria-label="Decrease volume"
               onClick={() => {
                 setVolume(volume - 5 > 0 ? volume - 5 : volume);
                 songs.current_song.volume = volume / 100;
               }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setVolume(volume - 5 > 0 ? volume - 5 : volume);
+                  songs.current_song.volume = volume / 100;
+                }
+              }}
             />
             <VolumeSlider
               type="range"
+              aria-label="Volume"
               min="0"
               max="100"
               value={volume}
@@ -233,32 +245,79 @@ export default function PlayerComponent() {
               }}
             />
             <VolumeUpIcon
+              role="button"
+              tabIndex={0}
+              aria-label="Increase volume"
               onClick={() => {
                 setVolume(volume + 5 < 100 ? volume + 5 : volume);
                 songs.current_song.volume = volume / 100;
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setVolume(volume + 5 < 100 ? volume + 5 : volume);
+                  songs.current_song.volume = volume / 100;
+                }
               }}
             />
           </VolumeContainer>
           <ButtonContainer>
             <RandomTrack
+              role="button"
+              tabIndex={0}
+              aria-label="Shuffle"
+              aria-pressed={isRandom}
               style={{
                 backgroundColor: `${isRandom ? "#a00677" : "transparent"}`,
               }}
               onClick={() => randomTrack()}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " ") && randomTrack()
+              }
             >
               <RandomActive />
             </RandomTrack>
-            <PrevTrack onClick={() => prevTrack()}>
+            <PrevTrack
+              role="button"
+              tabIndex={0}
+              aria-label="Previous track"
+              onClick={() => prevTrack()}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " ") && prevTrack()
+              }
+            >
               <BackIcon />
             </PrevTrack>
-            <PlayPauseTrack onClick={() => playPauseTrack()}>
+            <PlayPauseTrack
+              role="button"
+              tabIndex={0}
+              aria-label={isPlaying ? "Pause" : "Play"}
+              onClick={() => playPauseTrack()}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " ") && playPauseTrack()
+              }
+            >
               {isPlaying ? <IconPause /> : <IconPlay />}
             </PlayPauseTrack>
-            <NextTrack onClick={() => nextTrack()}>
+            <NextTrack
+              role="button"
+              tabIndex={0}
+              aria-label="Next track"
+              onClick={() => nextTrack()}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " ") && nextTrack()
+              }
+            >
               <ForwardIcon />
             </NextTrack>
             <RepeatTrack
+              role="button"
+              tabIndex={0}
+              aria-label="Repeat"
+              aria-pressed={!isRandom}
               onClick={() => setIsRandom(false)}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " ") && setIsRandom(false)
+              }
               style={{
                 backgroundColor: `${isRandom ? "transparent" : "#a00677"}`,
               }}

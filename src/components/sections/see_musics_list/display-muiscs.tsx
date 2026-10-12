@@ -151,7 +151,7 @@ function MusicTable({ popUpIndex, setPopUpIndex }: PopUPProps) {
       <ScrollBar
         style={{
           position: "relative",
-          width: "70vw",
+          width: "100%",
           maxHeight: "60vh",
           paddingBottom: "22vh",
         }}

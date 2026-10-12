@@ -11,6 +11,11 @@ export const ThemeToggleButton = () => {
   const { theme, toggleTheme } = useContext<ThemeContextType>(ThemeContext);
   return (
     <ToggleButton
+      as="button"
+      type="button"
+      aria-label={
+        theme === lightTheme ? "Switch to dark theme" : "Switch to light theme"
+      }
       onClick={(e) => {
         e.stopPropagation();
         toggleTheme();

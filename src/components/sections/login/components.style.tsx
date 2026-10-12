@@ -12,6 +12,7 @@ export const LoginPageContainer = styled.div`
 
 export const LoginFormContainer = styled.div`
   width: 30rem;
+  max-width: 100%;
   border-radius: 1rem;
   padding: 3.2rem;
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);

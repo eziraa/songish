@@ -17,15 +17,23 @@ export const SearchContainer = styled.div<ThemeProps>`
 export const SearchForm = styled.form`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: start;
   align-items: center;
   gap: 1rem;
   justify-self: flex-start;
-  margin-right: 8rem;
+  margin-right: 4rem;
+
+  @media (max-width: 1024px) {
+    margin-right: 0;
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const SearchField = styled.input<ThemeProps>`
   width: 30rem;
+  max-width: 60vw;
   font-size: 1.6rem;
   outline: none;
   background-color: ${({ theme }) => theme.searchBackgroundColor};
@@ -39,6 +47,10 @@ export const SearchField = styled.input<ThemeProps>`
   &:focus {
     outline: none;
     border: none;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 50vw;
   }
 `;
 

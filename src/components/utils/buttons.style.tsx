@@ -8,7 +8,6 @@ export const OutLinedButton = styled.button<ThemeProps>`
   border-radius: 0.5rem;
   font-size: 1.6rem;
   font-weight: 600;
-  font-family: monospace;
   display: flex;
   align-items: center;
   gap: 0.5rem;

@@ -90,7 +90,6 @@ const ContactPage = () => {
       </ContactBody>
       <FormContainer
         style={{
-          width: "50vw",
           backgroundColor: "#0c0c0e1e",
           padding: "2rem",
           borderRadius: "10px",
@@ -99,6 +98,7 @@ const ContactPage = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          maxWidth: "50rem",
         }}
       >
         <Form style={{ width: "80%" }} ref={formRef} onSubmit={sendEmail}>
